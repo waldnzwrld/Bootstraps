@@ -7,8 +7,7 @@ export PATH=$GOPATH:$PATH
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
+# load a random theme each time Oh My Zsh is loaded, 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="muse"
 
@@ -63,20 +62,8 @@ export EDITOR="nvim"
 # export ARCHFLAGS="-arch $(uname -m)"
 
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-alias zshconfig="nvim ~/.zshrc"
-alias reload_shell=". ~/.zshrc"
-alias python="python3"
-alias pip="pip3"
+source $ZSH_CUSTOM/aliases.zsh
 alias vstDebug="'/Applications/REAPER.app/Contents/MacOS/REAPER'"
-alias vim=$(which nvim)
 alias lvim="cd ~/Code/ && /Users/waldnzwrld/.local/bin/lvim"
-alias nnn="n -e"
-alias ls="n -e"
