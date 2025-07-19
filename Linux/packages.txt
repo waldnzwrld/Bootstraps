@@ -1,0 +1,7 @@
+Add packages here in this format
+
+package1
+package2
+openssh
+vivaldi
+xmrig
