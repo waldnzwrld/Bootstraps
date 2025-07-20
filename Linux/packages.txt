@@ -2,8 +2,6 @@ gh
 git
 nnn
 neovim
-openssh
 ssh
-vivaldi
 xmrig
 zsh
