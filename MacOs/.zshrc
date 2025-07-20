@@ -66,4 +66,3 @@ export EDITOR="nvim"
 #
 source $ZSH_CUSTOM/aliases.zsh
 alias vstDebug="'/Applications/REAPER.app/Contents/MacOS/REAPER'"
-alias lvim="cd ~/Code/ && /Users/waldnzwrld/.local/bin/lvim"
