@@ -19,9 +19,9 @@ brew bundle --file=Brewfile.common || true
 read -p "Is this a personal or business build? (p/b) " build_type
 
 if [ "$build_type" == "p" ]; then
-    brew bundle --file=Brewfile.personal
+    brew bundle --file=Brewfile.personal || true
 else
-    brew bundle --file=Brewfile.professional
+    brew bundle --file=Brewfile.professional || true
 fi
 
 # copy the aliases.zsh file to the ~/.oh-my-zsh/custom/aliases.zsh file
