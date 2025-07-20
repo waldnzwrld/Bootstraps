@@ -1,7 +1,8 @@
-Add packages here in this format
-
-package1
-package2
+git
+nnn
+neovim
 openssh
+ssh
 vivaldi
 xmrig
+zsh
