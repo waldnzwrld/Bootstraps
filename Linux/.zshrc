@@ -73,6 +73,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 plugins=(colored-man-pages colorize debian git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
+source "/home/waldnzwrld/.config/nnn/plugins/quitcd.sh"
 
 # User configuration
 
@@ -101,15 +102,7 @@ export EDITOR='nvim'
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="nvim ~/.zshrc"
-alias vim="nvim"
-alias reload_shell=". ~/.zshrc"
-alias go_headless="sudo systemctl disable lightdm.service && reboot"
-alias enable_ui="sudo systemctl start lightdm.service"
-alias desktop="sudo systemctl enable lightdm.service && reboot"
-alias connect_to_wifi="/usr/local/bin/connect_to_wifi.sh"
-alias nnn="nnn -e"
-alias ls="nnn -e"
+source $ZSH_CUSTOM/aliases.zsh
 
 echo "XMRIG RUNNING AT PID $(pgrep xmrig)"
 echo "current stats"
