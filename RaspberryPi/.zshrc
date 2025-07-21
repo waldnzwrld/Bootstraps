@@ -101,7 +101,6 @@ export EDITOR='nvim'
 #
 # Example aliases
 source $ZSH_CUSTOM/aliases.zsh
-alias connect_to_wifi="/usr/local/bin/connect_to_wifi.sh"
 
 echo "XMRIG RUNNING AT PID $(pgrep xmrig)"
 echo "current stats"
