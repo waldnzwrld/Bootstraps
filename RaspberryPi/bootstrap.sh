@@ -6,9 +6,7 @@ user=$(whoami)
 dir=$(pwd)
 
 sudo apt-get update
-sudo apt-get install git -y
-
-cd $dir
+xargs -a ../Linux/packages.txt sudo apt-get install
 
 echo "setting up shell"
 ./setup-shell.sh

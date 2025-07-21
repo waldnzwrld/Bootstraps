@@ -2,18 +2,14 @@
 
 set -e
 
-echo "installing dependencies"
-sudo apt install zsh thefuck -y
 
 echo "setting up ohmyzsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-echo "setting up zshrc"
-sed -i "s/robbyrussell/pygmalion/g" ~/.zshrc
-sed -i "s/plugins=(git)/plugins=(colored-man-pages colorize debian git thefuck)/g" ~/.zshrc
-
-echo "setting up zsh plugins"
-sed -i "s/plugins=(git)/plugins=(colored-man-pages colorize debian git thefuck)/g" ~/.zshrc
+cp .zshrc ~/.zshrc
+cp aliases.zsh ~/.oh-my-zsh/custom/aliases.zsh
+cp ../nnn-quitcd.sh ~/.config/nnn/plugins/quitcd.sh
+cp ../Linux/connect_to_wifi.sh /usr/local/bin/connect_to_wifi.sh
 
 echo "setting up oh-my-zsh as ssh shell"
 echo 'if [[ -n $SSH_CONNECTION ]] ; then
