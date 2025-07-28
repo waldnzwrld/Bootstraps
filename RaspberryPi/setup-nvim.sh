@@ -12,8 +12,14 @@ cp -r Nvim $HOME/.config/nvim
 
 cd $HOME
 
-git clone https://github.com/neovim/neovim
+if [ ! -d "neovim" ]; then
+    git clone https://github.com/neovim/neovim
+fi
 cd neovim
+rm -rf build
+
+git pull
+
 mkdir build
 
 sudo cmake --build build/ --target uninstall
@@ -27,3 +33,6 @@ nvim --headless -c "PlugInstall" -c "qa"
 cd $HOME/.config/nvim
 
 cat ./PluginConf > init.lua
+
+cd $HOME
+rm -rf neovim
