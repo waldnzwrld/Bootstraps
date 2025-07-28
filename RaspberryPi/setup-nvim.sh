@@ -21,8 +21,11 @@ fi
 cd neovim
 if [ -d "build" ]; then
     echo "removing build directory"
-    rm -rf build
+    sudo rm -rf build
 fi
+
+echo "checking out nightly"
+git checkout nightly       
 
 echo "pulling latest neovim"
 git pull
@@ -38,9 +41,6 @@ if [ -f "build/CMakeCache.txt" ] || [ -d "build/CMakeFiles" ]; then
 else
     echo "no previous build cache found, skipping uninstall"
 fi
-
-echo "checking out nightly"
-git checkout nightly
 
 echo "building neovim"
 make CMAKE_BUILD_TYPE=Release
