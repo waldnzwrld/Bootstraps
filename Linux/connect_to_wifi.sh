@@ -7,17 +7,20 @@ usage() {
     echo "Usage: $0 -n <name> -p <password>"
     echo "  -n: Set the name"
     echo "  -p: Set the password"
+    echo "  -x: Set to any value if the network is hidden"
     exit 1
 }
 
 # Parse command line arguments
-while getopts "n:p:h" opt; do
+while getopts "n:p:x:h" opt; do
     case $opt in
         n)
             NETWORK="$OPTARG"
             ;;
         p)
             PASSWORD="$OPTARG"
+            ;;
+        x)  HIDDEN="$OPTARG"
             ;;
         h)
             usage
@@ -39,7 +42,13 @@ if [ -z "$NETWORK" ] || [ -z "$PASSWORD" ]; then
     usage
 fi
 
+if [ -z "$HIDDEN" ]; then
+    HIDDEN=""
+else
+    HIDDEN="hidden yes"
+fi
+
 echo "Attempting to connect to $NETWORK"
-nmcli dev wifi connect "$NETWORK" password "$PASSWORD"
+sudo nmcli dev wifi connect "$NETWORK" password "$PASSWORD" "$HIDDEN"
 
 
