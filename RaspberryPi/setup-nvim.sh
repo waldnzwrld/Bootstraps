@@ -46,7 +46,7 @@ echo "building neovim"
 make CMAKE_BUILD_TYPE=Release
 
 echo "installing neovim"
-cd build && sudo cpack -G DEB && sudo dpkg -i --force-overwrite nvim-linux-arm64.deb
+cd build && sudo cpack -G DEB && sudo dpkg -i --force-overwrite nvim-linux*.deb
 
 echo "checking neovim version"
 nvim -V1 -v
