@@ -2,7 +2,8 @@
 #
 
 set -e
-xargs -a packages.txt sudo apt-get install
+sudo apt-get update
+xargs -a ../packages.txt sudo apt-get install
 
 # install oh-my-zsh
 if [ ! -d ~/.oh-my-zsh ]; then
@@ -22,3 +23,4 @@ cp .zshrc ~/.zshrc
 cp ../nnn-quitcd.sh ~/.config/nnn/plugins/quitcd.sh
 
 #
+./setup-nvim.sh

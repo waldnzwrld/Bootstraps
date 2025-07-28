@@ -9,7 +9,7 @@ sudo apt-get update
 xargs -a ./packages.txt sudo apt-get install
 
 echo "setting up neovim"
-./setup-nvim.sh
+../Linux/setup-nvim.sh
 cd $dir
 
 echo "setting up shell"
