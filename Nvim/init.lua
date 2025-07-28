@@ -18,16 +18,20 @@ vim.call('plug#begin')
 Plug('airblade/vim-gitgutter')  -- Git diff in column
 Plug('akinsho/bufferline.nvim')  -- plugin for tab line at the top
 Plug('catppuccin/nvim', { as = 'catppuccin' })  -- a beautiful color scheme
+Plug('neoclide/coc.nvim', { branch = 'release' }) -- coc.nvim for completion
 Plug('dense-analysis/ale')  -- linting and fixing code
 Plug('inkarkat/vim-AdvancedSorters')  -- advanced sorting of text
 Plug('inkarkat/vim-ingo-library')  -- a library of useful functions for Vim
 Plug('lervag/vimtex')  -- LaTeX editing
 Plug('lewis6991/gitsigns.nvim')  -- text buffer Git integration
+Plug('luukvbaal/nnn.nvim')  -- nnn file explorer for vim
 Plug('majutsushi/tagbar')  -- displaying tags in a sidebar
 Plug('mbbill/undotree')  -- Undo/Redo History Visualizer
 Plug('morhetz/gruvbox')  -- Gruvbox: Color Scheme
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })  -- Syntax and code analysis
 Plug('p00f/nvim-ts-rainbow')  -- Colorful parenthesis
+Plug('preservim/nerdtree', { on = 'NERDTreeToggle' })  -- File explorer
+Plug('puremourning/vimspector') -- Debugger integration
 Plug('ray-x/go.nvim')  -- Go for nvim
 Plug('rhysd/git-messenger.vim')  -- commit history
 Plug('ryanoasis/vim-devicons')  -- Developer font icons
@@ -51,60 +55,3 @@ vim.call('plug#end')
 -- Plugin configurations (add after plug#end)
 -- You can add plugin-specific configurations here
 
--- LSP Configuration (moved here after plugins are loaded)
-local lspconfig = require("lspconfig")
-lspconfig.gopls.setup({})
-
--- TypeScript LSP configuration
-lspconfig.ts_ls.setup({
-    settings = {
-        typescript = {
-            compilerOptions = {
-                target = "ES2020",
-                lib = {"ES2020", "DOM", "DOM.Iterable"},
-                module = "ESNext",
-                moduleResolution = "node",
-                allowSyntheticDefaultImports = true,
-                esModuleInterop = true,
-                allowJs = true,
-                skipLibCheck = true,
-                strict = true,
-                forceConsistentCasingInFileNames = true,
-                noEmit = true,
-                resolveJsonModule = true,
-                isolatedModules = true,
-                jsx = "preserve",
-                incremental = true,
-            }
-        }
-    }
-})
-
--- Example configurations for some of your plugins:
--- Treesitter configuration
-require('nvim-treesitter.configs').setup {
-    ensure_installed = { "c", "lua", "vim", "go", "python", "javascript", "typescript" },
-    highlight = {
-        enable = true,
-    },
-}
-
--- Bufferline configuration
-require("bufferline").setup{}
-
--- Gitsigns configuration
-require('gitsigns').setup()
-
--- Go.nvim configuration
-require('go').setup()
-
--- Catppuccin theme configuration
-require("catppuccin").setup({
-    flavour = "mocha", -- latte, frappe, macchiato, mocha
-})
-
--- Set colorscheme (uncomment one of these)
--- vim.cmd.colorscheme "catppuccin"
--- vim.cmd.colorscheme "gruvbox"
--- vim.cmd.colorscheme "melange"
-vim.cmd.colorscheme "vague"

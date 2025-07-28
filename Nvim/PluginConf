@@ -1,0 +1,58 @@
+require("nnn").setup()
+-- LSP Configuration (moved here after plugins are loaded)
+local lspconfig = require("lspconfig")
+lspconfig.gopls.setup({})
+
+-- TypeScript LSP configuration
+lspconfig.ts_ls.setup({
+    settings = {
+        typescript = {
+            compilerOptions = {
+                target = "ES2020",
+                lib = {"ES2020", "DOM", "DOM.Iterable"},
+                module = "ESNext",
+                moduleResolution = "node",
+                allowSyntheticDefaultImports = true,
+                esModuleInterop = true,
+                allowJs = true,
+                skipLibCheck = true,
+                strict = true,
+                forceConsistentCasingInFileNames = true,
+                noEmit = true,
+                resolveJsonModule = true,
+                isolatedModules = true,
+                jsx = "preserve",
+                incremental = true,
+            }
+        }
+    }
+})
+
+-- Example configurations for some of your plugins:
+-- Treesitter configuration
+require('nvim-treesitter.configs').setup {
+    ensure_installed = { "c", "lua", "vim", "go", "python", "javascript", "typescript" },
+    highlight = {
+        enable = true,
+    },
+}
+
+-- Bufferline configuration
+require("bufferline").setup{}
+
+-- Gitsigns configuration
+require('gitsigns').setup()
+
+-- Go.nvim configuration
+require('go').setup()
+
+-- Catppuccin theme configuration
+require("catppuccin").setup({
+    flavour = "mocha", -- latte, frappe, macchiato, mocha
+})
+
+-- Set colorscheme (uncomment one of these)
+-- vim.cmd.colorscheme "catppuccin"
+-- vim.cmd.colorscheme "gruvbox"
+-- vim.cmd.colorscheme "melange"
+vim.cmd.colorscheme "vague"
