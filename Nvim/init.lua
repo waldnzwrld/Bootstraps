@@ -12,6 +12,7 @@ end
 -- Plugin management with vim-plug
 local Plug = vim.fn['plug#']
 
+
 vim.call('plug#begin')
 
 -- Plugin declarations

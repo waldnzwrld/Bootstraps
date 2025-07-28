@@ -1,3 +1,6 @@
+-- Plugin configurations (add after plug#end)
+-- You can add plugin-specific configurations here
+
 require("nnn").setup()
 -- LSP Configuration (moved here after plugins are loaded)
 local lspconfig = require("lspconfig")
@@ -52,7 +55,7 @@ require("catppuccin").setup({
 })
 
 -- Set colorscheme (uncomment one of these)
--- vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme "catppuccin"
 -- vim.cmd.colorscheme "gruvbox"
 -- vim.cmd.colorscheme "melange"
-vim.cmd.colorscheme "vague"
+-- vim.cmd.colorscheme "vague"

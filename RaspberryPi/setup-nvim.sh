@@ -13,7 +13,7 @@ echo "copying Nvim to .config/nvim"
 if [ -d "$HOME/.config/nvim" ]; then
     rm -rf $HOME/.config/nvim
 fi
-cp -r Nvim/* $HOME/.config/nvim/
+cp -r Nvim $HOME/.config/nvim
 
 cd $HOME
 
@@ -63,6 +63,6 @@ cat ./PluginConf >> init.lua
 
 echo "removing neovim directory"
 cd $HOME
-rm -rf neovim
+sudo rm -rf neovim
 
 echo "done"
