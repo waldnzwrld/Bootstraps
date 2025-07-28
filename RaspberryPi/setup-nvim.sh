@@ -2,7 +2,12 @@
 
 set -e
 
-mkdir $HOME/.config
+# check if .config/nvim exists
+if [ ! -d "$HOME/.config" ]; then
+    mkdir -p $HOME/.config
+fi
+
+# force copy Nvim to .config/nvim
 cp Nvim $HOME/.config/nvim
 
 cd $HOME
