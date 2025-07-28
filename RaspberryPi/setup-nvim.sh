@@ -10,7 +10,10 @@ fi
 
 # force copy Nvim to .config/nvim
 echo "copying Nvim to .config/nvim"
-cp -r Nvim $HOME/.config/nvim
+if [ -d "$HOME/.config/nvim" ]; then
+    rm -rf $HOME/.config/nvim
+fi
+cp -r Nvim/* $HOME/.config/nvim/
 
 cd $HOME
 
