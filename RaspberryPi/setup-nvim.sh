@@ -28,7 +28,7 @@ echo "checking out nightly"
 git checkout nightly       
 
 echo "pulling latest neovim"
-git pull
+git pull origin nightly
 
 echo "building neovim"
 mkdir build
