@@ -1,0 +1,12 @@
+cmake
+curl
+gettext
+gh
+git
+ninja-build
+nnn
+nodejs
+ssh
+unzip
+xmrig
+zsh

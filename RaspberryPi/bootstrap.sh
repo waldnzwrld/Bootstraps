@@ -6,7 +6,11 @@ user=$(whoami)
 dir=$(pwd)
 
 sudo apt-get update
-xargs -a ../Linux/packages.txt sudo apt-get install
+xargs -a ./packages.txt sudo apt-get install
+
+echo "setting up neovim"
+./setup-nvim.sh
+cd $dir
 
 echo "setting up shell"
 ./setup-shell.sh
