@@ -8,12 +8,13 @@ if [ ! -d "$HOME/.config" ]; then
 fi
 
 # force copy Nvim to .config/nvim
-cp Nvim $HOME/.config/nvim
+cp -r Nvim $HOME/.config/nvim
 
 cd $HOME
 
 git clone https://github.com/neovim/neovim
 cd neovim
+mkdir build
 
 sudo cmake --build build/ --target uninstall
 git checkout nightly
