@@ -31,7 +31,13 @@ echo "building neovim"
 mkdir build
 
 echo "building neovim"
-sudo cmake --build build/ --target uninstall
+# Check if there's a previous installation to uninstall
+if [ -f "build/CMakeCache.txt" ] || [ -d "build/CMakeFiles" ]; then
+    echo "uninstalling previous build"
+    sudo cmake --build build/ --target uninstall || echo "no previous installation found"
+else
+    echo "no previous build cache found, skipping uninstall"
+fi
 
 echo "checking out nightly"
 git checkout nightly
