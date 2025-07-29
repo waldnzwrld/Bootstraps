@@ -32,3 +32,11 @@ cp .zshrc ~/.zshrc
 
 # copy nnn-quitcd.sh to ~/.config/nnn/plugins/quitcd.sh
 cp ../nnn-quitcd.sh ~/.config/nnn/plugins/quitcd.sh
+
+cp ../Nvim ~/.config/nvim
+
+nvim --headless -c "PlugInstall" -c "qa"
+
+echo "copying PluginConf to .config/nvim/init.lua"
+cd ~/.config/nvim
+cat ./PluginConf >> init.lua
