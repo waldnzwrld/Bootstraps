@@ -12,6 +12,8 @@ echo "setting up neovim"
 ../Linux/setup-nvim.sh
 cd $dir
 
+sudo cp ../Linux/connect_to_wifi.sh /usr/local/bin/connect_to_wifi
+
 echo "setting up shell"
 ./setup-shell.sh
 

@@ -11,7 +11,7 @@ if [ ! -d ~/.oh-my-zsh ]; then
 fi
 
 # copy the connect_to_wifi script to /usr/local/bin
-sudo cp connect_to_wifi.sh /usr/local/bin/connect_to_wifi.sh
+sudo cp connect_to_wifi.sh /usr/local/bin/connect_to_wifi
 
 # copy the aliases.zsh file to the ~/.oh-my-zsh/custom/aliases.zsh file
 cp aliases.zsh ~/.oh-my-zsh/custom/aliases.zsh

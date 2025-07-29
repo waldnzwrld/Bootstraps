@@ -7,20 +7,17 @@ usage() {
     echo "Usage: $0 -n <name> -p <password>"
     echo "  -n: Set the name"
     echo "  -p: Set the password"
-    echo "  -x: Set to any value if the network is hidden"
     exit 1
 }
 
 # Parse command line arguments
-while getopts "n:p:x:h" opt; do
+while getopts "n:p:h" opt; do
     case $opt in
         n)
             NETWORK="$OPTARG"
             ;;
         p)
             PASSWORD="$OPTARG"
-            ;;
-        x)  HIDDEN="$OPTARG"
             ;;
         h)
             usage
@@ -48,7 +45,10 @@ else
     HIDDEN="hidden yes"
 fi
 
-echo "Attempting to connect to $NETWORK"
-sudo nmcli dev wifi connect "$NETWORK" password "$PASSWORD" "$HIDDEN"
 
+echo "Attempting to connect to $NETWORK"
+sudo nmcli c add type wifi con-name "$NETWORK" ifname wlan0 ssid "$NETWORK"
+sudo nmcli con modify "$NETWORK" wifi-sec.key-mgmt wpa-psk
+sudo nmcli con modify "$NETWORK" wifi-sec.psk "$PASSWORD"
+sudo nmcli con up "$NETWORK"
 
