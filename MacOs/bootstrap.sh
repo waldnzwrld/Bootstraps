@@ -30,10 +30,11 @@ cp aliases.zsh ~/.oh-my-zsh/custom/aliases.zsh
 # copy the zshrc file
 cp .zshrc ~/.zshrc
 
-# copy nnn-quitcd.sh to ~/.config/nnn/plugins/quitcd.sh
-cp ../nnn-quitcd.sh ~/.config/nnn/plugins/quitcd.sh
+cp ../yazi ~/.config/yazi
+ya pkg install
+ya pkg upgrade
 
-cp ../Nvim ~/.config/nvim
+cp ../nvim ~/.config/nvim
 
 nvim --headless -c "PlugInstall" -c "qa"
 
