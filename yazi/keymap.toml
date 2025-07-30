@@ -1,42 +1,50 @@
+# Paste into hovered folder
 [[mgr.prepend_keymap]]
 on   = "p"
 run  = "plugin smart-paste"
 desc = "Paste into the hovered directory or CWD"
 
+# open file or dir on l
 [[mgr.prepend_keymap]]
 on   = "l"
 run  = "plugin smart-enter"
 desc = "Enter the child directory, or open the file"
 
+# scroll column left
 [[mgr.prepend_keymap]]
 on = "H"
 run = "plugin duckdb -1"
 desc = "Scroll one column to the left"
 
+# scroll column right
 [[mgr.prepend_keymap]]
 on = "L"
 run = "plugin duckdb +1"
 desc = "Scroll one column to the right"
 
+# open duckdb cli
 [[mgr.prepend_keymap]]
 on = ["g", "o"]             
 run = "plugin duckdb -open" 
 desc = "open with duckdb"   
-                            
+
+# Open Duckdb ui
 [[mgr.prepend_keymap]]
 on = ["g", "u"]             
 run = "plugin duckdb -ui"   
 desc = "open with duckdb ui"
-desc = "Chmod on selected files"
 
+# find
 [[mgr.prepend_keymap]]
 on   = "f"
 run  = "plugin jump-to-char"
 desc = "Jump to char"
-                             
+
+# chmod
 [[mgr.prepend_keymap]]
 on   = [ "c", "m" ]
 run  = "plugin chmod"
+desc = "Chmod on selected files"
 
 # sudo cp/mv
 [[mgr.prepend_keymap]]
@@ -92,6 +100,7 @@ on = ["R", "D"]
 run = "plugin sudo -- remove --permanently"
 desc = "sudo delete"
 
+# lazygit
 [[mgr.prepend_keymap]]
 on   = [ "g", "i" ]
 run  = "plugin lazygit"

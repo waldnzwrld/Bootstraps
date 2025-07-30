@@ -12,7 +12,6 @@ prepend_previewers = [
   { name = "*.db", run = "duckdb" },
   { name = "*.duckdb", run = "duckdb" },
   { mime = "image/tiff", run = "magick" },
-  { name = "*.CR2", run = "magick cr2:" },
 ]
 
 prepend_preloaders = [  
@@ -21,7 +20,7 @@ prepend_preloaders = [
   { name = "*.json", run = "duckdb", multi = false },  
   { name = "*.parquet", run = "duckdb", multi = false },
   { name = "*.txt", run = "duckdb", multi = false },  
-  { name = "*.xlsx", run = "duckdb", multi = false }
+  { name = "*.xlsx", run = "duckdb", multi = false },
 ]
 
 [[plugin.prepend_fetchers]]
