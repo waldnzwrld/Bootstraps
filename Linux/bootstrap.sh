@@ -3,7 +3,7 @@
 
 set -e
 sudo apt-get update
-xargs -a ../packages.txt sudo apt-get install
+xargs -a ../packages.txt sudo apt-get install -y
 
 # install oh-my-zsh
 if [ ! -d ~/.oh-my-zsh ]; then
@@ -19,7 +19,7 @@ cp aliases.zsh ~/.oh-my-zsh/custom/aliases.zsh
 # copy the zshrc file
 cp .zshrc ~/.zshrc
 
-./setup-yazi
+./setup-yazi.sh
 
 #
 ./setup-nvim.sh

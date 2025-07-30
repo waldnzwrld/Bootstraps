@@ -2,7 +2,7 @@
 
 set -e
 
-cp ../yazi $HOME/.config/yazi
+cp -r ../yazi $HOME/.config/yazi
 
 echo "compiling rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -29,7 +29,7 @@ cd $HOME
 curl https://install.duckdb.org | sh
 sudo mv $HOME/.duckdb/cli/latest/duckdb /usr/local/bin/duckdb
 
-source ~/.zshrc
+source $HOME/.zshrc
 ya pkg install
 ya pkg upgrade
 
