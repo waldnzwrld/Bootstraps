@@ -24,7 +24,14 @@ sudo mv target/release/yazi target/release/ya /usr/local/bin
 cd $HOME
 sudo rm -rf yazi
 
+source ~/.zshrc
 ya pkg install
 ya pkg upgrade
 
 curl https://install.duckdb.org | sh
+
+sudo mv $HOME/.duckdb/cli/latest/duckdb /usr/local/bin/duckdb
+
+source ~/.zshrc
+
+sudo rm -rf $HOME/.duckdb
