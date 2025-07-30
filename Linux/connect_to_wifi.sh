@@ -39,13 +39,6 @@ if [ -z "$NETWORK" ] || [ -z "$PASSWORD" ]; then
     usage
 fi
 
-if [ -z "$HIDDEN" ]; then
-    HIDDEN=""
-else
-    HIDDEN="hidden yes"
-fi
-
-
 echo "Attempting to connect to $NETWORK"
 sudo nmcli c add type wifi con-name "$NETWORK" ifname wlan0 ssid "$NETWORK"
 sudo nmcli con modify "$NETWORK" wifi-sec.key-mgmt wpa-psk
