@@ -73,7 +73,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 plugins=(colored-man-pages colorize debian git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
-source "/home/waldnzwrld/.config/nnn/plugins/quitcd.sh"
+source "$HOME/.config/yazi/cd-on-quit"
 
 # User configuration
 

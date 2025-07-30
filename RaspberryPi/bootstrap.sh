@@ -17,6 +17,9 @@ sudo cp ../Linux/connect_to_wifi.sh /usr/local/bin/connect_to_wifi
 echo "setting up shell"
 ./setup-shell.sh
 
+echo "setting up yazi"
+../Linux/setup-yazi.sh
+
 # ask if we are using an argon case
 read -p "Are you using an argon case? (y/n) " argon
 if [ "$argon" == "y" ]; then

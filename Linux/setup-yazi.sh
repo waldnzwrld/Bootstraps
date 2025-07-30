@@ -2,6 +2,8 @@
 
 set -e
 
+cp ../yazi $HOME/.config/yazi
+
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 echo "source ~/.cargo/env" >> ~/.zshrc
@@ -22,4 +24,7 @@ sudo mv target/release/yazi target/release/ya /usr/local/bin
 cd $HOME
 sudo rm -rf yazi
 
+ya pkg install
+ya pkg upgrade
 
+curl https://install.duckdb.org | sh
