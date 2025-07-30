@@ -1,7 +1,16 @@
+build-essential
+cmake
+curl
+gcc
+gettext
 gh
 git
+make
+ninja-build
 nnn
-neovim
+nodejs
 ssh
+tmux
+unzip
 xmrig
 zsh
