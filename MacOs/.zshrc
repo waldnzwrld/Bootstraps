@@ -42,7 +42,8 @@ plugins=(brew colored-man-pages gh git golang jsontools)
 
 source $ZSH/oh-my-zsh.sh
 source "/opt/homebrew/opt/spaceship/spaceship.zsh"
-source "/Users/waldnzwrld/.config/nnn/plugins/quitcd.sh"
+source "$HOME/.config/yazi/cd-on-quit"
+source $ZSH_CUSTOM/aliases.zsh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -64,5 +65,5 @@ export EDITOR="nvim"
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
 # For a full list of active aliases, run `alias`.
 #
-source $ZSH_CUSTOM/aliases.zsh
 alias vstDebug="'/Applications/REAPER.app/Contents/MacOS/REAPER'"
+eval "$(zoxide init zsh)"

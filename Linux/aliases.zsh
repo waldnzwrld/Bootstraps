@@ -3,6 +3,7 @@ alias zshreload=". ~/.zshrc"
 alias vim=$(which nvim)
 alias python="python3"
 alias pip="pip3"
+alias cd="z"
 alias ls="y"
 alias go_headless="sudo systemctl disable lightdm.service && sudo reboot"
 alias enable_ui="sudo systemctl start lightdm.service"

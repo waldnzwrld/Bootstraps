@@ -20,5 +20,6 @@ ripgrep
 ssh
 tmux
 unzip
+wezterm
 zoxide
 zsh
