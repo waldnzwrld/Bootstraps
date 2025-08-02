@@ -13,7 +13,6 @@ imagemagick
 jq
 make
 ninja-build
-nnn
 nodejs
 poppler-utils
 ripgrep
