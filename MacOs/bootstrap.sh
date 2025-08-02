@@ -15,11 +15,17 @@ fi
 # if this fails keep going
 brew bundle --file=Brewfile.common || true
 
+mas signin --dialog waldnzwrld@gmail.com
+mas lucky Lightshot\ Screenshot
+
 # ask if this is a personal or professional build
 read -p "Is this a personal or business build? (p/b) " build_type
 
 if [ "$build_type" == "p" ]; then
     brew bundle --file=Brewfile.personal || true
+    mas lucky WhatsApp
+    mas lucky CakeWallet
+    mas lucky DaVinci\ Resolve
 else
     brew bundle --file=Brewfile.professional || true
 fi
