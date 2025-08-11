@@ -12,6 +12,9 @@ if [ ! -d ~/.oh-my-zsh ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
+mkdir ~/.go
+export GOPATH=~/.go
+
 # if this fails keep going
 brew bundle --file=Brewfile.common || true
 
@@ -44,6 +47,10 @@ cp ../nvim ~/.config/nvim
 
 nvim --headless -c "PlugInstall" -c "qa"
 
-echo "copying PluginConf to .config/nvim/init.lua"
-cd ~/.config/nvim
-cat ./PluginConf >> init.lua
+cargo install stylua
+npm i -g prettier typescript typescript-language-server tsx
+go install golang.org/x/tools/latest/gopls@latest
+go install golang.org/x/tools/cmd/goimports@latest
+go install honnef.co/go/tools/cmd/staticcheck@latest
+go install github.com/gordonklaus/ineffassign@latest
+go install honnef.co/go/tools/cmd/gosimple@latest

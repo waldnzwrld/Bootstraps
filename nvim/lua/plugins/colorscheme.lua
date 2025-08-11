@@ -1,0 +1,5 @@
+-- require('catppuccin').setup({ flavour = 'mocha' })
+-- vim.cmd.colorscheme('gruvbox')
+-- vim.cmd.colorscheme('catppuccin')
+-- vim.cmd.colorscheme('melange')
+vim.cmd.colorscheme("vague")
