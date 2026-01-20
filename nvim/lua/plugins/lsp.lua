@@ -1,12 +1,18 @@
+-- LSP configuration using Neovim -1.11+ native vim.lsp.config API
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local capabilities = cmp_nvim_lsp.default_capabilities()
-local lspconfig = require("lspconfig")
+
+-- Enable folding capabilities for UFO
+capabilities.textDocument.foldingRange = {
+	dynamicRegistration = false,
+	lineFoldingOnly = true,
+}
 
 -- Enhanced diagnostic configuration
 vim.diagnostic.config({
 	virtual_text = {
-		severity = { min = vim.diagnostic.severity.WARN }, -- Only show warnings and errors inline
-		source = "if_many", -- Show source if multiple sources provide diagnostics
+		severity = { min = vim.diagnostic.severity.WARN },
+		source = "if_many",
 		format = function(diagnostic)
 			if diagnostic.severity == vim.diagnostic.severity.ERROR then
 				return string.format("✗ %s", diagnostic.message)
@@ -18,7 +24,7 @@ vim.diagnostic.config({
 		end,
 	},
 	signs = {
-		severity = { min = vim.diagnostic.severity.HINT }, -- Show all severities in sign column
+		severity = { min = vim.diagnostic.severity.HINT },
 	},
 	float = {
 		border = "rounded",
@@ -27,7 +33,7 @@ vim.diagnostic.config({
 		prefix = "",
 	},
 	severity_sort = true,
-	update_in_insert = false, -- Don't update diagnostics while typing
+	update_in_insert = false,
 })
 
 -- Set diagnostic signs
@@ -37,31 +43,13 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
--- Global LSP defaults
-lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
-	capabilities = capabilities,
-})
-
--- Prefer compile_commands/flags or git ancestor for root
-do
-	local util = require("lspconfig.util")
-	local function global_root_dir(fname)
-		return util.root_pattern("compile_commands.json", "compile_flags.txt")(fname)
-			or util.find_git_ancestor(fname)
-			or util.path.dirname(fname)
-	end
-	local orig_config = lspconfig.util.default_config
-	lspconfig.util.default_config = vim.tbl_extend("force", orig_config, { root_dir = global_root_dir })
-end
-
--- on_attach with helpful keymaps and notify
-local function keys_on_attach(_, bufnr)
+-- on_attach with helpful keymaps
+local function on_attach(client, bufnr)
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	local k = vim.keymap.set
-	for _, client in pairs(vim.lsp.get_clients({ bufnr = bufnr })) do
-		local root = client.config.root_dir or "unknown"
-		vim.notify(string.format("LSP %s attached, root: %s", client.name, root), vim.log.levels.INFO)
-	end
+
+	local root = client.root_dir or "unknown"
+	vim.notify(string.format("LSP %s attached, root: %s", client.name, root), vim.log.levels.INFO)
 
 	-- Navigation keymaps
 	k("n", "gD", vim.lsp.buf.declaration, bufopts)
@@ -94,8 +82,14 @@ local function keys_on_attach(_, bufnr)
 	end, bufopts)
 end
 
-lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
-	on_attach = keys_on_attach,
+-- Set up LspAttach autocommand for keymaps
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client then
+			on_attach(client, args.buf)
+		end
+	end,
 })
 
 -- Prefer source files in definition handler
@@ -128,21 +122,20 @@ do
 	end
 end
 
+-- Configure LSP servers using vim.lsp.config (Neovim 0.11+ API)
+
 -- gopls
-lspconfig.gopls.setup({
+vim.lsp.config("gopls", {
 	cmd = { os.getenv("HOME") .. "/.go/bin/gopls" },
-	root_dir = function(fname)
-		local util = require("lspconfig.util")
-		return util.root_pattern("go.work", "go.mod")(fname)
-			or util.find_git_ancestor(fname)
-			or util.path.dirname(fname)
-	end,
+	filetypes = { "go", "gomod", "gowork", "gotmpl" },
+	root_markers = { "go.work", "go.mod", ".git" },
+	capabilities = capabilities,
 	settings = {
 		gopls = {
 			usePlaceholders = true,
 			completeUnimported = true,
 			staticcheck = true,
-			gofumpt = true, -- Use gofumpt for more strict formatting
+			gofumpt = true,
 			analyses = {
 				unusedparams = true,
 				unusedwrite = true,
@@ -152,11 +145,11 @@ lspconfig.gopls.setup({
 				shadow = true,
 			},
 			codelenses = {
-				gc_details = true, -- Show garbage collector details
-				generate = true, -- Show code generation options
-				regenerate_cgo = true, -- Regenerate cgo
-				test = true, -- Show test/benchmark options
-				tidy = true, -- Show go mod tidy option
+				gc_details = true,
+				generate = true,
+				regenerate_cgo = true,
+				test = true,
+				tidy = true,
 				upgrade_dependency = true,
 				vendor = true,
 			},
@@ -174,147 +167,30 @@ lspconfig.gopls.setup({
 })
 
 -- clangd
-lspconfig.clangd.setup({
+vim.lsp.config("clangd", {
 	cmd = {
 		"clangd",
 		"--background-index",
 		"--clang-tidy",
 		"--completion-style=detailed",
 		"--offset-encoding=utf-16",
-		"--header-insertion=iwyu", -- Include what you use
+		"--header-insertion=iwyu",
 		"--suggest-missing-includes",
 		"--all-scopes-completion",
 		"--cross-file-rename",
-		"--enable-config", -- Enable .clangd config files
+		"--enable-config",
 	},
 	filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
-	root_dir = function(fname)
-		local util = require("lspconfig.util")
-		return util.root_pattern("compile_commands.json", "compile_flags.txt")(fname)
-			or util.find_git_ancestor(fname)
-			or util.path.dirname(fname)
-	end,
-	on_new_config = function(new_config, root_dir)
-		local util = require("lspconfig.util")
-		local uv = vim.loop
-		local function exists(p)
-			return p and uv.fs_stat(p) ~= nil
-		end
-		local ccdir = util.search_ancestors(root_dir, function(path)
-			if exists(path .. "/compile_commands.json") then
-				return path
-			end
-			if exists(path .. "/build/compile_commands.json") then
-				return path .. "/build"
-			end
-		end)
-		if not ccdir and exists(root_dir .. "/Makefile") then
-			vim.fn.jobstart({ "which", "bear" }, {
-				on_exit = function(_, code)
-					if code == 0 then
-						vim.fn.jobstart({ "bear", "--", "make", "clean" }, {
-							cwd = root_dir,
-							on_exit = function(_, clean_code)
-								if clean_code == 0 then
-									vim.fn.jobstart({ "bear", "--", "make" }, {
-										cwd = root_dir,
-										on_exit = function(_, make_code)
-											if make_code == 0 and exists(root_dir .. "/compile_commands.json") then
-												vim.notify(
-													"Generated compile_commands.json from Makefile",
-													vim.log.levels.INFO
-												)
-												vim.cmd("LspRestart")
-											end
-										end,
-									})
-								end
-							end,
-						})
-					else
-						vim.notify(
-							"Install 'bear' to generate compile_commands.json from Makefile: brew install bear",
-							vim.log.levels.WARN
-						)
-					end
-				end,
-			})
-		end
-		if ccdir then
-			local cmd = new_config.cmd or { "clangd" }
-			local filtered = {}
-			for _, c in ipairs(cmd) do
-				if not c:match("^%-%-compile%-commands%-dir=") then
-					table.insert(filtered, c)
-				end
-			end
-			table.insert(filtered, "--compile-commands-dir=" .. ccdir)
-			new_config.cmd = filtered
-		end
-	end,
+	root_markers = { "compile_commands.json", "compile_flags.txt", ".git" },
+	capabilities = capabilities,
 })
 
 -- Solargraph (Ruby)
-lspconfig.solargraph.setup({
-	root_dir = function(fname)
-		local util = require("lspconfig.util")
-		return util.root_pattern("Gemfile", ".git")(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
-	end,
+vim.lsp.config("solargraph", {
 	cmd = { os.getenv("HOME") .. "/.rbenv/shims/solargraph", "stdio" },
-	on_attach = function(client, bufnr)
-		keys_on_attach(client, bufnr)
-		local root_dir = client.config.root_dir
-		local solargraph_config = root_dir .. "/.solargraph.yml"
-		local gemfile_path = root_dir .. "/Gemfile"
-		local file_exists = vim.fn.filereadable(solargraph_config) == 1
-		local gemfile_exists = vim.fn.filereadable(gemfile_path) == 1
-		if not file_exists then
-			local config_content = [[
-include:
-  - "**/*.rb"
-exclude:
-  - spec/**/*
-  - test/**/*
-  - vendor/**/*
-  - ".bundle/**/*"
-reporters:
-  - rubocop
-  - typecheck
-require: []
-domains: []
-max_files: 5000
-useBundler: true
-bundlerPath: bundle
-checkGemVersion: true
-includeGems: true
-]]
-			if gemfile_exists then
-				local gemfile_content = vim.fn.readfile(gemfile_path)
-				local gems = {}
-				for _, line in ipairs(gemfile_content) do
-					local gem_name = line:match("^%s*gem%s+['\"]([^'\"]+)['\"]")
-					if gem_name then
-						table.insert(gems, gem_name)
-					end
-				end
-				if #gems > 0 then
-					local require_section = "require:\n"
-					for _, gem in ipairs(gems) do
-						require_section = require_section .. "  - " .. gem .. "\n"
-					end
-					config_content = config_content:gsub("require: %[%]", require_section)
-				end
-			end
-			vim.fn.writefile(vim.fn.split(config_content, "\n"), solargraph_config)
-			vim.notify("Created .solargraph.yml for gem support", vim.log.levels.INFO)
-		end
-	end,
-	on_new_config = function(new_config, root_dir)
-		new_config.env = {
-			BUNDLE_GEMFILE = root_dir .. "/Gemfile",
-			BUNDLE_PATH = root_dir .. "/vendor/bundle",
-		}
-	end,
+	filetypes = { "ruby" },
+	root_markers = { "Gemfile", ".git" },
+	capabilities = capabilities,
 	settings = {
 		solargraph = {
 			autoformat = true,
@@ -347,14 +223,90 @@ includeGems: true
 	},
 })
 
+-- Python (Pyright)
+vim.lsp.config("pyright", {
+	cmd = { "pyright-langserver", "--stdio" },
+	filetypes = { "python" },
+	root_markers = {
+		"pyproject.toml",
+		"setup.py",
+		"setup.cfg",
+		"requirements.txt",
+		"Pipfile",
+		"pyrightconfig.json",
+		".git",
+	},
+	capabilities = capabilities,
+	settings = {
+		python = {
+			analysis = {
+				typeCheckingMode = "basic",
+				autoSearchPaths = true,
+				useLibraryCodeForTypes = true,
+				autoImportCompletions = true,
+				stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
+				diagnosticSeverityOverrides = {
+					reportGeneralTypeIssues = "warning",
+					reportOptionalMemberAccess = "warning",
+					reportOptionalSubscript = "warning",
+					reportPrivateImportUsage = "warning",
+				},
+			},
+		},
+	},
+})
+
+-- Java (jdtls)
+vim.lsp.config("jdtls", {
+	cmd = { "jdtls" },
+	filetypes = { "java" },
+	root_markers = { "pom.xml", "build.gradle", "build.gradle.kts", "settings.gradle", ".git" },
+	capabilities = capabilities,
+	settings = {
+		java = {
+			signatureHelp = { enabled = true },
+			contentProvider = { preferred = "fernflower" },
+			completion = {
+				favoriteStaticMembers = {
+					"org.junit.Assert.*",
+					"org.junit.jupiter.api.Assertions.*",
+					"org.mockito.Mockito.*",
+					"java.util.Objects.requireNonNull",
+					"java.util.Objects.requireNonNullElse",
+				},
+				filteredTypes = {
+					"com.sun.*",
+					"io.micrometer.shaded.*",
+					"java.awt.*",
+					"jdk.*",
+					"sun.*",
+				},
+			},
+			sources = {
+				organizeImports = {
+					starThreshold = 9999,
+					staticStarThreshold = 9999,
+				},
+			},
+			codeGeneration = {
+				toString = {
+					template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+				},
+				hashCodeEquals = {
+					useJava7Objects = true,
+				},
+				useBlocks = true,
+			},
+		},
+	},
+})
+
 -- TypeScript
-lspconfig.ts_ls.setup({
-	root_dir = function(fname)
-		local util = require("lspconfig.util")
-		return util.root_pattern("tsconfig.json", "jsconfig.json")(fname)
-			or util.find_git_ancestor(fname)
-			or util.path.dirname(fname)
-	end,
+vim.lsp.config("ts_ls", {
+	cmd = { "typescript-language-server", "--stdio" },
+	filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+	root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+	capabilities = capabilities,
 	settings = {
 		typescript = {
 			compilerOptions = {
@@ -378,7 +330,10 @@ lspconfig.ts_ls.setup({
 	},
 })
 
+-- Enable all configured LSP servers
+vim.lsp.enable({ "gopls", "clangd", "solargraph", "pyright", "jdtls", "ts_ls" })
+
 -- Inlay hints if supported
 if vim.lsp.inlay_hint then
-	vim.lsp.inlay_hint.enable(true, { 0 })
+	vim.lsp.inlay_hint.enable(true)
 end

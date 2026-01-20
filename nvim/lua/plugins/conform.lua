@@ -5,6 +5,8 @@ require("conform").setup({
 		cpp = { "clang-format" },
 		-- Go formatting and import organization
 		go = { "goimports", "gofmt" },
+		-- Java formatting
+		java = { "google-java-format" },
 		-- JavaScript/TypeScript formatting
 		javascript = { "prettierd", "prettier" },
 		javascriptreact = { "prettierd", "prettier" },
@@ -14,8 +16,8 @@ require("conform").setup({
 		jsonc = { "prettierd", "prettier" },
 		-- Lua formatting
 		lua = { "stylua" },
-		-- Python formatting
-		python = { "black", "isort" },
+		-- Python formatting with black and isort
+		python = { "isort", "black" },
 		-- Ruby formatting
 		ruby = { "rubocop" },
 		-- TypeScript formatting
@@ -52,6 +54,7 @@ require("conform").setup({
 			"c",
 			"cpp",
 			"go",
+			"java",
 			"javascript",
 			"javascriptreact",
 			"json",
@@ -67,7 +70,7 @@ require("conform").setup({
 
 		if vim.tbl_contains(auto_format_ft, filetype) then
 			return {
-				timeout_ms = 500,
+				timeout_ms = 5000,
 				lsp_fallback = true,
 			}
 		end

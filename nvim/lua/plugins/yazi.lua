@@ -5,7 +5,11 @@ require("yazi").setup({
 	open_for_directories = true,
 	keymaps = { show_help = "<f1>" },
 	config = {
-		keymaps = { copy_relative_path_to_selected_files = nil },
+		keymaps = {
+			copy_relative_path_to_selected_files = "<c-y>",
+			open_file_in_vertical_split = "<c-v>",
+			open_file_in_horizontal_split = "<c-x>",
+		},
 	},
 })
 
