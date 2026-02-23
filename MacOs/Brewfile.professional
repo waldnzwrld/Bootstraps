@@ -1,11 +1,11 @@
 tap "localstack/tap"
 brew "kubectl"
 cask "beekeeper-studio"
-cask "docker-desktop"
 brew "goose"
 cask "hoppscotch"
 brew "huggingface-cli"
 cask "miro"
+cask "orbstack"
 brew "poetry"
 brew "postgresql@14", restart_service: :changed
 cask "react-proto"

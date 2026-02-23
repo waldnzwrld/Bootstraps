@@ -1,0 +1,39 @@
+---
+description: "Automated skills that run in response to agent actions"
+globs: "**/*"
+alwaysApply: true
+---
+
+## Skill: open-modified-buffers
+
+After making file edits (via any tool that creates or modifies files), run the following command with every file that was modified or created:
+
+```
+~/.cursor/skills/open-modified-buffers.sh <file1> [file2] [file3] ...
+```
+
+This adds the modified files as buffers in the user's running neovim instance and triggers `checktime` so they reload automatically. Run this once at the end of a batch of edits, passing all changed file paths as arguments. Do not run it per-file individually.
+
+## Skill: inject-todo-comment
+
+When a build or test command fails, parse the error output for file paths and line numbers. For each distinct error location, run:
+
+```
+~/.cursor/skills/inject-todo-comment.sh <keyword> <file> <line> <message>
+```
+
+- Use `FIX` as the keyword for build/compile errors.
+- Use `FAILED` as the keyword for test failures.
+- `<message>` should be a concise summary of the error, not the raw compiler dump.
+- After injecting comments, run the open-modified-buffers skill on every file that received a comment so the user sees them immediately.
+- Do not inject duplicate comments if the same error at the same location has already been annotated.
+
+## Skill: get-lsp-diagnostics
+
+After making file edits (via any tool that creates or modifies files), run the following command:
+
+```
+~/.cursor/skills/get-lsp-diagnostics.sh
+```
+
+Using the return value of the command fix any diagnostic issues that have been reported by the language server.

@@ -52,6 +52,8 @@ background-opacity = .85
 font-family = hack
 font-size = 14
 theme = gruvbox dark hard
+# theme = hardcore
+# theme = under the sea
 macos-icon = chalkboard
 
 # smart splits
@@ -67,3 +69,5 @@ keybind = shift+super+h=move_tab:-1
 keybind = shift+super+l=move_tab:1
 
 keybind = shift+super+enter=new_split:auto
+
+keybind = super+,=unbind
