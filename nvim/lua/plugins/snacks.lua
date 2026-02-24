@@ -111,11 +111,11 @@ end, { desc = "Snacks Picker LSP references" })
 
 vim.keymap.set("n", "<leader>gi", function()
 	Snacks.picker.gh_issue()
-end, { desc = "Snacks Picker LSP implementations" })
+end, { desc = "Snacks Picker GitHub Issues" })
 
 vim.keymap.set("n", "<leader>gp", function()
 	Snacks.picker.gh_pr()
-end, { desc = "Snacks Picker LSP implementations" })
+end, { desc = "Snacks Picker Pull Requests" })
 
 vim.keymap.set("n", "<leader>ds", function()
 	Snacks.picker.lsp_symbols()
