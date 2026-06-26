@@ -1,10 +1,5 @@
+require("blink.lib")
 require("blink.cmp").setup({
-	dependencies = {
-		{
-			"Exafunction/codeium.nvim",
-			"giuxtaposition/blink-cmp-copilot",
-		},
-	},
 	fuzzy = {
 		implementation = "lua", -- Use Lua implementation instead of Rust
 	},
@@ -100,13 +95,12 @@ require("blink.cmp").setup({
 		documentation = {
 			auto_show = true,
 			auto_show_delay_ms = 200,
-			window = { border = "rounded" },
+			window = { border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" } },
 		},
 	},
 	sources = {
-		default = { "lsp", "path", "snippets", "buffer", "copilot", "codeium" },
+		default = { "lsp", "path", "snippets", "buffer", "copilot" },
 		providers = {
-			codeium = { name = "codeium", module = "codeium.blink", async = true },
 			copilot = {
 				name = "copilot",
 				module = "blink-cmp-copilot",
@@ -126,6 +120,6 @@ require("blink.cmp").setup({
 	},
 	signature = {
 		enabled = true,
-		window = { border = "rounded" },
+		window = { border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" } },
 	},
 })

@@ -19,10 +19,11 @@ vim.call("plug#begin")
 
 -- Color schemes
 -- Plug("jaredgorski/spacecamp") -- spacecamp: Color Scheme
-Plug("ellisonleao/gruvbox.nvim") -- Gruvbox: Color Scheme
+-- Plug("ellisonleao/gruvbox.nvim") -- Gruvbox: Color Scheme
 -- Plug("scottmckendry/cyberdream.nvim") -- cyberdream: Color Scheme
 -- Plug("iagorrr/noctis-high-contrast.nvim") -- Noctis High Contrast: Color Scheme
 -- Plug("idr4n/andromeda.nvim") -- Andromeda: Color Scheme
+Plug("initsyscall/themeinitNvim") -- PURPLE: Color Scheme
 --
 -- Plug("voylin/godot_color_theme") -- godot Color Scheme
 -- Plug("rebelot/kanagawa.nvim") -- kanagawa: Color Scheme
@@ -30,9 +31,10 @@ Plug("ellisonleao/gruvbox.nvim") -- Gruvbox: Color Scheme
 
 -- Plugin declarations
 Plug("akinsho/toggleterm.nvim") -- terminal integration
+Plug("Allaman/tf.nvim") -- terraform integration
+Plug("arborist-ts/arborist.nvim") -- Tressitter lang installer
 Plug("brenoprata10/nvim-highlight-colors") -- highlight color codes
 Plug("brianhuster/live-preview.nvim") -- live preview for markdown and other files
-Plug("Exafunction/windsurf.nvim") -- windsurf
 Plug("giuxtaposition/blink-cmp-copilot") -- blink copilot source
 Plug("folke/flash.nvim") -- advanced search
 Plug("folke/sidekick.nvim") -- sidekick ai integration
@@ -53,6 +55,7 @@ Plug("MeanderingProgrammer/render-markdown.nvim") -- markdown renderer
 Plug("mfussenegger/nvim-dap") -- Debug Adapter Protocol
 Plug("mfussenegger/nvim-lint") -- Linting framework
 Plug("mikavilpas/yazi.nvim") -- yazi tree for nvim
+Plug("mistweaverco/kulala.nvim") -- API tool
 Plug("mg979/vim-visual-multi", { ["branch"] = "master" }) -- multiple cursors
 Plug("mrjones2014/smart-splits.nvim") -- split navigation for use with wezterm
 Plug("neovim/nvim-lspconfig") -- LSP configuration
@@ -62,20 +65,33 @@ Plug("nvim-lualine/lualine.nvim") -- better than airline
 Plug("nvim-mini/mini.nvim") -- Mini: A collection of minimal, independent Lua modules
 -- ig()Plug("nvim-neotest/neotest") -- Neotest: Testing framework
 Plug("nvim-neotest/nvim-nio") -- Neotest: Integration with nvim
-Plug("nvim-treesitter/nvim-treesitter", { ["branch"] = "main", ["do"] = ":TSUpdate" }) -- Syntax and code analysis
-Plug("nvim-treesitter/nvim-treesitter-context") -- show context in treesitter
-Plug("nvim-treesitter/nvim-treesitter-textobjects", { ["branch"] = "main" }) -- text object support
+Plug("Owen-Dechow/videre.nvim") -- Json / YAML explorer
+Plug("Owen-Dechow/graph_view_yaml_parser") -- YAML plug
 Plug("ray-x/go.nvim") -- Go development plugin
 Plug("rcarriga/nvim-dap-ui") -- dap ui
 Plug("rmagatti/auto-session") -- Session management
 Plug("Saghen/blink.cmp") -- blink completion source
-Plug("serhez/bento.nvim") -- buffer manager
+Plug("Saghen/blink.lib") -- blink cmp dependency
 Plug("stevearc/conform.nvim") -- conform formatter
 Plug("theHamsta/nvim-dap-virtual-text") -- dap virtual text
 Plug("TheNoeTrevino/haunt.nvim") -- Add buffered comments that are not attached to code
 Plug("tpope/vim-dispatch") -- Asynchronous execution
 Plug("vim-scripts/SpellCheck") -- Spell checking
 Plug("zbirenbaum/copilot.lua") -- copilot lsp
+
+-- rainbow-delimiters attaches on FileType; yazi.nvim sets ft=yazi, which maps to TS lang
+-- "yazi" but vim.treesitter.get_parser returns nil for that buffer, crashing lib.attach.
+do
+	local r = vim.g.rainbow_delimiters
+	if type(r) ~= "table" then
+		r = {}
+		vim.g.rainbow_delimiters = r
+	end
+	r.blacklist = r.blacklist or {}
+	if not vim.tbl_contains(r.blacklist, "yazi") then
+		table.insert(r.blacklist, "yazi")
+	end
+end
 
 vim.call("plug#end")
 require("plugins")

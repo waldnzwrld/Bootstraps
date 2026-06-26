@@ -1,14 +1,15 @@
-require("gruvbox").setup({
-	contrast = "hard",
-	palette_overrides = {
-		dark0_hard = "#0a0a0a",
-	},
-	overrides = {
-		SignColumn = { bg = "none" },
-	},
-})
-vim.cmd.colorscheme("gruvbox")
+-- require("gruvbox").setup({
+-- 	contrast = "hard",
+-- 	palette_overrides = {
+-- 		dark0_hard = "#0a0a0a",
+-- 	},
+-- 	overrides = {
+-- 		SignColumn = { bg = "none" },
+-- 	},
+-- })
+-- vim.cmd.colorscheme("gruvbox")
 
+vim.cmd.colorscheme("nightSyscall")
 -- vim.cmd.colorscheme("spacecamp")
 -- vim.cmd.colorscheme("cyberdream")
 -- vim.cmd.colorscheme("andromeda")
