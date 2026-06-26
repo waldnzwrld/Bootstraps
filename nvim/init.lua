@@ -65,6 +65,8 @@ Plug("nvim-lualine/lualine.nvim") -- better than airline
 Plug("nvim-mini/mini.nvim") -- Mini: A collection of minimal, independent Lua modules
 -- ig()Plug("nvim-neotest/neotest") -- Neotest: Testing framework
 Plug("nvim-neotest/nvim-nio") -- Neotest: Integration with nvim
+Plug("nvim-treesitter/nvim-treesitter-context") -- context for treesitter
+Plug("nvim-treesitter/nvim-treesitter-textobjects") -- textobjects for treesitter
 Plug("Owen-Dechow/videre.nvim") -- Json / YAML explorer
 Plug("Owen-Dechow/graph_view_yaml_parser") -- YAML plug
 Plug("ray-x/go.nvim") -- Go development plugin
