@@ -47,35 +47,43 @@ if vim.lsp.inlay_hint then
 	vim.lsp.inlay_hint.enable(true)
 end
 
-local k = vim.keymap.set
-local bufopts = { noremap = true, silent = true, buffer = bufnr }
+-- Buffer-local LSP keymaps: set them on LspAttach so they only apply to
+-- buffers with a language server, and so `buffer` is a real bufnr (not a
+-- nil captured at module load time).
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("UserLspKeymaps", { clear = true }),
+	callback = function(args)
+		local k = vim.keymap.set
+		local bufopts = { noremap = true, silent = true, buffer = args.buf }
 
--- Navigation keymaps
-k("n", "gD", vim.lsp.buf.declaration, bufopts)
-k("n", "gd", vim.lsp.buf.definition, bufopts)
-k("n", "gi", vim.lsp.buf.implementation, bufopts)
-k("n", "<leader>D", vim.lsp.buf.type_definition, bufopts)
-k("n", "gr", vim.lsp.buf.references, bufopts)
+		-- Navigation keymaps
+		k("n", "gD", vim.lsp.buf.declaration, bufopts)
+		k("n", "gd", vim.lsp.buf.definition, bufopts)
+		k("n", "gi", vim.lsp.buf.implementation, bufopts)
+		k("n", "<leader>D", vim.lsp.buf.type_definition, bufopts)
+		k("n", "gr", vim.lsp.buf.references, bufopts)
 
--- Code actions and refactoring
-k("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
-k("v", "<leader>ca", vim.lsp.buf.code_action, bufopts)
-k("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+		-- Code actions and refactoring
+		k("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+		k("v", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+		k("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
 
--- Diagnostic navigation
-k("n", "[d", vim.diagnostic.goto_prev, bufopts)
-k("n", "]d", vim.diagnostic.goto_next, bufopts)
-k("n", "<leader>e", vim.diagnostic.open_float, bufopts)
--- <leader>q closes a buffer (see core/keymaps.lua). Diagnostics list: <leader>xx / <leader>xX (Snacks).
+		-- Diagnostic navigation
+		k("n", "[d", vim.diagnostic.goto_prev, bufopts)
+		k("n", "]d", vim.diagnostic.goto_next, bufopts)
+		k("n", "<leader>e", vim.diagnostic.open_float, bufopts)
+		-- <leader>q closes a buffer (see core/keymaps.lua). Diagnostics list: <leader>xx / <leader>xX (Snacks).
 
--- Hover and signature help
-k("n", "K", vim.lsp.buf.hover, bufopts)
-k("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-k("i", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+		-- Hover and signature help
+		k("n", "K", vim.lsp.buf.hover, bufopts)
+		k("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+		k("i", "<C-k>", vim.lsp.buf.signature_help, bufopts)
 
--- Workspace management
-k("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-k("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-k("n", "<leader>wl", function()
-	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-end, bufopts)
+		-- Workspace management
+		k("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+		k("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+		k("n", "<leader>wl", function()
+			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+		end, bufopts)
+	end,
+})

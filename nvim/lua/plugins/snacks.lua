@@ -139,12 +139,12 @@ vim.keymap.set("n", "<leader>pr", function()
 	Snacks.picker.gh_pr({ search = "author:@me" })
 end, { desc = "My pull requests" })
 
-vim.keymap.set("n", "<leader>rr", function()
-	Snacks.picker.gh_pr({
-		search = "review-requested:@me draft:false",
-		jq = 'map(select(.mergeStateStatus != "DIRTY"))',
-	})
-end, { desc = "Snacks Picker PR Reviews" })
+-- 	vim.keymap.set("n", "<leader>rr", function()
+-- 	Snacks.picker.gh_pr({
+-- 		search = "review-requested:@me draft:false",
+-- 		jq = 'map(select(.mergeStateStatus != "DIRTY"))',
+-- 	})
+-- end, { desc = "Snacks Picker PR Reviews" })
 
 vim.keymap.set("n", "<leader>rm", function()
 	Snacks.picker.gh_pr({ search = "mentions:@me" })

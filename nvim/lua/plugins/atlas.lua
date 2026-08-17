@@ -5,7 +5,6 @@ require("atlas").setup({
 			github = {
 				cache_ttl = 300,
 
-				---@type AtlasGitHubViewConfig[]
 				views = {
 					{
 						name = "My PRs",
