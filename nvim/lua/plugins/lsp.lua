@@ -66,7 +66,7 @@ k("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
 k("n", "[d", vim.diagnostic.goto_prev, bufopts)
 k("n", "]d", vim.diagnostic.goto_next, bufopts)
 k("n", "<leader>e", vim.diagnostic.open_float, bufopts)
-k("n", "<leader>q", vim.diagnostic.setloclist, bufopts)
+-- <leader>q closes a buffer (see core/keymaps.lua). Diagnostics list: <leader>xx / <leader>xX (Snacks).
 
 -- Hover and signature help
 k("n", "K", vim.lsp.buf.hover, bufopts)

@@ -19,12 +19,16 @@ vim.call("plug#begin")
 
 -- Color schemes
 -- Plug("jaredgorski/spacecamp") -- spacecamp: Color Scheme
+-- Plug("bluz71/vim-moonfly-colors") -- moonfly: Color Scheme
 -- Plug("ellisonleao/gruvbox.nvim") -- Gruvbox: Color Scheme
 -- Plug("scottmckendry/cyberdream.nvim") -- cyberdream: Color Scheme
 -- Plug("iagorrr/noctis-high-contrast.nvim") -- Noctis High Contrast: Color Scheme
 -- Plug("idr4n/andromeda.nvim") -- Andromeda: Color Scheme
-Plug("initsyscall/themeinitNvim") -- PURPLE: Color Scheme
---
+-- Plug("initsyscall/themeinitNvim") -- PURPLE: Color Scheme
+Plug("folke/tokyonight.nvim") -- Tokyo Night: Color Scheme
+-- Plug("kbraggins/duskhaven.nvim") -- Dark neon: Color Scheme
+-- Plug("navarasu/onedark.nvim") -- One Dark: Color Scheme
+
 -- Plug("voylin/godot_color_theme") -- godot Color Scheme
 -- Plug("rebelot/kanagawa.nvim") -- kanagawa: Color Scheme
 -- Plug("vague2k/vague.nvim") -- Vague: Color Scheme
@@ -36,6 +40,7 @@ Plug("arborist-ts/arborist.nvim") -- Tressitter lang installer
 Plug("brenoprata10/nvim-highlight-colors") -- highlight color codes
 Plug("brianhuster/live-preview.nvim") -- live preview for markdown and other files
 Plug("giuxtaposition/blink-cmp-copilot") -- blink copilot source
+Plug("emrearmagan/atlas.nvim") -- PR and issue management
 Plug("folke/flash.nvim") -- advanced search
 Plug("folke/sidekick.nvim") -- sidekick ai integration
 Plug("folke/snacks.nvim") -- multiplug for nvim
@@ -79,7 +84,7 @@ Plug("theHamsta/nvim-dap-virtual-text") -- dap virtual text
 Plug("TheNoeTrevino/haunt.nvim") -- Add buffered comments that are not attached to code
 Plug("tpope/vim-dispatch") -- Asynchronous execution
 Plug("vim-scripts/SpellCheck") -- Spell checking
-Plug("zbirenbaum/copilot.lua") -- copilot lsp
+-- Plug("zbirenbaum/copilot.lua") -- copilot lsp
 
 -- rainbow-delimiters attaches on FileType; yazi.nvim sets ft=yazi, which maps to TS lang
 -- "yazi" but vim.treesitter.get_parser returns nil for that buffer, crashing lib.attach.
