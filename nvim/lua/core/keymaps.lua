@@ -57,12 +57,6 @@ end)
 vim.keymap.set("n", "<leader>gl", ":GitLink<CR>", { desc = "GitLinker Copy URL" })
 vim.keymap.set("v", "<leader>gl", ":GitLink<CR>", { desc = "GitLinker Copy URL" })
 
--- Copilot Toggle
-vim.keymap.set("n", "<leader>ct", ":Copilot toggle<CR>", { desc = "Copilot Toggle" })
-
---windsurf Toggle
-vim.keymap.set("n", "<leader>wt", ":Codeium Toggle<CR>", { desc = "Windsurf Toggle" })
-
 -- Terminal
 vim.keymap.set("t", "<C-t>", "<C-\\><C-n>", { desc = "exit terminal insert" })
 vim.api.nvim_create_autocmd("TermOpen", {
@@ -77,6 +71,12 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 vim.keymap.set("n", "<C-q>", ":qall<CR>", { desc = "Close all buffers" })
-vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Close buffer" })
-
-vim.keymap.set("n", "<leader>pr", ":! gh pr create --fill<CR>", { desc = "Create PR" })
+vim.keymap.set("n", "<leader>q", function()
+	Snacks.bufdelete()
+end, { desc = "Close current buffer (keep window)" })
+vim.keymap.set(
+	"n",
+	"<leader>fs",
+	":%bdelete!|edit#|bdelete!#<CR>",
+	{ desc = "Close all buffers except the current one" }
+)

@@ -7,9 +7,9 @@ require("conform").setup({
 		go = { "goimports", "gofumpt" },
 		-- Java formatting
 		java = { "google-java-format" },
-		-- JavaScript/TypeScript formatting
-		javascript = { "prettierd", "prettier" },
-		javascriptreact = { "prettierd", "prettier" },
+		-- JavaScript/TypeScript formatting: prettier for layout, then eslint --fix for style-guide rules
+		javascript = { "prettierd", "eslint_d" },
+		javascriptreact = { "prettierd", "eslint_d" },
 		-- Prefer jq for strict JSON; fall back to prettier if present
 		json = { "jq", "prettierd", "prettier" },
 		-- Support JSON with comments
@@ -22,9 +22,9 @@ require("conform").setup({
 		python = { "isort", "black" },
 		-- Ruby formatting
 		ruby = { "rubocop" },
-		-- TypeScript formatting
-		typescript = { "prettierd", "prettier" },
-		typescriptreact = { "prettierd", "prettier" },
+		-- TypeScript formatting: prettier for layout, then eslint --fix for style-guide rules
+		typescript = { "prettierd", "eslint_d" },
+		typescriptreact = { "prettierd", "eslint_d" },
 		yaml = { "yamlfmt" },
 		yml = { "yamlfmt" },
 	},
@@ -82,27 +82,19 @@ require("conform").setup({
 	notify_on_error = true,
 })
 
--- Manual formatting keybind (works for all file types)
-vim.keymap.set("n", "<leader>f", function()
+-- Manual formatting keybind (works for all file types).
+-- NOTE: <leader>f is owned by Snacks grep; manual format lives on <leader>cf.
+vim.keymap.set("n", "<leader>cf", function()
 	require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Format buffer (Conform)" })
 
--- Go-specific keybind for import organization
-vim.keymap.set("n", "<leader>gi", function()
-	if vim.bo.filetype == "go" then
-		require("conform").format({
-			formatters = { "goimports" },
-			async = true,
-		})
-	else
-		vim.notify("Go imports organization is only available for Go files", vim.log.levels.WARN)
-	end
-end, { desc = "Organize Go imports" })
+-- Go imports are organized by goimports on save (format_on_save) and via <leader>cf.
+-- The old <leader>gi mapping was removed; that key is owned by Snacks (GitHub issues).
 
 -- Format on save toggle
 vim.g.conform_format_on_save = true
-vim.keymap.set("n", "<leader>tf", function()
-	vim.g.conform_format_on_save = not vim.g.conform_format_on_save
-	local status = vim.g.conform_format_on_save and "enabled" or "disabled"
-	vim.notify("Format on save " .. status, vim.log.levels.INFO)
-end, { desc = "Toggle format on save" })
+-- vim.keymap.set("n", "<leader>tf", function()
+-- 	vim.g.conform_format_on_save = not vim.g.conform_format_on_save
+-- 	local status = vim.g.conform_format_on_save and "enabled" or "disabled"
+-- 	vim.notify("Format on save " .. status, vim.log.levels.INFO)
+-- end, { desc = "Toggle format on save" })
