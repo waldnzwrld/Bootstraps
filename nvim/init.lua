@@ -19,6 +19,7 @@ vim.call("plug#begin")
 
 -- Color schemes
 -- Plug("jaredgorski/spacecamp") -- spacecamp: Color Scheme
+-- Plug("bluz71/vim-moonfly-colors") -- moonfly: Color Scheme
 -- Plug("ellisonleao/gruvbox.nvim") -- Gruvbox: Color Scheme
 -- Plug("scottmckendry/cyberdream.nvim") -- cyberdream: Color Scheme
 -- Plug("iagorrr/noctis-high-contrast.nvim") -- Noctis High Contrast: Color Scheme
@@ -82,7 +83,7 @@ Plug("theHamsta/nvim-dap-virtual-text") -- dap virtual text
 Plug("TheNoeTrevino/haunt.nvim") -- Add buffered comments that are not attached to code
 Plug("tpope/vim-dispatch") -- Asynchronous execution
 Plug("vim-scripts/SpellCheck") -- Spell checking
-Plug("zbirenbaum/copilot.lua") -- copilot lsp
+-- Plug("zbirenbaum/copilot.lua") -- copilot lsp
 
 -- rainbow-delimiters attaches on FileType; yazi.nvim sets ft=yazi, which maps to TS lang
 -- "yazi" but vim.treesitter.get_parser returns nil for that buffer, crashing lib.attach.

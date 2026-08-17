@@ -39,10 +39,14 @@ require("snacks").setup({
 				},
 			},
 			list = {
+				-- ? key will open help for the picker list
 				keys = {
-					["<C-j>"] = { "preview_scroll_down" },
-					["<C-k>"] = { "preview_scroll_up" },
+					["<C-j>"] = "preview_scroll_down",
+					["<C-k>"] = "preview_scroll_up",
 				},
+			},
+			preview = {
+				keys = {},
 			},
 		},
 		actions = {
@@ -92,6 +96,7 @@ end, { desc = "Snacks GitBrowse" })
 
 local bufOpts = {
 	nofile = true,
+	sort_lastused = true,
 	win = {
 		input = {
 			keys = {
@@ -122,9 +127,28 @@ vim.keymap.set("n", "<leader>gi", function()
 	Snacks.picker.gh_issue()
 end, { desc = "Snacks Picker GitHub Issues" })
 
+vim.keymap.set("n", "<leader>im", function()
+	Snacks.picker.gh_issue({ search = "mentions:@me" })
+end, { desc = "Snacks Picker GitHub Issue mentions" })
+
 vim.keymap.set("n", "<leader>gp", function()
 	Snacks.picker.gh_pr()
 end, { desc = "Snacks Picker Pull Requests" })
+
+vim.keymap.set("n", "<leader>pr", function()
+	Snacks.picker.gh_pr({ search = "author:@me" })
+end, { desc = "My pull requests" })
+
+vim.keymap.set("n", "<leader>rr", function()
+	Snacks.picker.gh_pr({
+		search = "review-requested:@me draft:false",
+		jq = 'map(select(.mergeStateStatus != "DIRTY"))',
+	})
+end, { desc = "Snacks Picker PR Reviews" })
+
+vim.keymap.set("n", "<leader>rm", function()
+	Snacks.picker.gh_pr({ search = "mentions:@me" })
+end, { desc = "Snacks Picker PR mentions" })
 
 vim.keymap.set("n", "<leader>ds", function()
 	Snacks.picker.lsp_symbols()

@@ -1,13 +1,11 @@
 require("atlas").setup({
-	ui = {
-		listed_buffer = true,
-	},
+	ui = { listed_buffer = true },
 	pulls = {
 		providers = {
 			github = {
 				cache_ttl = 300,
 
-				-- -@type AtlasGitHubViewConfig[]
+				---@type AtlasGitHubViewConfig[]
 				views = {
 					{
 						name = "My PRs",
@@ -74,6 +72,7 @@ require("atlas").setup({
 					items = {
 						["Bugs"] = "is:issue is:open label:bug",
 						["Recently closed"] = "is:issue is:closed author:@me sort:updated-desc",
+						["Review requested"] = "is:pr is:open org:CartoDB review-requested:@me draft:false",
 					},
 				},
 			},
