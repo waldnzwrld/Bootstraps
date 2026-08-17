@@ -1,5 +1,7 @@
 local haunt_sk = require("haunt.sidekick")
--- use MasonInstall copilot-language-server to install the copilot-lsp server
+-- use MasonInstall to install copilot-language-server
+-- must be enabled with vim.lsp.enable
+-- then use :LspCopilotSignIn to log in
 require("sidekick").setup({
 	nes = {
 		enabled = true,
@@ -35,18 +37,19 @@ require("sidekick").setup({
 })
 
 vim.keymap.set({ "n", "i" }, "<Tab>", function()
+	-- if there is a next edit, jump to it, otherwise apply it if any
 	if not require("sidekick").nes_jump_or_apply() then
-		return "<Tab>"
+		return "<Tab>" -- jumped or applied
 	end
-end, { desc = "Accept copilot nes" })
+end, { desc = "jump or apply nes" })
+
+vim.keymap.set("n", "<leader>cc", function()
+	require("sidekick.cli").toggle({ name = "claude", focus = true })
+end, { desc = "Sidekick toggle" })
 
 vim.keymap.set("n", "<leader>cn", function()
 	require("sidekick.nes").toggle()
 end, { desc = "Toggle copilot nes suggestions" })
-
-vim.keymap.set("n", "<leader>cc", function()
-	require("sidekick.cli").toggle({ name = "claude", focus = "true" })
-end, { desc = "Sidekick toggle" })
 
 vim.keymap.set("v", "<leader>cu", function()
 	require("sidekick.cli").send({ name = "claude", msg = "{selection} in {this}" })
@@ -56,7 +59,7 @@ vim.keymap.set("n", "<leader>cu", function()
 	require("sidekick.cli").send({ name = "claude", msg = "{this}" })
 end, { desc = "Sidekick send file" })
 
-vim.keymap.set({ "n", "v" }, "<leader>cp", function()
+vim.keymap.set("n", "<leader>cp", function()
 	require("sidekick.cli").prompt({ name = "claude" })
 end, { silent = true, desc = "Sidekick prompt" })
 
