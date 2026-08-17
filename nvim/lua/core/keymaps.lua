@@ -78,5 +78,11 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 vim.keymap.set("n", "<C-q>", ":qall<CR>", { desc = "Close all buffers" })
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Close buffer" })
+vim.keymap.set(
+	"n",
+	"<leader>fs",
+	":%bdelete!|edit#|bdelete!#<CR>",
+	{ desc = "Close all buffers except current buffer" }
+)
 
 vim.keymap.set("n", "<leader>pr", ":! gh pr create --fill<CR>", { desc = "Create PR" })

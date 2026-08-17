@@ -23,7 +23,9 @@ vim.call("plug#begin")
 -- Plug("scottmckendry/cyberdream.nvim") -- cyberdream: Color Scheme
 -- Plug("iagorrr/noctis-high-contrast.nvim") -- Noctis High Contrast: Color Scheme
 -- Plug("idr4n/andromeda.nvim") -- Andromeda: Color Scheme
-Plug("initsyscall/themeinitNvim") -- PURPLE: Color Scheme
+Plug("folke/tokyonight.nvim") -- Tokyo Night: Color Scheme
+-- Plug("initsyscall/themeinitNvim") -- PURPLE: Color Scheme
+
 --
 -- Plug("voylin/godot_color_theme") -- godot Color Scheme
 -- Plug("rebelot/kanagawa.nvim") -- kanagawa: Color Scheme
@@ -36,6 +38,7 @@ Plug("arborist-ts/arborist.nvim") -- Tressitter lang installer
 Plug("brenoprata10/nvim-highlight-colors") -- highlight color codes
 Plug("brianhuster/live-preview.nvim") -- live preview for markdown and other files
 Plug("giuxtaposition/blink-cmp-copilot") -- blink copilot source
+Plug("emrearmagan/atlas.nvim") -- Atlas PR and Issue management
 Plug("folke/flash.nvim") -- advanced search
 Plug("folke/sidekick.nvim") -- sidekick ai integration
 Plug("folke/snacks.nvim") -- multiplug for nvim

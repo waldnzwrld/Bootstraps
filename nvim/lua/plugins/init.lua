@@ -1,4 +1,5 @@
 require("plugins.arborist")
+require("plugins.atlas")
 require("plugins.auto-session")
 require("plugins.blink")
 require("plugins.colorizer")

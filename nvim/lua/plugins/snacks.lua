@@ -34,6 +34,14 @@ require("snacks").setup({
 				keys = {
 					["<C-,>"] = { "flash", mode = { "n", "i" } },
 					["s"] = { "flash" },
+					["<C-j>"] = { "preview_scroll_down", mode = { "n", "i" } },
+					["<C-k>"] = { "preview_scroll_up", mode = { "n", "i" } },
+				},
+			},
+			list = {
+				keys = {
+					["<C-j>"] = { "preview_scroll_down" },
+					["<C-k>"] = { "preview_scroll_up" },
 				},
 			},
 		},
