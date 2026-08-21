@@ -1,11 +1,14 @@
--- LSP configuration using Neovim -1.11+ native vim.lsp.config API
-local capabilities = require("blink.cmp").get_lsp_capabilities()
-
--- Enable folding capabilities for UFO
-capabilities.textDocument.foldingRange = {
-	dynamicRegistration = false,
-	lineFoldingOnly = true,
-}
+-- LSP configuration using Neovim 0.11+ native vim.lsp.config API.
+-- blink.cmp injects its own completion capabilities into every server on
+-- setup, so we only need to add the folding capability UFO wants. Merged
+-- via vim.lsp.config("*") so it reaches every enabled server.
+vim.lsp.config("*", {
+	capabilities = {
+		textDocument = {
+			foldingRange = { dynamicRegistration = false, lineFoldingOnly = true },
+		},
+	},
+})
 
 -- Enhanced diagnostic configuration
 vim.diagnostic.config({
@@ -53,6 +56,15 @@ end
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspKeymaps", { clear = true }),
 	callback = function(args)
+		-- Don't install LSP keymaps on terminals or other special buffers.
+		-- copilot (and similar) attach to every buffer, including the
+		-- toggleterm/sidekick terminals; without this guard their attach would
+		-- map keys like <C-k> buffer-locally on the terminal and shadow the
+		-- smart-splits window-navigation mappings.
+		if vim.bo[args.buf].buftype ~= "" then
+			return
+		end
+
 		local k = vim.keymap.set
 		local bufopts = { noremap = true, silent = true, buffer = args.buf }
 
@@ -68,16 +80,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		k("v", "<leader>ca", vim.lsp.buf.code_action, bufopts)
 		k("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
 
-		-- Diagnostic navigation
-		k("n", "[d", vim.diagnostic.goto_prev, bufopts)
-		k("n", "]d", vim.diagnostic.goto_next, bufopts)
 		k("n", "<leader>e", vim.diagnostic.open_float, bufopts)
 		-- <leader>q closes a buffer (see core/keymaps.lua). Diagnostics list: <leader>xx / <leader>xX (Snacks).
 
-		-- Hover and signature help
-		k("n", "K", vim.lsp.buf.hover, bufopts)
-		k("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-		k("i", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+		-- NOTE: signature help is deliberately NOT on <C-k> -- that key is
+		-- smart-splits "move to window above" (see plugins/smart_splits.lua)
+		-- and a buffer-local <C-k> here would shadow it in every LSP buffer.
+		k("n", "gK", vim.lsp.buf.signature_help, bufopts)
+		k("i", "<C-g>k", vim.lsp.buf.signature_help, bufopts)
 
 		-- Workspace management
 		k("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, bufopts)

@@ -12,81 +12,10 @@ if vim.fn.filereadable(vimrc_path) == 1 then
 	vim.cmd("source " .. vimrc_path)
 end
 
--- Plugin management with vim-plug
-local Plug = vim.fn["plug#"]
-
-vim.call("plug#begin")
-
--- Color schemes
--- Plug("jaredgorski/spacecamp") -- spacecamp: Color Scheme
--- Plug("bluz71/vim-moonfly-colors") -- moonfly: Color Scheme
--- Plug("ellisonleao/gruvbox.nvim") -- Gruvbox: Color Scheme
--- Plug("scottmckendry/cyberdream.nvim") -- cyberdream: Color Scheme
--- Plug("iagorrr/noctis-high-contrast.nvim") -- Noctis High Contrast: Color Scheme
--- Plug("idr4n/andromeda.nvim") -- Andromeda: Color Scheme
-Plug("folke/tokyonight.nvim") -- Tokyo Night: Color Scheme
--- Plug("initsyscall/themeinitNvim") -- PURPLE: Color Scheme
-
---
--- Plug("voylin/godot_color_theme") -- godot Color Scheme
--- Plug("rebelot/kanagawa.nvim") -- kanagawa: Color Scheme
--- Plug("vague2k/vague.nvim") -- Vague: Color Scheme
-
--- Plugin declarations
-Plug("akinsho/toggleterm.nvim") -- terminal integration
-Plug("Allaman/tf.nvim") -- terraform integration
-Plug("arborist-ts/arborist.nvim") -- Tressitter lang installer
-Plug("brenoprata10/nvim-highlight-colors") -- highlight color codes
-Plug("brianhuster/live-preview.nvim") -- live preview for markdown and other files
-Plug("giuxtaposition/blink-cmp-copilot") -- blink copilot source
-Plug("emrearmagan/atlas.nvim") -- Atlas PR and Issue management
-Plug("folke/flash.nvim") -- advanced search
-Plug("folke/sidekick.nvim") -- sidekick ai integration
-Plug("folke/snacks.nvim") -- multiplug for nvim
-Plug("folke/todo-comments.nvim") -- todo comments
-Plug("HiPhish/rainbow-delimiters.nvim") -- rainbow delimiters
-Plug("igorlfs/nvim-dap-view") -- dap views
-Plug("kdheepak/lazygit.nvim") -- lazygit integration
-Plug("kevinhwang91/promise-async") -- Required dependency for nvim-ufo
-Plug("kevinhwang91/nvim-ufo") -- FOLDIT
-Plug("leoluz/nvim-dap-go") -- Go debugging
-Plug("lewis6991/gitsigns.nvim") -- git signs in gutter
-Plug("linrongbin16/gitlinker.nvim") -- open files or get links to GitHub
-Plug("MagicDuck/grug-far.nvim") -- find and replace
-Plug("mason-org/mason.nvim") -- LSP/DAP/Linter/Formatter installer
-Plug("mason-org/mason-lspconfig.nvim") -- LSP installer
-Plug("MeanderingProgrammer/render-markdown.nvim") -- markdown renderer
-Plug("mfussenegger/nvim-dap") -- Debug Adapter Protocol
-Plug("mfussenegger/nvim-lint") -- Linting framework
-Plug("mikavilpas/yazi.nvim") -- yazi tree for nvim
-Plug("mistweaverco/kulala.nvim") -- API tool
-Plug("mg979/vim-visual-multi", { ["branch"] = "master" }) -- multiple cursors
-Plug("mrjones2014/smart-splits.nvim") -- split navigation for use with wezterm
-Plug("neovim/nvim-lspconfig") -- LSP configuration
-Plug("nemanjamalesija/smart-paste.nvim") -- smart paste
-Plug("nvim-lua/plenary.nvim") -- Required dependency for yazi.nvim
-Plug("nvim-lualine/lualine.nvim") -- better than airline
-Plug("nvim-mini/mini.nvim") -- Mini: A collection of minimal, independent Lua modules
--- ig()Plug("nvim-neotest/neotest") -- Neotest: Testing framework
-Plug("nvim-neotest/nvim-nio") -- Neotest: Integration with nvim
-Plug("nvim-treesitter/nvim-treesitter-context") -- context for treesitter
-Plug("nvim-treesitter/nvim-treesitter-textobjects") -- textobjects for treesitter
-Plug("Owen-Dechow/videre.nvim") -- Json / YAML explorer
-Plug("Owen-Dechow/graph_view_yaml_parser") -- YAML plug
-Plug("ray-x/go.nvim") -- Go development plugin
-Plug("rcarriga/nvim-dap-ui") -- dap ui
-Plug("rmagatti/auto-session") -- Session management
-Plug("Saghen/blink.cmp") -- blink completion source
-Plug("Saghen/blink.lib") -- blink cmp dependency
-Plug("stevearc/conform.nvim") -- conform formatter
-Plug("theHamsta/nvim-dap-virtual-text") -- dap virtual text
-Plug("TheNoeTrevino/haunt.nvim") -- Add buffered comments that are not attached to code
-Plug("tpope/vim-dispatch") -- Asynchronous execution
-Plug("vim-scripts/SpellCheck") -- Spell checking
--- Plug("zbirenbaum/copilot.lua") -- copilot lsp
-
--- rainbow-delimiters attaches on FileType; yazi.nvim sets ft=yazi, which maps to TS lang
--- "yazi" but vim.treesitter.get_parser returns nil for that buffer, crashing lib.attach.
+-- rainbow-delimiters attaches on FileType; yazi.nvim sets ft=yazi, which maps to TS
+-- lang "yazi" but vim.treesitter.get_parser returns nil for that buffer, crashing
+-- lib.attach. This global MUST be set before rainbow-delimiters is added to the
+-- runtimepath (below), so its plugin script sees the blacklist.
 do
 	local r = vim.g.rainbow_delimiters
 	if type(r) ~= "table" then
@@ -99,7 +28,95 @@ do
 	end
 end
 
-vim.call("plug#end")
+-- Plugin management with vim.pack (Neovim 0.12 built-in). Declarations only;
+-- per-plugin configuration lives in lua/plugins/*.lua, loaded by require("plugins").
+vim.pack.add({
+	-- Color scheme (active)
+	{ src = "https://github.com/folke/tokyonight.nvim" }, -- Tokyo Night
+	-- Color schemes (available; uncomment to use)
+	-- { src = "https://github.com/jaredgorski/spacecamp" },
+	-- { src = "https://github.com/bluz71/vim-moonfly-colors" },
+	-- { src = "https://github.com/ellisonleao/gruvbox.nvim" },
+	-- { src = "https://github.com/scottmckendry/cyberdream.nvim" },
+	-- { src = "https://github.com/iagorrr/noctis-high-contrast.nvim" },
+	-- { src = "https://github.com/idr4n/andromeda.nvim" },
+	-- { src = "https://github.com/initsyscall/themeinitNvim" },
+	-- { src = "https://github.com/voylin/godot_color_theme" },
+	-- { src = "https://github.com/rebelot/kanagawa.nvim" },
+	-- { src = "https://github.com/vague2k/vague.nvim" },
+
+	{ src = "https://github.com/akinsho/toggleterm.nvim" }, -- terminal integration
+	{ src = "https://github.com/Allaman/tf.nvim" }, -- terraform integration
+	{ src = "https://github.com/arborist-ts/arborist.nvim" }, -- Treesitter lang installer
+	{ src = "https://github.com/brenoprata10/nvim-highlight-colors" }, -- highlight color codes
+	{ src = "https://github.com/brianhuster/live-preview.nvim" }, -- live preview
+	{ src = "https://github.com/giuxtaposition/blink-cmp-copilot" }, -- blink copilot source
+	{ src = "https://github.com/emrearmagan/atlas.nvim" }, -- Atlas PR and Issue management
+	{ src = "https://github.com/folke/flash.nvim" }, -- advanced search
+	{ src = "https://github.com/folke/sidekick.nvim" }, -- sidekick ai integration
+	{ src = "https://github.com/folke/snacks.nvim" }, -- multiplug for nvim
+	{ src = "https://github.com/folke/todo-comments.nvim" }, -- todo comments
+	{ src = "https://github.com/HiPhish/rainbow-delimiters.nvim" }, -- rainbow delimiters
+	{ src = "https://github.com/igorlfs/nvim-dap-view" }, -- dap views
+	{ src = "https://github.com/kevinhwang91/promise-async" }, -- dep for nvim-ufo
+	{ src = "https://github.com/kevinhwang91/nvim-ufo" }, -- folding
+	{ src = "https://github.com/leoluz/nvim-dap-go" }, -- Go debugging
+	{ src = "https://github.com/lewis6991/gitsigns.nvim" }, -- git signs in gutter
+	{ src = "https://github.com/linrongbin16/gitlinker.nvim" }, -- GitHub file links
+	{ src = "https://github.com/MagicDuck/grug-far.nvim" }, -- find and replace
+	{ src = "https://github.com/mason-org/mason.nvim" }, -- LSP/DAP/Linter/Formatter installer
+	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" }, -- LSP installer
+	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" }, -- markdown renderer
+	{ src = "https://github.com/mfussenegger/nvim-dap" }, -- Debug Adapter Protocol
+	{ src = "https://github.com/mfussenegger/nvim-lint" }, -- Linting framework
+	{ src = "https://github.com/mikavilpas/yazi.nvim" }, -- yazi tree for nvim
+	{ src = "https://github.com/mistweaverco/kulala.nvim" }, -- API tool
+	{ src = "https://github.com/mg979/vim-visual-multi", version = "master" }, -- multiple cursors
+	{ src = "https://github.com/mrjones2014/smart-splits.nvim" }, -- split navigation
+	{ src = "https://github.com/neovim/nvim-lspconfig" }, -- LSP configuration
+	{ src = "https://github.com/nemanjamalesija/smart-paste.nvim" }, -- smart paste
+	{ src = "https://github.com/nvim-lua/plenary.nvim" }, -- dep for yazi.nvim
+	{ src = "https://github.com/nvim-lualine/lualine.nvim" }, -- statusline
+	{ src = "https://github.com/nvim-mini/mini.nvim" }, -- Mini: minimal Lua modules
+	-- { src = "https://github.com/nvim-neotest/neotest" }, -- Testing framework
+	{ src = "https://github.com/nvim-neotest/nvim-nio" }, -- async io (neotest/dap)
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" }, -- context for treesitter
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" }, -- textobjects for treesitter
+	{ src = "https://github.com/Owen-Dechow/videre.nvim" }, -- JSON/YAML explorer
+	{ src = "https://github.com/Owen-Dechow/graph_view_yaml_parser" }, -- YAML plug
+	{ src = "https://github.com/ray-x/go.nvim" }, -- Go development plugin
+	{ src = "https://github.com/rcarriga/nvim-dap-ui" }, -- dap ui
+	{ src = "https://github.com/rmagatti/auto-session" }, -- session management
+	{ src = "https://github.com/Saghen/blink.cmp" }, -- blink completion
+	{ src = "https://github.com/Saghen/blink.lib" }, -- blink cmp dependency
+	{ src = "https://github.com/spacedentist/resolve.nvim" }, -- conflict resolver
+	{ src = "https://github.com/stevearc/conform.nvim" }, -- conform formatter
+	{ src = "https://github.com/theHamsta/nvim-dap-virtual-text" }, -- dap virtual text
+	{ src = "https://github.com/TheNoeTrevino/haunt.nvim" }, -- buffered comments
+	{ src = "https://github.com/tpope/vim-dispatch" }, -- Asynchronous execution
+})
+
+-- Familiar management commands (vim-plug had :PlugUpdate / :PlugClean)
+vim.api.nvim_create_user_command("PackUpdate", function()
+	vim.pack.update()
+end, { desc = "Update all vim.pack plugins" })
+
+vim.api.nvim_create_user_command("PackClean", function()
+	local names = vim.iter(vim.pack.get())
+		:filter(function(p)
+			return not p.active
+		end)
+		:map(function(p)
+			return p.spec.name
+		end)
+		:totable()
+	if #names == 0 then
+		vim.notify("PackClean: no unused plugins", vim.log.levels.INFO)
+	else
+		vim.pack.del(names)
+	end
+end, { desc = "Remove vim.pack plugins no longer declared" })
+
 require("plugins")
 
 -- Core keymaps (non-plugin specific)
@@ -111,7 +128,7 @@ vim.opt.foldmethod = "indent"
 vim.opt.foldlevel = 99 -- Start with all folds open
 vim.opt.foldenable = true
 vim.opt.foldlevelstart = 99
-vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 vim.opt.termguicolors = true
 vim.opt.listchars = "tab:▷▷⋮"

@@ -4,7 +4,7 @@ require("mini.ai").setup({
 		goto_right = "<leader>n",
 	},
 })
-require("mini.comment").setup()
+-- require("mini.comment").setup()
 require("mini.diff").setup({})
 require("mini.icons").setup()
 require("mini.indentscope").setup()

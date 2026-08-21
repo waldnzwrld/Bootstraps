@@ -27,6 +27,7 @@ require("snacks").setup({
 	},
 	gh = {},
 	gitbrowse = {},
+	lazygit = {},
 	picker = {
 		enabled = true,
 		win = {
@@ -139,7 +140,6 @@ vim.keymap.set("n", "<leader>pr", function()
 	Snacks.picker.gh_pr({ search = "author:@me" })
 end, { desc = "My pull requests" })
 
--- 	vim.keymap.set("n", "<leader>rr", function()
 -- 	Snacks.picker.gh_pr({
 -- 		search = "review-requested:@me draft:false",
 -- 		jq = 'map(select(.mergeStateStatus != "DIRTY"))',
@@ -193,3 +193,7 @@ end, { desc = "Snacks Picker Diagnostics Buffer" })
 vim.keymap.set("n", "<leader>tl", function()
 	Snacks.picker.todo_comments()
 end, { desc = "Snacks Picker Todo_comments" })
+
+vim.keymap.set("n", "<leader>gg", function()
+	Snacks.lazygit.open()
+end, { desc = "LazyGit" })
