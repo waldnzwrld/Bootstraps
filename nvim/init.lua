@@ -71,7 +71,7 @@ vim.pack.add({
 	{ src = "https://github.com/mfussenegger/nvim-lint" }, -- Linting framework
 	{ src = "https://github.com/mikavilpas/yazi.nvim" }, -- yazi tree for nvim
 	{ src = "https://github.com/mistweaverco/kulala.nvim" }, -- API tool
-	{ src = "https://github.com/mg979/vim-visual-multi", version = "master" }, -- multiple cursors
+	{ src = "https://github.com/jake-stewart/multicursor.nvim", version = "1.0" }, -- multiple cursors
 	{ src = "https://github.com/mrjones2014/smart-splits.nvim" }, -- split navigation
 	{ src = "https://github.com/neovim/nvim-lspconfig" }, -- LSP configuration
 	{ src = "https://github.com/nemanjamalesija/smart-paste.nvim" }, -- smart paste
@@ -93,7 +93,6 @@ vim.pack.add({
 	{ src = "https://github.com/stevearc/conform.nvim" }, -- conform formatter
 	{ src = "https://github.com/theHamsta/nvim-dap-virtual-text" }, -- dap virtual text
 	{ src = "https://github.com/TheNoeTrevino/haunt.nvim" }, -- buffered comments
-	{ src = "https://github.com/tpope/vim-dispatch" }, -- Asynchronous execution
 })
 
 -- Familiar management commands (vim-plug had :PlugUpdate / :PlugClean)
@@ -132,7 +131,9 @@ vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 vim.opt.termguicolors = true
 vim.opt.listchars = "tab:▷▷⋮"
+-- vim.wo.number = true
 vim.wo.relativenumber = true
+vim.opt.spell = true
 
 vim.api.nvim_create_autocmd("FileType", {
 	desc = "Ensures tabs are used on Makefiles instead of spaces",
