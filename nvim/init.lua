@@ -91,6 +91,7 @@ vim.pack.add({
 	{ src = "https://github.com/Saghen/blink.cmp" }, -- blink completion
 	{ src = "https://github.com/Saghen/blink.lib" }, -- blink cmp dependency
 	{ src = "https://github.com/spacedentist/resolve.nvim" }, -- conflict resolver
+	{ src = "https://github.com/sphamba/smear-cursor.nvim" }, -- make that cursor moooov
 	{ src = "https://github.com/stevearc/aerial.nvim" }, -- code outline / symbol tree
 	{ src = "https://github.com/stevearc/conform.nvim" }, -- conform formatter
 	{ src = "https://github.com/theHamsta/nvim-dap-virtual-text" }, -- dap virtual text

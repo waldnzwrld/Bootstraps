@@ -80,3 +80,28 @@ vim.keymap.set(
 	":%bdelete!|edit#|bdelete!#<CR>",
 	{ desc = "Close all buffers except the current one" }
 )
+
+-- :Jiggle — recover snacks pickers stuck on the LuaJIT require sentinel.
+-- The snacks gh finder first-requires its module inside an async coroutine; if
+-- that aborts mid-load, package.loaded is frozen on the sentinel and every later
+-- gh_pr call throws "loop or previous error" -> nil finder -> "Finder not found".
+-- A restart doesn't help (the first async call re-poisons it). Clearing the
+-- entries and re-requiring on the MAIN thread reloads them cleanly.
+vim.api.nvim_create_user_command("Jiggle", function()
+	local cleared = {}
+	for name, val in pairs(package.loaded) do
+		local t = type(val)
+		if name:match("^snacks") and t ~= "table" and t ~= "function" and t ~= "boolean" then
+			package.loaded[name] = nil
+			cleared[#cleared + 1] = name
+		end
+	end
+	-- Force a clean main-thread load so the next (async) picker call can't re-poison it.
+	for _, name in ipairs({ "snacks.gh", "snacks.picker.source.gh" }) do
+		pcall(require, name)
+	end
+	vim.notify(
+		#cleared > 0 and ("Jiggled: " .. table.concat(cleared, ", ")) or "Nothing was stuck",
+		vim.log.levels.INFO
+	)
+end, { desc = "Reload sentinel-poisoned snacks modules (fixes 'Finder not found')" })

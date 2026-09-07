@@ -173,6 +173,10 @@
       "rev": "9083e55a3632e4c80692ced82fb2a59d9c7801dc",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
     },
+    "smear-cursor.nvim": {
+      "rev": "9e9378d6ee34bb3782e0e8c63d9ec8ca618b479b",
+      "src": "https://github.com/sphamba/smear-cursor.nvim"
+    },
     "snacks.nvim": {
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
       "src": "https://github.com/folke/snacks.nvim"
