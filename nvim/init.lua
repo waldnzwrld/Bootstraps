@@ -48,6 +48,7 @@ vim.pack.add({
 	{ src = "https://github.com/akinsho/toggleterm.nvim" }, -- terminal integration
 	{ src = "https://github.com/Allaman/tf.nvim" }, -- terraform integration
 	{ src = "https://github.com/arborist-ts/arborist.nvim" }, -- Treesitter lang installer
+	{ src = "https://github.com/atiladefreitas/bloocky" }, -- Calendar integration
 	{ src = "https://github.com/brenoprata10/nvim-highlight-colors" }, -- highlight color codes
 	{ src = "https://github.com/brianhuster/live-preview.nvim" }, -- live preview
 	{ src = "https://github.com/giuxtaposition/blink-cmp-copilot" }, -- blink copilot source
@@ -90,6 +91,7 @@ vim.pack.add({
 	{ src = "https://github.com/Saghen/blink.cmp" }, -- blink completion
 	{ src = "https://github.com/Saghen/blink.lib" }, -- blink cmp dependency
 	{ src = "https://github.com/spacedentist/resolve.nvim" }, -- conflict resolver
+	{ src = "https://github.com/stevearc/aerial.nvim" }, -- code outline / symbol tree
 	{ src = "https://github.com/stevearc/conform.nvim" }, -- conform formatter
 	{ src = "https://github.com/theHamsta/nvim-dap-virtual-text" }, -- dap virtual text
 	{ src = "https://github.com/TheNoeTrevino/haunt.nvim" }, -- buffered comments

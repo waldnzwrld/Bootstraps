@@ -140,19 +140,20 @@ vim.keymap.set("n", "<leader>pr", function()
 	Snacks.picker.gh_pr({ search = "author:@me" })
 end, { desc = "My pull requests" })
 
--- 	Snacks.picker.gh_pr({
--- 		search = "review-requested:@me draft:false",
--- 		jq = 'map(select(.mergeStateStatus != "DIRTY"))',
--- 	})
--- end, { desc = "Snacks Picker PR Reviews" })
+vim.keymap.set("n", "<leader>rr", function()
+	Snacks.picker.gh_pr({
+		search = "review-requested:@me draft:false status:success",
+		jq = 'map(select(.mergeStateStatus != "DIRTY"))',
+	})
+end, { desc = "Snacks Picker PR Reviews" })
 
 vim.keymap.set("n", "<leader>rm", function()
 	Snacks.picker.gh_pr({ search = "mentions:@me" })
 end, { desc = "Snacks Picker PR mentions" })
 
 vim.keymap.set("n", "<leader>ds", function()
-	Snacks.picker.lsp_symbols()
-end, { desc = "Snacks Picker Document Symbols" })
+	require("aerial").snacks_picker()
+end, { desc = "Aerial Document Symbols (Snacks)" })
 
 vim.keymap.set("n", "<leader>ws", function()
 	Snacks.picker.lsp_workspace_symbols()

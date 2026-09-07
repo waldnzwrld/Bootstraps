@@ -16,6 +16,7 @@ require("mini.move").setup({
 		up = "K",
 	},
 })
+-- require("mini.statuscolumn").setup()
 require("mini.surround").setup()
 require("mini.pairs").setup()
 

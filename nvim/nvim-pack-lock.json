@@ -1,11 +1,15 @@
 {
   "plugins": {
+    "aerial.nvim": {
+      "rev": "28fe6e822ae344544c379d60fcb13c9519a1f08a",
+      "src": "https://github.com/stevearc/aerial.nvim"
+    },
     "arborist.nvim": {
       "rev": "fdeef56c2840c6772b9f68c5774ed87e9340ec7d",
       "src": "https://github.com/arborist-ts/arborist.nvim"
     },
     "atlas.nvim": {
-      "rev": "1a9b8206203bdce0b99f848b6ebe9ce3ad0ac3d1",
+      "rev": "ca4c9f59fa346cac3e3d1f8b27ada1861c979bd8",
       "src": "https://github.com/emrearmagan/atlas.nvim"
     },
     "auto-session": {
@@ -17,12 +21,16 @@
       "src": "https://github.com/giuxtaposition/blink-cmp-copilot"
     },
     "blink.cmp": {
-      "rev": "d50cfb205c677143d1f036a4749e21c1c8c6bc85",
+      "rev": "49d39fda6350d7f789d1da1053e86c9e256f8108",
       "src": "https://github.com/Saghen/blink.cmp"
     },
     "blink.lib": {
-      "rev": "c8fdc12c8a2fab6cf786dd7141a283f8079f902b",
+      "rev": "f55df8a6e0a7acccf45ef0ffbb4ce46110fcf7d0",
       "src": "https://github.com/Saghen/blink.lib"
+    },
+    "bloocky": {
+      "rev": "061c3f2ac258691b70f2cebf37fcbce4700e0013",
+      "src": "https://github.com/atiladefreitas/bloocky"
     },
     "conform.nvim": {
       "rev": "016802de402556da54c36bd7359b441266b01cdd",
@@ -69,7 +77,7 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mason-lspconfig.nvim": {
-      "rev": "9d28935aa95fa6c1dc7c4d6747f101a72a8a4bec",
+      "rev": "40276c4df7e6bdce6801d6c035c6227f9115a855",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
     },
     "mason.nvim": {
@@ -77,7 +85,7 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.nvim": {
-      "rev": "8d86a057fa14681cf7cab74ea7cba894a0abe14f",
+      "rev": "ee23d71c02440668cbca5b0cd8640d79d5bc250b",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "multicursor.nvim": {
@@ -86,7 +94,7 @@
       "version": "'1.0'"
     },
     "nvim-dap": {
-      "rev": "9e848e09a697ee95302a3ef2dd43fd6eb709e570",
+      "rev": "c9a0738e45f1bd41d792a126941348dce661cf9b",
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "nvim-dap-go": {
@@ -114,7 +122,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "221c43884319e791519f0d6c94a7f2fbcd653278",
+      "rev": "615d7b2712efb2f530a83a9d0466acafba6b1d6f",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -126,7 +134,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "898ee307df58f854d11cd7edd06472574d48014e",
+      "rev": "5c7b0263797dfd1bd6202f2b219f3b53a80b2187",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
     },
     "nvim-ufo": {
@@ -142,7 +150,7 @@
       "src": "https://github.com/kevinhwang91/promise-async"
     },
     "rainbow-delimiters.nvim": {
-      "rev": "012f1480cd9a5fc99fce7678e0a536421a53fc46",
+      "rev": "3a0fc08dd39e8bf034a4cfef3f2845bd5f565a2e",
       "src": "https://github.com/HiPhish/rainbow-delimiters.nvim"
     },
     "render-markdown.nvim": {
@@ -162,7 +170,7 @@
       "src": "https://github.com/nemanjamalesija/smart-paste.nvim"
     },
     "smart-splits.nvim": {
-      "rev": "5e92431aa7f5e618c2f6825f682df6d94f6e0a02",
+      "rev": "9083e55a3632e4c80692ced82fb2a59d9c7801dc",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
     },
     "snacks.nvim": {
@@ -170,7 +178,7 @@
       "src": "https://github.com/folke/snacks.nvim"
     },
     "tf.nvim": {
-      "rev": "8a4e65e16aa8d4cb0ecc9667c00d1917409f0dc4",
+      "rev": "8e199c7a4df50932f25a6c8d8f8eaaeab5582842",
       "src": "https://github.com/Allaman/tf.nvim"
     },
     "todo-comments.nvim": {
@@ -189,8 +197,12 @@
       "rev": "5e7b39bb17d7381b06bcaae589c2d53854ae5c93",
       "src": "https://github.com/Owen-Dechow/videre.nvim"
     },
+    "vim-visual-multi": {
+      "rev": "a6975e7c1ee157615bbc80fc25e4392f71c344d4",
+      "src": "https://github.com/mg979/vim-visual-multi"
+    },
     "yazi.nvim": {
-      "rev": "187834da499d3a7a54407f9edc507bcaf32c18e6",
+      "rev": "d2eccff3c8c78a15adb82d8d6d37694066fee747",
       "src": "https://github.com/mikavilpas/yazi.nvim"
     }
   }
