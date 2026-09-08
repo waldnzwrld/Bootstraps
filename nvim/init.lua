@@ -91,7 +91,6 @@ vim.pack.add({
 	{ src = "https://github.com/Saghen/blink.cmp" }, -- blink completion
 	{ src = "https://github.com/Saghen/blink.lib" }, -- blink cmp dependency
 	{ src = "https://github.com/spacedentist/resolve.nvim" }, -- conflict resolver
-	{ src = "https://github.com/sphamba/smear-cursor.nvim" }, -- make that cursor moooov
 	{ src = "https://github.com/stevearc/aerial.nvim" }, -- code outline / symbol tree
 	{ src = "https://github.com/stevearc/conform.nvim" }, -- conform formatter
 	{ src = "https://github.com/theHamsta/nvim-dap-virtual-text" }, -- dap virtual text
@@ -125,6 +124,7 @@ require("plugins")
 require("core.keymaps")
 
 vim.cmd("set termguicolors")
+vim.opt.guicursor = "t:ver25"
 -- Set default fold method to indent
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevel = 99 -- Start with all folds open

@@ -50,11 +50,14 @@
 background = #0a0a0a
 background-opacity = .85
 font-family = hack
-font-size = 14
-theme = gruvbox dark hard
+font-size = 16
+# theme = gruvbox dark hard
 # theme = hardcore
 # theme = under the sea
-macos-icon = chalkboard
+theme = tokyonight night
+macos-icon = blueprint
+# send Option as Alt/Meta so <A-...> maps reach nvim (smart-splits resize, snacks picker cycle_win)
+macos-option-as-alt = true
 
 # smart splits
 keybind = unconsumed:ctrl+k=goto_split:top
@@ -71,3 +74,6 @@ keybind = shift+super+l=move_tab:1
 keybind = shift+super+enter=new_split:auto
 
 keybind = super+,=unbind
+
+custom-shader = sparks.glsl
+custom-shader = cursor_frozen.glsl
