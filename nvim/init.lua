@@ -124,7 +124,7 @@ require("plugins")
 require("core.keymaps")
 
 vim.cmd("set termguicolors")
-vim.opt.guicursor = "t:ver25"
+vim.opt.guicursor = "t-i:ver25"
 -- Set default fold method to indent
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevel = 99 -- Start with all folds open
@@ -134,6 +134,10 @@ vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 vim.opt.termguicolors = true
 vim.opt.listchars = "tab:▷▷⋮"
+
+-- show the cwd (project dir) in the terminal/tab title instead of the process name
+vim.opt.title = true
+vim.opt.titlestring = "%{fnamemodify(getcwd(), ':t')}"
 -- vim.wo.number = true
 vim.wo.relativenumber = true
 vim.opt.spell = true

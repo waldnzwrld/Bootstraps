@@ -27,6 +27,7 @@ require("sidekick").setup({
 			update_tests = "Use the test-custodian agent to update tests to validate the changes in this branch. Be thorough but tidy. Do not add repetitive tests, update existing tests if that is the best option, otherwise add tests. Work in the background.",
 			pr_review = "Use the pr-deep-dive skill against the current pr",
 			devils_advocate = "Given {this} explain why this is a solid approach, and why it is not. Do not hold any sycophantic bias, objectively assess the code here for pros and cons. Highlight any issues as well as any benefits. ",
+			bulk_dependency_update = "There are multiple open dependency update pr's. Read them, merge them together into a single pr, identify potential issues and make sure the code will still run without problems and ship when all of the updates are included",
 		},
 		win = {
 			split = {

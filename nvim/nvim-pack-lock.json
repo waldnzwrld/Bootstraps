@@ -173,10 +173,6 @@
       "rev": "ec76708f1617ef9e2ac353357fe52d2c997a0f06",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
     },
-    "smear-cursor.nvim": {
-      "rev": "9e9378d6ee34bb3782e0e8c63d9ec8ca618b479b",
-      "src": "https://github.com/sphamba/smear-cursor.nvim"
-    },
     "snacks.nvim": {
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
       "src": "https://github.com/folke/snacks.nvim"
@@ -200,10 +196,6 @@
     "videre.nvim": {
       "rev": "5e7b39bb17d7381b06bcaae589c2d53854ae5c93",
       "src": "https://github.com/Owen-Dechow/videre.nvim"
-    },
-    "vim-visual-multi": {
-      "rev": "a6975e7c1ee157615bbc80fc25e4392f71c344d4",
-      "src": "https://github.com/mg979/vim-visual-multi"
     },
     "yazi.nvim": {
       "rev": "d2eccff3c8c78a15adb82d8d6d37694066fee747",
