@@ -18,8 +18,8 @@ require("sidekick").setup({
 			haunt_current = function()
 				return haunt_sk.get_locations({ current_buffer = true })
 			end,
-			pr = "Open a draft pull request for the current branch. If there is a PR template, use it, otherwise just write an apt description. You do not need to commit or push any changes.",
-			pr_desc = "Update the pull request description to match the current state of the diff.",
+			pr = "Open a draft pull request for the current branch. If there is a PR template, use it, otherwise just write an apt description. Keep things human readable. Verbosity is not desireable here. We want to stick to the facts. You do not need to commit or push any changes.",
+			pr_desc = "Update the pull request description to match the current state of the diff. Keep things human readable. Verbosity is not desireable here. We want to stick to the facts.",
 			pr_feedback = "Review the feedback presented against the current pr, identify the validity and likelihood of the issues presented there, then resolve the meaningful issues identified by the feedback",
 			claudio_reviewer = "Please review the changes in this branch using the claudio reviewer skill",
 			parallelize = "Review the spec in {this} and identify ways in which the work can be parallelized. When you are ready use the worktrees skill to parallelize and build to the spec.",

@@ -61,6 +61,8 @@ vim.pack.add({
 	{ src = "https://github.com/igorlfs/nvim-dap-view" }, -- dap views
 	{ src = "https://github.com/kevinhwang91/promise-async" }, -- dep for nvim-ufo
 	{ src = "https://github.com/kevinhwang91/nvim-ufo" }, -- folding
+	{ src = "https://github.com/kristijanhusak/vim-dadbod-completion" }, -- cmp for dadbod
+	{ src = "https://github.com/kristijanhusak/vim-dadbod-ui" }, -- UI for dadbod db browser
 	{ src = "https://github.com/leoluz/nvim-dap-go" }, -- Go debugging
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" }, -- git signs in gutter
 	{ src = "https://github.com/linrongbin16/gitlinker.nvim" }, -- GitHub file links
@@ -93,6 +95,7 @@ vim.pack.add({
 	{ src = "https://github.com/spacedentist/resolve.nvim" }, -- conflict resolver
 	{ src = "https://github.com/stevearc/aerial.nvim" }, -- code outline / symbol tree
 	{ src = "https://github.com/stevearc/conform.nvim" }, -- conform formatter
+	{ src = "https://github.com/tpope/vim-dadbod" }, -- great db browser
 	{ src = "https://github.com/theHamsta/nvim-dap-virtual-text" }, -- dap virtual text
 	{ src = "https://github.com/TheNoeTrevino/haunt.nvim" }, -- buffered comments
 })

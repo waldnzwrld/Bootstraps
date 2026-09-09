@@ -142,7 +142,7 @@ end, { desc = "My pull requests" })
 
 vim.keymap.set("n", "<leader>rr", function()
 	Snacks.picker.gh_pr({
-		search = "review-requested:@me draft:false status:success",
+		search = "review-requested:@me draft:false",
 		jq = 'map(select(.mergeStateStatus != "DIRTY"))',
 	})
 end, { desc = "Snacks Picker PR Reviews" })

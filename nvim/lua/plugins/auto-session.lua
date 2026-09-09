@@ -25,3 +25,4 @@ require("auto-session").setup({
 
 vim.keymap.set("n", "<leader>sl", ":AutoSession search<CR>", { desc = "Session Picker" })
 vim.keymap.set("n", "<leader>ss", ":AutoSession save<CR>", { desc = "Save session" })
+vim.keymap.set("n", "ZR", "<Cmd>restart!<CR>", { desc = "Restart nvim (no session save)" })

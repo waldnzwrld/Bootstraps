@@ -197,6 +197,22 @@
       "rev": "5e7b39bb17d7381b06bcaae589c2d53854ae5c93",
       "src": "https://github.com/Owen-Dechow/videre.nvim"
     },
+    "vim-dadbod": {
+      "rev": "6d1d41da4873a445c5605f2005ad2c68c99d8770",
+      "src": "https://github.com/tpope/vim-dadbod"
+    },
+    "vim-dadbod-completion": {
+      "rev": "a8dac0b3cf6132c80dc9b18bef36d4cf7a9e1fe6",
+      "src": "https://github.com/kristijanhusak/vim-dadbod-completion"
+    },
+    "vim-dadbod-ui": {
+      "rev": "afd07819d8efcefc3317205b855ad4e3513b0011",
+      "src": "https://github.com/kristijanhusak/vim-dadbod-ui"
+    },
+    "vim-visual-multi": {
+      "rev": "a6975e7c1ee157615bbc80fc25e4392f71c344d4",
+      "src": "https://github.com/mg979/vim-visual-multi"
+    },
     "yazi.nvim": {
       "rev": "d2eccff3c8c78a15adb82d8d6d37694066fee747",
       "src": "https://github.com/mikavilpas/yazi.nvim"
