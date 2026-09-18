@@ -87,6 +87,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" }, -- textobjects for treesitter
 	{ src = "https://github.com/Owen-Dechow/videre.nvim" }, -- JSON/YAML explorer
 	{ src = "https://github.com/Owen-Dechow/graph_view_yaml_parser" }, -- YAML plug
+	{ src = "https://github.com/Ramilito/kubectl.nvim" }, -- kubectl
 	{ src = "https://github.com/ray-x/go.nvim" }, -- Go development plugin
 	{ src = "https://github.com/rcarriga/nvim-dap-ui" }, -- dap ui
 	{ src = "https://github.com/rmagatti/auto-session" }, -- session management
