@@ -66,8 +66,8 @@ require("conform").setup({
 			"ruby",
 			"typescript",
 			"typescriptreact",
-			"yaml",
-			"yml",
+			-- "yaml",
+			-- "yml",
 		}
 
 		if vim.tbl_contains(auto_format_ft, filetype) then
@@ -93,8 +93,8 @@ end, { desc = "Format buffer (Conform)" })
 
 -- Format on save toggle
 vim.g.conform_format_on_save = true
--- vim.keymap.set("n", "<leader>tf", function()
--- 	vim.g.conform_format_on_save = not vim.g.conform_format_on_save
--- 	local status = vim.g.conform_format_on_save and "enabled" or "disabled"
--- 	vim.notify("Format on save " .. status, vim.log.levels.INFO)
--- end, { desc = "Toggle format on save" })
+vim.keymap.set("n", "<leader>tf", function()
+	vim.g.conform_format_on_save = not vim.g.conform_format_on_save
+	local status = vim.g.conform_format_on_save and "enabled" or "disabled"
+	vim.notify("Format on save " .. status, vim.log.levels.INFO)
+end, { desc = "Toggle format on save" })

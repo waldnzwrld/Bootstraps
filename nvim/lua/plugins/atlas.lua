@@ -1,14 +1,15 @@
 require("atlas").setup({
 	ui = { listed_buffer = true },
-
 	providers = {
+		---@type AtlasGitHubConfig
 		github = {
 			cache_ttl = 300,
 		},
 	},
 	pulls = {
+		---@type AtlasGitHubPullsConfig
 		github = {
-
+			---@type AtlasGitHubViewConfig[]
 			views = {
 				{
 					name = "My PRs",
@@ -17,16 +18,16 @@ require("atlas").setup({
 					search = "author:@me sort:updated-desc",
 				},
 				{
-					name = "Architexture Enterprises",
+					name = "Reviews",
 					key = "2",
 					layout = "compact",
-					search = "org:Architexture-Enterprises sort:updated-desc",
+					search = "is:pr is:open org:CartoDB -repo:CartoDB/cloud-native review-requested:@me draft:false",
 				},
 				{
-					name = "Second Line",
+					name = "cloud-native",
 					key = "3",
 					layout = "plain",
-					search = "repo:architexture-enterprises/second-line sort:updated-desc",
+					search = "is:pr is:open repo:CartoDB/cloud-native",
 				},
 			},
 
@@ -36,42 +37,6 @@ require("atlas").setup({
 				items = {
 					["Drafts"] = "is:pr is:draft author:@me",
 					["Recently merged"] = "is:pr is:merged author:@me sort:updated-desc",
-					["Review requested"] = "is:pr is:open review-requested:@me",
-				},
-			},
-		},
-	},
-	issues = {
-		github = {
-
-			-- -@type AtlasGitHubIssuesViewConfig[]
-			views = {
-				{
-					name = "Assigned",
-					key = "1",
-					layout = "plain",
-					search = "assignee:@me is:open",
-				},
-				{
-					name = "Created",
-					key = "2",
-					layout = "compact",
-					search = "author:@me is:open",
-				},
-				{
-					name = "Mentions",
-					key = "3",
-					layout = "plain",
-					search = "mentions:@me is:open",
-				},
-			},
-
-			bookmarks = {
-				key = "S", -- default
-				label = "Search", -- default
-				items = {
-					["Bugs"] = "is:issue is:open label:bug",
-					["Recently closed"] = "is:issue is:closed author:@me sort:updated-desc",
 					["Review requested"] = "is:pr is:open org:CartoDB review-requested:@me draft:false",
 				},
 			},
