@@ -1,0 +1,12 @@
+os:
+  editPreset: "nvim"
+gui:
+  nerdFontsVersion: "3"
+  theme:
+    activeBorderColor:
+      - white
+      - bold
+    inactiveBorderColor:
+      - white
+    selectedLineBgColor:
+      - default

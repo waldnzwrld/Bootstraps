@@ -103,11 +103,12 @@ dap.configurations.typescript = {
 	{
 		type = "pwa-node",
 		request = "launch",
-		name = "Debug Jest Tests",
+		name = "Debug Vitest Tests",
 		runtimeExecutable = "node",
 		runtimeArgs = {
-			"./node_modules/jest/bin/jest.js",
-			"--runInBand",
+			"./node_modules/vitest/vitest.mjs",
+			"run",
+			"--no-file-parallelism",
 		},
 		rootPath = "${workspaceFolder}",
 		cwd = "${workspaceFolder}",

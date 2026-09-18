@@ -9,11 +9,11 @@
       "src": "https://github.com/arborist-ts/arborist.nvim"
     },
     "atlas.nvim": {
-      "rev": "92c6850fcf80461255390b299bcfc4b7a4740c24",
+      "rev": "89bc7bd035cb669c0370165b400abc47ce10a752",
       "src": "https://github.com/emrearmagan/atlas.nvim"
     },
     "auto-session": {
-      "rev": "c8e6139a2e52a38101fecaba6014d7dd75489044",
+      "rev": "02a5588f677970a9bc784115c62bef9e5855499b",
       "src": "https://github.com/rmagatti/auto-session"
     },
     "blink-cmp-copilot": {
@@ -21,7 +21,7 @@
       "src": "https://github.com/giuxtaposition/blink-cmp-copilot"
     },
     "blink.cmp": {
-      "rev": "49d39fda6350d7f789d1da1053e86c9e256f8108",
+      "rev": "473c928d8b9b5b3f638cd085a01899972cf205c6",
       "src": "https://github.com/Saghen/blink.cmp"
     },
     "blink.lib": {
@@ -29,7 +29,7 @@
       "src": "https://github.com/Saghen/blink.lib"
     },
     "bloocky": {
-      "rev": "061c3f2ac258691b70f2cebf37fcbce4700e0013",
+      "rev": "ce68cf311ed10d937398a7211dd21efca2ea5c59",
       "src": "https://github.com/atiladefreitas/bloocky"
     },
     "conform.nvim": {
@@ -45,11 +45,11 @@
       "src": "https://github.com/linrongbin16/gitlinker.nvim"
     },
     "gitsigns.nvim": {
-      "rev": "5be654f2232c10ddcad19c1607a67b6b4b78fc29",
+      "rev": "f2421c550618d257048afa650413d9e542ddbe67",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "go.nvim": {
-      "rev": "0768d79bbebdb1a112a845f9cd6293bfbd544dab",
+      "rev": "f5d1f11d4f616efbe2339286310bb89c4853d769",
       "src": "https://github.com/ray-x/go.nvim"
     },
     "graph_view_yaml_parser": {
@@ -64,6 +64,10 @@
       "rev": "c973175dda88236ecda342fd3654b5dc4f6b7764",
       "src": "https://github.com/TheNoeTrevino/haunt.nvim"
     },
+    "kubectl.nvim": {
+      "rev": "dfd25c503f6ee4a769f53a0a8aab8e8fde0ff180",
+      "src": "https://github.com/Ramilito/kubectl.nvim"
+    },
     "kulala.nvim": {
       "rev": "dcad056448773ae5b54cadbfdbd188a599cfebd3",
       "src": "https://github.com/mistweaverco/kulala.nvim"
@@ -77,7 +81,7 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mason-lspconfig.nvim": {
-      "rev": "40276c4df7e6bdce6801d6c035c6227f9115a855",
+      "rev": "77e06f7d2fc127e6ef0a720b59acbc50757cff19",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
     },
     "mason.nvim": {
@@ -85,7 +89,7 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.nvim": {
-      "rev": "455856f765c78220fe547fb0862708942b52c42c",
+      "rev": "6664ea9af6c43dc31934e27476bbe61c556c8dc1",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "multicursor.nvim": {
@@ -93,8 +97,28 @@
       "src": "https://github.com/jake-stewart/multicursor.nvim",
       "version": "'1.0'"
     },
+    "neotest": {
+      "rev": "27bf921498043f7ecd821d6db68d05de244bbd02",
+      "src": "https://github.com/nvim-neotest/neotest"
+    },
+    "neotest-go": {
+      "rev": "59b50505053f9c45a9febb79e11a56206c3e3901",
+      "src": "https://github.com/nvim-neotest/neotest-go"
+    },
+    "neotest-golang": {
+      "rev": "65b2be63c3de00e6f15c05388ebdc8d603dbd727",
+      "src": "https://github.com/fredrikaverpil/neotest-golang"
+    },
+    "neotest-jest": {
+      "rev": "0e7979d51301dfae5ef839d771bd28cf593fde3f",
+      "src": "https://github.com/nvim-neotest/neotest-jest"
+    },
+    "neotest-vitest": {
+      "rev": "c3c69715da4b158069fd4262083e7219a5c14cfb",
+      "src": "https://github.com/marilari88/neotest-vitest"
+    },
     "nvim-dap": {
-      "rev": "c9a0738e45f1bd41d792a126941348dce661cf9b",
+      "rev": "cfa2d58f4537aca6ca83e2de1a0d9f1491121264",
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "nvim-dap-go": {
@@ -122,7 +146,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "da1aff0332774a0f60d52bf972e815dfc226f276",
+      "rev": "ac9d2f7c4757db6320cab6697fe73e5e8adb2457",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -214,7 +238,7 @@
       "src": "https://github.com/mg979/vim-visual-multi"
     },
     "yazi.nvim": {
-      "rev": "d2eccff3c8c78a15adb82d8d6d37694066fee747",
+      "rev": "b71d6aadef22d8373931d9aeb2b604c322e07c8c",
       "src": "https://github.com/mikavilpas/yazi.nvim"
     }
   }

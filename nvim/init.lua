@@ -80,13 +80,16 @@ vim.pack.add({
 	{ src = "https://github.com/nemanjamalesija/smart-paste.nvim" }, -- smart paste
 	{ src = "https://github.com/nvim-lua/plenary.nvim" }, -- dep for yazi.nvim
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" }, -- statusline
+	{ src = "https://github.com/marilari88/neotest-vitest" }, -- Vitest framework
 	{ src = "https://github.com/nvim-mini/mini.nvim" }, -- Mini: minimal Lua modules
-	-- { src = "https://github.com/nvim-neotest/neotest" }, -- Testing framework
+	{ src = "https://github.com/nvim-neotest/neotest" }, -- Testing framework
+	{ src = "https://github.com/fredrikaverpil/neotest-golang" }, -- Go framework
 	{ src = "https://github.com/nvim-neotest/nvim-nio" }, -- async io (neotest/dap)
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" }, -- context for treesitter
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" }, -- textobjects for treesitter
 	{ src = "https://github.com/Owen-Dechow/videre.nvim" }, -- JSON/YAML explorer
 	{ src = "https://github.com/Owen-Dechow/graph_view_yaml_parser" }, -- YAML plug
+	{ src = "https://github.com/Ramilito/kubectl.nvim" }, -- kubectl management
 	{ src = "https://github.com/ray-x/go.nvim" }, -- Go development plugin
 	{ src = "https://github.com/rcarriga/nvim-dap-ui" }, -- dap ui
 	{ src = "https://github.com/rmagatti/auto-session" }, -- session management
@@ -120,7 +123,6 @@ vim.api.nvim_create_user_command("PackClean", function()
 		vim.pack.del(names)
 	end
 end, { desc = "Remove vim.pack plugins no longer declared" })
-
 require("plugins")
 
 -- Core keymaps (non-plugin specific)
