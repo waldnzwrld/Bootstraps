@@ -50,7 +50,6 @@ vim.pack.add({
 	{ src = "https://github.com/arborist-ts/arborist.nvim" }, -- Treesitter lang installer
 	{ src = "https://github.com/atiladefreitas/bloocky" }, -- Calendar integration
 	{ src = "https://github.com/brenoprata10/nvim-highlight-colors" }, -- highlight color codes
-	{ src = "https://github.com/brianhuster/live-preview.nvim" }, -- live preview
 	{ src = "https://github.com/giuxtaposition/blink-cmp-copilot" }, -- blink copilot source
 	{ src = "https://github.com/emrearmagan/atlas.nvim" }, -- Atlas PR and Issue management
 	{ src = "https://github.com/folke/flash.nvim" }, -- advanced search
@@ -93,6 +92,7 @@ vim.pack.add({
 	{ src = "https://github.com/rmagatti/auto-session" }, -- session management
 	{ src = "https://github.com/Saghen/blink.cmp" }, -- blink completion
 	{ src = "https://github.com/Saghen/blink.lib" }, -- blink cmp dependency
+	{ src = "https://github.com/sammaji/markdown-preview.nvim" }, -- markdown-preview
 	{ src = "https://github.com/spacedentist/resolve.nvim" }, -- conflict resolver
 	{ src = "https://github.com/stevearc/aerial.nvim" }, -- code outline / symbol tree
 	{ src = "https://github.com/stevearc/conform.nvim" }, -- conform formatter
