@@ -53,11 +53,11 @@ vim.keymap.set("n", "<leader>cn", function()
 end, { desc = "Toggle copilot nes suggestions" })
 
 vim.keymap.set("v", "<leader>cu", function()
-	require("sidekick.cli").send({ name = "claude", msg = "{selection} in {this}" })
+	require("sidekick.cli").send({ name = "claude", msg = "{selection}" })
 end, { desc = "Sidekick send selection" })
 
 vim.keymap.set("n", "<leader>cu", function()
-	require("sidekick.cli").send({ name = "claude", msg = "{this}" })
+	require("sidekick.cli").send({ name = "claude", msg = "{file}" })
 end, { desc = "Sidekick send file" })
 
 vim.keymap.set("n", "<leader>cp", function()

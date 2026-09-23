@@ -51,14 +51,15 @@ vim.pack.add({
 	{ src = "https://github.com/atiladefreitas/bloocky" }, -- Calendar integration
 	{ src = "https://github.com/brenoprata10/nvim-highlight-colors" }, -- highlight color codes
 	-- { src = "https://github.com/brianhuster/live-preview.nvim" }, -- live preview
-	{ src = "https://github.com/giuxtaposition/blink-cmp-copilot" }, -- blink copilot source
 	{ src = "https://github.com/emrearmagan/atlas.nvim" }, -- Atlas PR and Issue management
 	{ src = "https://github.com/folke/flash.nvim" }, -- advanced search
 	{ src = "https://github.com/folke/sidekick.nvim" }, -- sidekick ai integration
 	{ src = "https://github.com/folke/snacks.nvim" }, -- multiplug for nvim
 	{ src = "https://github.com/folke/todo-comments.nvim" }, -- todo comments
+	{ src = "https://github.com/giuxtaposition/blink-cmp-copilot" }, -- blink copilot source
 	{ src = "https://github.com/HiPhish/rainbow-delimiters.nvim" }, -- rainbow delimiters
 	{ src = "https://github.com/igorlfs/nvim-dap-view" }, -- dap views
+	{ src = "https://github.com/jake-stewart/multicursor.nvim", version = "1.0" }, -- multiple cursors
 	{ src = "https://github.com/kevinhwang91/promise-async" }, -- dep for nvim-ufo
 	{ src = "https://github.com/kevinhwang91/nvim-ufo" }, -- folding
 	{ src = "https://github.com/kristijanhusak/vim-dadbod-completion" }, -- cmp for dadbod
@@ -74,7 +75,7 @@ vim.pack.add({
 	{ src = "https://github.com/mfussenegger/nvim-lint" }, -- Linting framework
 	{ src = "https://github.com/mikavilpas/yazi.nvim" }, -- yazi tree for nvim
 	{ src = "https://github.com/mistweaverco/kulala.nvim" }, -- API tool
-	{ src = "https://github.com/jake-stewart/multicursor.nvim", version = "1.0" }, -- multiple cursors
+	-- { src = "https://github.com/moyiz/blink-emoji.nvim" }, -- emoji
 	{ src = "https://github.com/mrjones2014/smart-splits.nvim" }, -- split navigation
 	{ src = "https://github.com/neovim/nvim-lspconfig" }, -- LSP configuration
 	{ src = "https://github.com/nemanjamalesija/smart-paste.nvim" }, -- smart paste
