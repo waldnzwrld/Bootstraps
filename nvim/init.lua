@@ -50,14 +50,16 @@ vim.pack.add({
 	{ src = "https://github.com/arborist-ts/arborist.nvim" }, -- Treesitter lang installer
 	{ src = "https://github.com/atiladefreitas/bloocky" }, -- Calendar integration
 	{ src = "https://github.com/brenoprata10/nvim-highlight-colors" }, -- highlight color codes
-	{ src = "https://github.com/giuxtaposition/blink-cmp-copilot" }, -- blink copilot source
 	{ src = "https://github.com/emrearmagan/atlas.nvim" }, -- Atlas PR and Issue management
 	{ src = "https://github.com/folke/flash.nvim" }, -- advanced search
 	{ src = "https://github.com/folke/sidekick.nvim" }, -- sidekick ai integration
 	{ src = "https://github.com/folke/snacks.nvim" }, -- multiplug for nvim
 	{ src = "https://github.com/folke/todo-comments.nvim" }, -- todo comments
+	{ src = "https://github.com/fredrikaverpil/neotest-golang" }, -- Go framework
+	{ src = "https://github.com/giuxtaposition/blink-cmp-copilot" }, -- blink copilot source
 	{ src = "https://github.com/HiPhish/rainbow-delimiters.nvim" }, -- rainbow delimiters
 	{ src = "https://github.com/igorlfs/nvim-dap-view" }, -- dap views
+	{ src = "https://github.com/jake-stewart/multicursor.nvim", version = "1.0" }, -- multiple cursors
 	{ src = "https://github.com/kevinhwang91/promise-async" }, -- dep for nvim-ufo
 	{ src = "https://github.com/kevinhwang91/nvim-ufo" }, -- folding
 	{ src = "https://github.com/kristijanhusak/vim-dadbod-completion" }, -- cmp for dadbod
@@ -66,6 +68,7 @@ vim.pack.add({
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" }, -- git signs in gutter
 	{ src = "https://github.com/linrongbin16/gitlinker.nvim" }, -- GitHub file links
 	{ src = "https://github.com/MagicDuck/grug-far.nvim" }, -- find and replace
+	{ src = "https://github.com/marilari88/neotest-vitest" }, -- Vitest framework
 	{ src = "https://github.com/mason-org/mason.nvim" }, -- LSP/DAP/Linter/Formatter installer
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" }, -- LSP installer
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" }, -- markdown renderer
@@ -73,16 +76,13 @@ vim.pack.add({
 	{ src = "https://github.com/mfussenegger/nvim-lint" }, -- Linting framework
 	{ src = "https://github.com/mikavilpas/yazi.nvim" }, -- yazi tree for nvim
 	{ src = "https://github.com/mistweaverco/kulala.nvim" }, -- API tool
-	{ src = "https://github.com/jake-stewart/multicursor.nvim", version = "1.0" }, -- multiple cursors
 	{ src = "https://github.com/mrjones2014/smart-splits.nvim" }, -- split navigation
 	{ src = "https://github.com/neovim/nvim-lspconfig" }, -- LSP configuration
 	{ src = "https://github.com/nemanjamalesija/smart-paste.nvim" }, -- smart paste
 	{ src = "https://github.com/nvim-lua/plenary.nvim" }, -- dep for yazi.nvim
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" }, -- statusline
-	{ src = "https://github.com/marilari88/neotest-vitest" }, -- Vitest framework
 	{ src = "https://github.com/nvim-mini/mini.nvim" }, -- Mini: minimal Lua modules
 	{ src = "https://github.com/nvim-neotest/neotest" }, -- Testing framework
-	{ src = "https://github.com/fredrikaverpil/neotest-golang" }, -- Go framework
 	{ src = "https://github.com/nvim-neotest/nvim-nio" }, -- async io (neotest/dap)
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" }, -- context for treesitter
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" }, -- textobjects for treesitter
@@ -98,9 +98,9 @@ vim.pack.add({
 	{ src = "https://github.com/spacedentist/resolve.nvim" }, -- conflict resolver
 	{ src = "https://github.com/stevearc/aerial.nvim" }, -- code outline / symbol tree
 	{ src = "https://github.com/stevearc/conform.nvim" }, -- conform formatter
-	{ src = "https://github.com/tpope/vim-dadbod" }, -- great db browser
 	{ src = "https://github.com/theHamsta/nvim-dap-virtual-text" }, -- dap virtual text
 	{ src = "https://github.com/TheNoeTrevino/haunt.nvim" }, -- buffered comments
+	{ src = "https://github.com/tpope/vim-dadbod" }, -- great db browser
 })
 
 -- Familiar management commands (vim-plug had :PlugUpdate / :PlugClean)
