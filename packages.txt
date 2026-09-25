@@ -1,5 +1,6 @@
 7zip
 build-essential
+claude-code
 cmake
 curl
 fd-find
@@ -19,5 +20,6 @@ ripgrep
 ssh
 tmux
 unzip
+yazi
 zoxide
 zsh
