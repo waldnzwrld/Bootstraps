@@ -50,6 +50,13 @@ if vim.lsp.inlay_hint then
 	vim.lsp.inlay_hint.enable(true)
 end
 
+vim.lsp.config("tsc", {
+	capabilities = { experimental = { hoverVerbosityLevel = true } },
+	-- Optional. The server cuts long types at 500 characters and shows
+	-- "... N more ..." in their place. Raise the cap to see big types whole.
+	settings = { ["js/ts"] = { maximumHoverLength = 5000 } },
+})
+
 -- Buffer-local LSP keymaps: set them on LspAttach so they only apply to
 -- buffers with a language server, and so `buffer` is a real bufnr (not a
 -- nil captured at module load time).

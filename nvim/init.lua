@@ -50,7 +50,6 @@ vim.pack.add({
 	{ src = "https://github.com/arborist-ts/arborist.nvim" }, -- Treesitter lang installer
 	{ src = "https://github.com/atiladefreitas/bloocky" }, -- Calendar integration
 	{ src = "https://github.com/brenoprata10/nvim-highlight-colors" }, -- highlight color codes
-	-- { src = "https://github.com/brianhuster/live-preview.nvim" }, -- live preview
 	{ src = "https://github.com/emrearmagan/atlas.nvim" }, -- Atlas PR and Issue management
 	{ src = "https://github.com/folke/flash.nvim" }, -- advanced search
 	{ src = "https://github.com/folke/sidekick.nvim" }, -- sidekick ai integration
@@ -74,11 +73,10 @@ vim.pack.add({
 	{ src = "https://github.com/mfussenegger/nvim-dap" }, -- Debug Adapter Protocol
 	{ src = "https://github.com/mfussenegger/nvim-lint" }, -- Linting framework
 	{ src = "https://github.com/mikavilpas/yazi.nvim" }, -- yazi tree for nvim
-	{ src = "https://github.com/mistweaverco/kulala.nvim" }, -- API tool
-	-- { src = "https://github.com/moyiz/blink-emoji.nvim" }, -- emoji
 	{ src = "https://github.com/mrjones2014/smart-splits.nvim" }, -- split navigation
 	{ src = "https://github.com/neovim/nvim-lspconfig" }, -- LSP configuration
 	{ src = "https://github.com/nemanjamalesija/smart-paste.nvim" }, -- smart paste
+	{ src = "https://github.com/nemanjamalesija/ts-expand-hover.nvim" }, -- Advanced typescript type navigation
 	{ src = "https://github.com/nvim-lua/plenary.nvim" }, -- dep for yazi.nvim
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" }, -- statusline
 	{ src = "https://github.com/nvim-mini/mini.nvim" }, -- Mini: minimal Lua modules
@@ -94,7 +92,7 @@ vim.pack.add({
 	{ src = "https://github.com/rmagatti/auto-session" }, -- session management
 	{ src = "https://github.com/Saghen/blink.cmp" }, -- blink completion
 	{ src = "https://github.com/Saghen/blink.lib" }, -- blink cmp dependency
-	{ src = "https://github.com/sammaji/markdown-preview.nvim" }, -- markdown-preview
+	-- { src = "https://github.com/Saghen/blink.pairs" }, -- rainbow-delimiters
 	{ src = "https://github.com/spacedentist/resolve.nvim" }, -- conflict resolver
 	{ src = "https://github.com/stevearc/aerial.nvim" }, -- code outline / symbol tree
 	{ src = "https://github.com/stevearc/conform.nvim" }, -- conform formatter
