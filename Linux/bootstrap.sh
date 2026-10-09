@@ -1,37 +1,51 @@
 #!/bin/bash
 #
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+# Create/replace a symlink at $2 pointing to $1, no matter what currently
+# sits at $2 (missing, a file, a symlink, or a real directory). Pass "sudo"
+# as $3 when the destination requires root (e.g. /usr/local/bin).
+link() {
+    local src="$1" dest="$2" runner="${3:-}"
+    $runner rm -rf "$dest"
+    $runner mkdir -p "$(dirname "$dest")"
+    $runner ln -sfn "$src" "$dest"
+}
+
 # symlink the connect_to_wifi script to /usr/local/bin
-sudo ln -sf connect_to_wifi.sh /usr/local/bin/connect_to_wifi
+link "$SCRIPT_DIR/connect_to_wifi.sh" /usr/local/bin/connect_to_wifi sudo
 
 # symlink the aliases.zsh file to the ~/.oh-my-zsh/custom/aliases.zsh file
-sudo ln -sf aliases.zsh ~/.oh-my-zsh/custom/aliases.zsh
+link "$SCRIPT_DIR/aliases.zsh" ~/.oh-my-zsh/custom/aliases.zsh
 
 # symlink the zshrc file
-sudo ln -sf .zshrc ~/.zshrc
+link "$SCRIPT_DIR/.zshrc" ~/.zshrc
 
 # symlink yazi
-sudo ln -sf ../yazi ~/.config/yazi
+link "$REPO_ROOT/yazi" ~/.config/yazi
 
 #symlink neovim
-sudo ln -sf ../nvim ~/.config/nvim
+link "$REPO_ROOT/nvim" ~/.config/nvim
 
 # symlink ghostty
-sudo ln -sf ../ghostty ~/.config/ghostty
+link "$REPO_ROOT/ghostty" ~/.config/ghostty
 
 # symlink lazygit
-sudo ln -sf ../lazygit ~/.config/lazygit
+link "$REPO_ROOT/lazygit" ~/.config/lazygit
 
 
 sudo mv /etc/apt/preferences.d/nosnap.pref /etc/apt/preferences.d/nosnap.pref.disabled | true
 
+echo "add claude-code to apt"
 sudo install -d -m 0755 /etc/apt/keyrings
 sudo curl -fsSL https://downloads.claude.ai/keys/claude-code.asc \
   -o /etc/apt/keyrings/claude-code.asc
 echo "deb [signed-by=/etc/apt/keyrings/claude-code.asc] https://downloads.claude.ai/claude-code/apt/stable stable main" | sudo tee /etc/apt/sources.list.d/claude-code.list
 
 
-echo "setting up yazi"
+echo "add yazi to apt"
 curl -fsSL https://yazi-rs.github.io/builds/yazi-keyring.gpg | sudo tee /usr/share/keyrings/yazi-keyring.gpg >/dev/null
 echo 'deb [signed-by=/usr/share/keyrings/yazi-keyring.gpg] https://yazi-rs.github.io/builds/ stable main' | sudo tee /etc/apt/sources.list.d/yazi.list >/dev/null
 
@@ -64,4 +78,5 @@ cargo binstall tree-sitter-cli
 # swap keys to mac layout
 setxkbmap -option altwin:swap_alt_win
 
-
+# install yazi plugins
+ya pkg install

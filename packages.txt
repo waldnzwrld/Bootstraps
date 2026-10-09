@@ -13,6 +13,7 @@ git
 imagemagick
 jq
 make
+nfs-kernel-server
 ninja-build
 nodejs
 poppler-utils
