@@ -75,7 +75,6 @@ vim.pack.add({
 	{ src = "https://github.com/mfussenegger/nvim-dap" }, -- Debug Adapter Protocol
 	{ src = "https://github.com/mfussenegger/nvim-lint" }, -- Linting framework
 	{ src = "https://github.com/mikavilpas/yazi.nvim" }, -- yazi tree for nvim
-	{ src = "https://github.com/mistweaverco/kulala.nvim" }, -- API tool
 	{ src = "https://github.com/mrjones2014/smart-splits.nvim" }, -- split navigation
 	{ src = "https://github.com/neovim/nvim-lspconfig" }, -- LSP configuration
 	{ src = "https://github.com/nemanjamalesija/smart-paste.nvim" }, -- smart paste

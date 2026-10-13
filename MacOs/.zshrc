@@ -1,15 +1,21 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-export GOPATH=$HOME/.go
-export PATH=$GOPATH:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export XDG_CONFIG_HOME=$HOME/.config
+export RBENV=$HOME/.rbenv/shims
+export GOPATH=`go env GOPATH`
+export GOBIN=$GOPATH/bin
+export CARGO=$HOME/.cargo/bin
+# Python should reference the executable installed by homebrew, which is used by pyenv to manage Python versions. This ensures that when you switch Python versions with pyenv, the correct Python executable is used.
+export PYTHON=$(brew --prefix)/opt/python/bin
+export PATH=$RBENV:$GOBIN:$CARGO:$PYTHON:$PATH
 
  #Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
+export RACK_DIR="$HOME/Code/Rack-SDK"
+ #Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="muse"
+ZSH_THEME="muse"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -39,6 +45,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(brew colored-man-pages gh git golang jsontools)
+export EDITOR="nvim"
 
 source $ZSH/oh-my-zsh.sh
 source "/opt/homebrew/opt/spaceship/spaceship.zsh"
@@ -57,7 +64,6 @@ source $ZSH_CUSTOM/aliases.zsh
 # else
 #   export EDITOR='nvim'
 # fi
-export EDITOR="nvim"
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
@@ -65,5 +71,5 @@ export EDITOR="nvim"
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
 # For a full list of active aliases, run `alias`.
 #
-alias vstDebug="'/Applications/REAPER.app/Contents/MacOS/REAPER'"
 eval "$(zoxide init zsh)"
+export CLAUDE_CODE_OAUTH_TOKEN="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"
