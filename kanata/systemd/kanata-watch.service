@@ -1,0 +1,18 @@
+[Unit]
+Description=kanata sway focus watcher (flips term<->gui layer)
+Documentation=https://github.com/jtroo/kanata
+# Pairs with kanata.service. The watcher reconnects on its own if kanata
+# restarts, but it is pointless without kanata running.
+After=kanata.service
+Wants=kanata.service
+
+[Service]
+Type=simple
+ExecStart=%h/.config/kanata/sway-app-watch.sh
+Restart=always
+RestartSec=1
+
+# Deliberately NO [Install]/WantedBy: this unit needs WAYLAND_DISPLAY/SWAYSOCK
+# in the systemd --user environment, which sway only imports after login. It is
+# therefore started explicitly from the sway config (exec_always), not pulled in
+# by default.target, which would fire before the environment exists.

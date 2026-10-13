@@ -1,0 +1,12 @@
+[Unit]
+Description=Restart kanata after resume from sleep (T2 keyboard re-enumerates)
+After=kanata.service
+
+[Service]
+Type=simple
+ExecStart=%h/.config/kanata/kanata-resume.sh
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=default.target

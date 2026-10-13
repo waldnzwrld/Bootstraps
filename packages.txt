@@ -1,26 +1,33 @@
+# <apt-name> [pacman-name]   ("-" skips the package on that system)
 7zip
-build-essential
-claude-code
+build-essential  base-devel
+claude-code      -
 cmake
 curl
-fd-find
+fd-find          fd
 ffmpeg
 fzf
 gcc
 gettext
-gh
+gh               github-cli
 git
 imagemagick
 jq
 make
-nfs-kernel-server
-ninja-build
+nfs-kernel-server nfs-utils
+ninja-build      ninja
 nodejs
-poppler-utils
+poppler-utils    poppler
 ripgrep
-ssh
+ssh              openssh
 tmux
 unzip
 yazi
 zoxide
 zsh
+# Debian installs these from snap or GitHub releases (see Linux/bootstrap.sh)
+-                neovim
+-                ghostty
+-                lazygit
+-                vivaldi
+-                tree-sitter-cli

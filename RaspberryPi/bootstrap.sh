@@ -5,12 +5,16 @@ set -e
 user=$(whoami)
 dir=$(pwd)
 
-curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
-echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
-sudo chmod 644 /usr/share/keyrings/wezterm-fury.gpg
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../Linux/pkg.sh"
 
-sudo apt-get update
-xargs -a ./packages.txt sudo apt-get install
+if [ "$PKG_MGR" = apt ]; then
+    curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+    echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+    sudo chmod 644 /usr/share/keyrings/wezterm-fury.gpg
+fi
+
+pkg_update
+pkg_install_list ./packages.txt
 
 echo "setting up neovim"
 ../Linux/setup-nvim.sh
@@ -25,11 +29,15 @@ echo "setting up yazi"
 ../Linux/setup-yazi.sh
 
 echo "setting up lazygit"
-LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
-curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_arm64.tar.gz"
-tar xf lazygit.tar.gz lazygit
-sudo install lazygit -D -t /usr/local/bin/
-rm -rf lazygit*
+if [ "$PKG_MGR" = pacman ]; then
+    pkg_install lazygit
+else
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_arm64.tar.gz"
+    tar xf lazygit.tar.gz lazygit
+    sudo install lazygit -D -t /usr/local/bin/
+    rm -rf lazygit*
+fi
 
 # ask if we are using an argon case
 read -p "Are you using an argon case? (y/n) " argon

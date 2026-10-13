@@ -58,7 +58,7 @@
 
 ;; -- Physical keys we care about. Everything else passes through untouched. --
 (defsrc
-  1    2    3    4    5    6    7    8    9    0
+  1    2    3    4    5    6    7    8    9    0    bspc
   q    w    r    t    u    o    p
   caps a    s    d    f    h    j    k    l    ;
   z    x    c    v    n
@@ -95,7 +95,7 @@
 ;; ============================================================================
 
 (deflayer term
-  1    2    3    4    5    6    7    8    9    0
+  1    2    3    4    5    6    7    8    9    0    bspc
   q    w    r    t    u    o    p
   @nav @a_  @s_  @d_  @f_  h    @j_  @k_  @l_  @scln_
   z    x    c    v    n
@@ -103,7 +103,7 @@
 )
 
 (deflayer gui
-  1    2    3    4    5    6    7    8    9    0
+  1    2    3    4    5    6    7    8    9    0    bspc
   q    w    r    t    u    o    p
   @nav @a_  @s_  @d_  @f_  h    @j_  @k_  @l_  @scln_
   z    x    c    v    n
@@ -112,18 +112,18 @@
 
 ;; Active while Cmd is held in GUI apps. `_` = fall through to gui (Ctrl+key).
 (deflayer cmd-held
-  _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _
   @s-q _    _    _    _    _    _
   _    _    _    @s-d _    _    _    _    _    _
   _    _    _    _    _
   @s-ret _  _
 )
 
-;; Active while Caps Lock is held: hjkl = arrows, u = `~, n = \|.
+;; Active while Caps Lock is held: hjkl = arrows, u = `~, n = \|, bspc = del.
 ;; f is a plain Shift here (no tap-hold delay), for ~ | and Shift+arrows.
 ;; Everything else falls through.
 (deflayer nav
-  _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    del
   _    _    _    _    grv  _    _
   _    _    _    _    lsft left down up   rght _
   _    _    _    _    \
