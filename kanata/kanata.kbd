@@ -1,12 +1,14 @@
 ;; ~/.config/kanata/kanata.kbd
 ;;
-;; Two features:
+;; Features:
 ;;   1. Homerow mods (tap = letter, hold = modifier) in Miryoku GACS order,
 ;;      tuned after urob's "timeless" HRMs (requires kanata >= 1.12.0).
 ;;   2. Mac-style Cmd->Ctrl remapping that is active everywhere EXCEPT the
 ;;      terminal. Ctrl is NEVER remapped, so nvim's <C-...> maps are always safe.
 ;;      Sway window management is on Ctrl+Alt (like the Mac). In GUI apps Cmd is
 ;;      Ctrl, except Cmd+Return / Cmd+d / Cmd+q, which still send Super for sway.
+;;   3. Space: tap = space, hold = nav layer.
+;;   4. Caps Lock: tap = Esc, hold = Caps Lock.
 ;;
 ;; App-awareness is driven from OUTSIDE kanata: sway-app-watch.sh subscribes to
 ;; Sway focus events and sends ChangeLayer over TCP to flip term <-> gui.
@@ -59,10 +61,10 @@
 ;; -- Physical keys we care about. Everything else passes through untouched. --
 (defsrc
   1    2    3    4    5    6    7    8    9    0    bspc
-  q    w    r    t    u    o    p
+  q    w    r    t    o    p    [
   caps a    s    d    f    h    j    k    l    ;
-  z    x    c    v    n
-  ret  lmet rmet
+  z    x    c    v
+  ret  lmet rmet spc
 )
 
 (defalias
@@ -84,8 +86,12 @@
   s-d   (unmod (lctl rctl) lmet d)
   s-q   (unmod (lctl rctl) lmet q)
 
-  ;; Caps Lock: hold for the nav layer (vim-style arrows). Tap does nothing.
-  nav   (layer-while-held nav)
+  ;; Space: tap = space, hold = nav layer (vim-style arrows). -release: a key
+  ;; pressed AND released while Space is down selects the layer; a roll that
+  ;; releases Space first stays a space.
+  spc   (tap-hold-release $tt $ht spc (layer-while-held nav))
+  ;; Caps Lock: tap = Esc, hold = Caps Lock.
+  caps  (tap-hold $tt $ht esc caps)
 )
 
 ;; ============================================================================
@@ -96,18 +102,18 @@
 
 (deflayer term
   1    2    3    4    5    6    7    8    9    0    bspc
-  q    w    r    t    u    o    p
-  @nav @a_  @s_  @d_  @f_  h    @j_  @k_  @l_  @scln_
-  z    x    c    v    n
-  ret  lmet rmet
+  q    w    r    t    o    p    [
+  @caps @a_ @s_  @d_  @f_  h    @j_  @k_  @l_  @scln_
+  z    x    c    v
+  ret  lmet rmet @spc
 )
 
 (deflayer gui
   1    2    3    4    5    6    7    8    9    0    bspc
-  q    w    r    t    u    o    p
-  @nav @a_  @s_  @d_  @f_  h    @j_  @k_  @l_  @scln_
-  z    x    c    v    n
-  ret  @cmd @cmd
+  q    w    r    t    o    p    [
+  @caps @a_ @s_  @d_  @f_  h    @j_  @k_  @l_  @scln_
+  z    x    c    v
+  ret  @cmd @cmd @spc
 )
 
 ;; Active while Cmd is held in GUI apps. `_` = fall through to gui (Ctrl+key).
@@ -115,17 +121,17 @@
   _    _    _    _    _    _    _    _    _    _    _
   @s-q _    _    _    _    _    _
   _    _    _    @s-d _    _    _    _    _    _
-  _    _    _    _    _
-  @s-ret _  _
+  _    _    _    _
+  @s-ret _  _    _
 )
 
-;; Active while Caps Lock is held: hjkl = arrows, u = `~, n = \|, bspc = del.
+;; Active while Space is held: hjkl = arrows, q = `~, [ = \|, bspc = del.
 ;; f is a plain Shift here (no tap-hold delay), for ~ | and Shift+arrows.
 ;; Everything else falls through.
 (deflayer nav
   _    _    _    _    _    _    _    _    _    _    del
-  _    _    _    _    grv  _    _
+  grv  _    _    _    _    _    \
   _    _    _    _    lsft left down up   rght _
-  _    _    _    _    \
-  _    _    _
+  _    _    _    _
+  _    _    _    _
 )
