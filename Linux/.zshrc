@@ -40,7 +40,7 @@ ENABLE_CORRECTION="true"
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew colored-man-pages gh git golang jsontools)
+plugins=(colored-man-pages colorize gh git golang jsontools zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 source "$HOME/.config/yazi/cd-on-quit"
@@ -66,5 +66,4 @@ export EDITOR="nvim"
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
 # For a full list of active aliases, run `alias`.
 #
-alias vstDebug="'/Applications/REAPER.app/Contents/MacOS/REAPER'"
 eval "$(zoxide init zsh)"
