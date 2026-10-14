@@ -1,0 +1,60 @@
+# This is the configuration file for Ghostty.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+#
+# Ghostty can reload the configuration while running by using the menu
+# options or the bound key (default: Command + Shift + comma on macOS and
+# Control + Shift + comma on other platforms).
+
+# # Some config options have unique syntaxes for their value,
+# # which is explained in the docs for that config option.
+# # Just for example:
+# resize-overlay-duration = 4s 200ms
+background = #0a0a0a
+background-opacity = .85
+font-family = hack
+font-size = 11
+# theme = gruvbox dark hard
+# theme = hardcore
+# theme = under the sea
+# theme = tokyonight night
+macos-icon = blueprint
+# send Option as Alt/Meta so <A-...> maps reach nvim (smart-splits resize, snacks picker cycle_win)
+# macos-option-as-alt = true
+# fullscreen = non-native-padded-notch
+window-save-state = always
+
+# smart splits
+keybind = unconsumed:ctrl+k=goto_split:top
+keybind = unconsumed:ctrl+j=goto_split:bottom
+keybind = unconsumed:ctrl+h=goto_split:left
+keybind = unconsumed:ctrl+l=goto_split:right
+
+# 
+keybind = super+h=previous_tab
+keybind = super+l=next_tab
+keybind = shift+super+h=move_tab:-1
+keybind = shift+super+l=move_tab:1
+
+keybind = shift+super+enter=new_split:auto
+
+# Mac-style copy/paste and close
+keybind = super+c=copy_to_clipboard
+keybind = super+v=paste_from_clipboard
+keybind = super+w=close_tab
+keybind = super+q=quit
+
+# New tab / window / vertical split
+keybind = super+t=new_tab
+keybind = super+n=new_window
+keybind = super+i=new_split:right
+
+keybind = super+,=open_config
+keybind = ctrl+,=unbind
+
+custom-shader = sparks.glsl
+custom-shader = cursor_frozen.glsl
