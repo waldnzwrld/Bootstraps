@@ -1,23 +1,24 @@
+# <apt-name> [pacman-name]   ("-" skips the package on that system)
 7zip
-build-essential
+build-essential  base-devel
 cmake
 curl
-fd-find
+fd-find          fd
 ffmpeg
 fzf
 gcc
 gettext
-gh
+gh               github-cli
 git
 imagemagick
 jq
 make
-ninja-build
+ninja-build      ninja
 nnn
 nodejs
-poppler-utils
+poppler-utils    poppler
 ripgrep
-ssh
+ssh              openssh
 tmux
 unzip
 wezterm

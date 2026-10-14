@@ -1,0 +1,16 @@
+[Unit]
+Description=kanata keyboard remapper (homerow mods + Cmd->Ctrl)
+Documentation=https://github.com/jtroo/kanata
+
+[Service]
+Type=simple
+# Single-instance: owned by the one per-user systemd manager, so no stale
+# process can hold port 5829 into another session (that collision core-dumped
+# the old setup). With lingering enabled the manager starts at boot, so kanata
+# is active at the TTY login prompt and survives logout.
+ExecStart=kanata --cfg %h/.config/kanata/kanata.kbd --port 5829
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target

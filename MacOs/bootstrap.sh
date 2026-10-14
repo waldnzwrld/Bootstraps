@@ -15,19 +15,31 @@ fi
 mkdir ~/.go
 export GOPATH=~/.go
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+# Create/replace a symlink at $2 pointing to $1, no matter what currently
+# sits at $2 (missing, a file, a symlink, or a real directory).
+link() {
+    local src="$1" dest="$2"
+    rm -rf "$dest"
+    mkdir -p "$(dirname "$dest")"
+    ln -sfn "$src" "$dest"
+}
+
 # symlink the aliases.zsh file to the ~/.oh-my-zsh/custom/aliases.zsh file
-ln -sf aliases.zsh ~/.oh-my-zsh/custom/aliases.zsh
+link "$SCRIPT_DIR/aliases.zsh" ~/.oh-my-zsh/custom/aliases.zsh
 
 # symlink the zshrc file
-ln -sf .zshrc ~/.zshrc
+link "$SCRIPT_DIR/.zshrc" ~/.zshrc
 
-ln -sf ../yazi ~/.config/yazi
+link "$REPO_ROOT/yazi" ~/.config/yazi
 ya pkg install
 ya pkg upgrade
 
-ln -sf ../nvim ~/.config/nvim
-ln -sf ../ghostty ~/.config/ghostty
-ln -sf ../lazygit ~/.config/lazygit
+link "$REPO_ROOT/nvim" ~/.config/nvim
+link "$REPO_ROOT/ghostty" ~/.config/ghostty
+link "$REPO_ROOT/lazygit" ~/.config/lazygit
 
 # if this fails keep going
 brew bundle --file=Brewfile.common || true
