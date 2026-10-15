@@ -6,8 +6,9 @@ profile); everything else in the file is preserved.
 
 Ported:
   - Caps Lock: tap = Esc, hold = Caps Lock.
+  - \\| = backspace (fwd delete in the nav layer).
   - Space: tap = space, hold = nav layer (hjkl arrows, q = `, [ = \\,
-    bspc = fwd delete, f = plain shift). Same prior-idle / tap-repress as the
+    bspc and \\ = fwd delete, f = plain shift). Same prior-idle / tap-repress as the
     HRMs; a key pressed within ARM ms of Space is a roll (space, then the key).
   - Homerow mods, GACS order, "timeless" style:
       prior idle   HRM pressed < PRIOR_IDLE ms after any key = plain letter
@@ -52,14 +53,21 @@ HRM = {
 NAV = {
     "h": "left_arrow", "j": "down_arrow", "k": "up_arrow", "l": "right_arrow",
     "q": "grave_accent_and_tilde", "open_bracket": "backslash",
-    "delete_or_backspace": "delete_forward", "f": "left_shift",
+    "delete_or_backspace": "delete_forward", "backslash": "delete_forward",
+    "f": "left_shift",
 }
+
+REMAP = {"backslash": "delete_or_backspace"}
 
 NOW = "system.now.milliseconds"
 
 
 def hand(key):
     return "L" if key in LEFT else "R" if key in RIGHT else None
+
+
+def out(key):
+    return {"key_code": REMAP.get(key, key)}
 
 
 def chord(h):
@@ -137,7 +145,7 @@ def nav_rule():
     for key in LEFT + RIGHT + OTHER:
         if key != "spacebar":
             ms.append(manip(key, [var("nav", 2), TOUCH, {"key_code": "spacebar"},
-                                  {"key_code": key}], [rolling]))
+                                  out(key)], [rolling]))
     for src, dst in NAV.items():
         ms.append(manip(src, [TOUCH, {"key_code": dst}],
                         [{"type": "variable_if", "name": "nav", "value": 1}]))
@@ -159,11 +167,11 @@ def resolve_and_lift(key):
                 window = f"{elapsed} < {HOLD_TIMEOUT if hand(y) == kh else ARM}"
             ms.append(manip(
                 key,
-                [var(v(y), 3), TOUCH, {"key_code": y}, {"key_code": key}],
+                [var(v(y), 3), TOUCH, {"key_code": y}, out(key)],
                 [expr(f"{v(y)} == 1 and {chord(hand(y))} == 0 and {window}")],
                 mandatory=mod,
             ))
-        ms.append(manip(key, [TOUCH, {"key_code": key}],
+        ms.append(manip(key, [TOUCH, out(key)],
                         [expr(f"{v(y)} == 3")], mandatory=mod))
     return ms
 
@@ -212,7 +220,7 @@ def hrm_rule():
         if key in HRM:
             continue
         ms += resolve_and_lift(key)
-        ms.append(manip(key, [TOUCH, {"key_code": key}]))
+        ms.append(manip(key, [TOUCH, out(key)]))
     return {"description": "Homerow mods GACS, timeless-style (kanata port)", "manipulators": ms}
 
 
