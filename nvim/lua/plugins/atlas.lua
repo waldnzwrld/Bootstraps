@@ -21,7 +21,7 @@ require("atlas").setup({
 					name = "Reviews",
 					key = "2",
 					layout = "compact",
-					search = "is:pr is:open org:CartoDB -repo:CartoDB/cloud-native review-requested:@me draft:false",
+					search = "is:pr is:open org:CartoDB user-review-requested:@me draft:false",
 				},
 				{
 					name = "cloud-native",
