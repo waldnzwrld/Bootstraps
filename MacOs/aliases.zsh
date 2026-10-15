@@ -10,6 +10,7 @@ alias updates="brew update && brew upgrade && brew cleanup && ya pkg upgrade && 
 alias reloadvcv="pkill Rack && open -a /Applications/VCV*"
 alias bmake="bear -- make"
 alias cursor="cursor-agent"
+alias claude="caveman claude"
 kicad() {
     local dir="${1:-.}"
     open -a KiCad "$dir"/*.kicad_pro
