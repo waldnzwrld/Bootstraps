@@ -1,2 +1,4 @@
 .DS_Store
 nvim/.bookmarks/
+nvim/lua/plugins/dadbod.lua
+yazi/plugins

@@ -67,6 +67,7 @@ vim.pack.add({
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" }, -- git signs in gutter
 	{ src = "https://github.com/linrongbin16/gitlinker.nvim" }, -- GitHub file links
 	{ src = "https://github.com/MagicDuck/grug-far.nvim" }, -- find and replace
+	{ src = "https://github.com/marilari88/neotest-vitest" }, -- Vitest framework
 	{ src = "https://github.com/mason-org/mason.nvim" }, -- LSP/DAP/Linter/Formatter installer
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" }, -- LSP installer
 	{ src = "https://github.com/meanderingprogrammer/render-markdown.nvim" }, -- render markdown
@@ -86,19 +87,20 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" }, -- textobjects for treesitter
 	{ src = "https://github.com/Owen-Dechow/videre.nvim" }, -- JSON/YAML explorer
 	{ src = "https://github.com/Owen-Dechow/graph_view_yaml_parser" }, -- YAML plug
-	{ src = "https://github.com/Ramilito/kubectl.nvim" }, -- kubectl
+	{ src = "https://github.com/Ramilito/kubectl.nvim" }, -- kubectl management
 	{ src = "https://github.com/ray-x/go.nvim" }, -- Go development plugin
 	{ src = "https://github.com/rcarriga/nvim-dap-ui" }, -- dap ui
 	{ src = "https://github.com/rmagatti/auto-session" }, -- session management
 	{ src = "https://github.com/Saghen/blink.cmp" }, -- blink completion
 	{ src = "https://github.com/Saghen/blink.lib" }, -- blink cmp dependency
 	-- { src = "https://github.com/Saghen/blink.pairs" }, -- rainbow-delimiters
+	{ src = "https://github.com/sammaji/markdown-preview.nvim" }, -- markdown-preview
 	{ src = "https://github.com/spacedentist/resolve.nvim" }, -- conflict resolver
 	{ src = "https://github.com/stevearc/aerial.nvim" }, -- code outline / symbol tree
 	{ src = "https://github.com/stevearc/conform.nvim" }, -- conform formatter
-	{ src = "https://github.com/tpope/vim-dadbod" }, -- great db browser
 	{ src = "https://github.com/theHamsta/nvim-dap-virtual-text" }, -- dap virtual text
 	{ src = "https://github.com/TheNoeTrevino/haunt.nvim" }, -- buffered comments
+	{ src = "https://github.com/tpope/vim-dadbod" }, -- great db browser
 })
 
 -- Familiar management commands (vim-plug had :PlugUpdate / :PlugClean)
@@ -121,7 +123,6 @@ vim.api.nvim_create_user_command("PackClean", function()
 		vim.pack.del(names)
 	end
 end, { desc = "Remove vim.pack plugins no longer declared" })
-
 require("plugins")
 
 -- Core keymaps (non-plugin specific)
