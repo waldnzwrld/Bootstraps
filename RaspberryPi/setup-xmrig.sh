@@ -18,7 +18,12 @@ fi
 NAME=$(hostname)
 
 echo "Installing dependencies"
-sudo apt install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev -y
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../Linux/pkg.sh"
+if [ "$PKG_MGR" = apt ]; then
+    pkg_install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev
+else
+    pkg_install git base-devel cmake libuv openssl hwloc
+fi
 
 echo "Cloning xmrig"
 git clone https://github.com/MoneroOcean/xmrig
