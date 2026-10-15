@@ -15,7 +15,7 @@ alias second-line-staging-db="kubectl port-forward -n second-line-staging svc/se
 alias journal="outl --workspace ~/Documents/Journal/"
 alias llama="llama-server -hf unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q4_K_M --jinja -c 65536 -fa auto --cache-type-k q8_0 --cache-type-v q8_0 -ngl 99 --host 127.0.0.1 --port 8080"
 alias listerine="ssh waldnzwrld@192.168.1.142"
-alias claude="CLAUDE_CODE_OAUTH_TOKEN='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' caveman claude"
+alias claude="caveman claude"
 
 kicad() {
     local dir="${1:-.}"
