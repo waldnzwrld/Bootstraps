@@ -8,9 +8,22 @@ vim.opt.packpath = vim.opt.runtimepath:get()
 
 -- Source existing vimrc if it exists
 local vimrc_path = vim.fn.expand("~/.vimrc")
-if vim.fn.filereadable(vimrc_path) == 1 then
+
+local status, err = pcall(function()
 	vim.cmd("source " .. vimrc_path)
+end)
+
+if not status then
+	vim.notify("Error sourcing .vimrc: " .. err, vim.log.levels.ERROR)
 end
+
+vim.diagnostic.config({
+	virtual_text = true,
+	signs = true,
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
+})
 
 -- rainbow-delimiters attaches on FileType; yazi.nvim sets ft=yazi, which maps to TS
 -- lang "yazi" but vim.treesitter.get_parser returns nil for that buffer, crashing
@@ -136,7 +149,6 @@ vim.opt.foldenable = true
 vim.opt.foldlevelstart = 99
 vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
-vim.opt.termguicolors = true
 vim.opt.listchars = "tab:▷▷⋮"
 
 -- show the cwd (project dir) in the terminal/tab title instead of the process name
