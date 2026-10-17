@@ -70,7 +70,7 @@ vim.pack.add({
 	{ src = "https://github.com/marilari88/neotest-vitest" }, -- Vitest framework
 	{ src = "https://github.com/mason-org/mason.nvim" }, -- LSP/DAP/Linter/Formatter installer
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" }, -- LSP installer
-	{ src = "https://github.com/meanderingprogrammer/render-markdown.nvim" }, -- render markdown
+	{ src = "https://github.com/meanderingprogrammer/render-markdown.nvim" }, -- the best
 	{ src = "https://github.com/mfussenegger/nvim-dap" }, -- Debug Adapter Protocol
 	{ src = "https://github.com/mfussenegger/nvim-lint" }, -- Linting framework
 	{ src = "https://github.com/mikavilpas/yazi.nvim" }, -- yazi tree for nvim
@@ -82,6 +82,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" }, -- statusline
 	{ src = "https://github.com/nvim-mini/mini.nvim" }, -- Mini: minimal Lua modules
 	{ src = "https://github.com/nvim-neotest/neotest" }, -- Testing framework
+	{ src = "https://github.com/nvim-neotest/neotest-jest" }, -- Jest framework
 	{ src = "https://github.com/nvim-neotest/nvim-nio" }, -- async io (neotest/dap)
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" }, -- context for treesitter
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" }, -- textobjects for treesitter
@@ -94,7 +95,6 @@ vim.pack.add({
 	{ src = "https://github.com/Saghen/blink.cmp" }, -- blink completion
 	{ src = "https://github.com/Saghen/blink.lib" }, -- blink cmp dependency
 	-- { src = "https://github.com/Saghen/blink.pairs" }, -- rainbow-delimiters
-	{ src = "https://github.com/sammaji/markdown-preview.nvim" }, -- markdown-preview
 	{ src = "https://github.com/spacedentist/resolve.nvim" }, -- conflict resolver
 	{ src = "https://github.com/stevearc/aerial.nvim" }, -- code outline / symbol tree
 	{ src = "https://github.com/stevearc/conform.nvim" }, -- conform formatter
