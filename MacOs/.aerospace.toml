@@ -10,6 +10,10 @@ config-version = 2
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = []
 
+exec-on-workspace-change = ['/bin/bash', '-c',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+
 # Start AeroSpace at login
 start-at-login = true
 
@@ -104,8 +108,15 @@ gaps.outer.right =      0
     # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
     # You can uncomment the following lines to open up terminal with alt + enter shortcut
     # (like in i3)
-    # ctrl-alt-enter = '''exec-and-forget osascript -e \
-    # 'tell application "Terminal" to tell (do script) to activate' '''
+    cmd-enter = '''exec-and-forget osascript \
+      -e 'if application "Ghostty" is running then' \
+      -e 'tell application "Ghostty"' \
+      -e 'new window' \
+      -e 'activate' \
+      -e 'end tell' \
+      -e 'else' \
+      -e 'tell application "Ghostty" to activate' \
+      -e 'end if' '''
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
     ctrl-alt-t = 'layout tiles horizontal vertical'
