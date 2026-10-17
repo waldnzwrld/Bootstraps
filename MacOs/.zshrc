@@ -72,4 +72,3 @@ source $ZSH_CUSTOM/aliases.zsh
 # For a full list of active aliases, run `alias`.
 #
 eval "$(zoxide init zsh)"
-export CLAUDE_CODE_OAUTH_TOKEN="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"
