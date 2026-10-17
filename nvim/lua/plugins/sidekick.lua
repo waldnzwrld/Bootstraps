@@ -48,16 +48,20 @@ vim.keymap.set("n", "<leader>cc", function()
 	require("sidekick.cli").toggle({ name = "claude", focus = true })
 end, { desc = "Sidekick toggle" })
 
+vim.keymap.set("n", "<leader>cq", function()
+	require("sidekick.cli").toggle({ name = "pi", focus = true })
+end, { desc = "Sidekick toggle" })
+
 vim.keymap.set("n", "<leader>cn", function()
 	require("sidekick.nes").toggle()
 end, { desc = "Toggle copilot nes suggestions" })
 
 vim.keymap.set("v", "<leader>cu", function()
-	require("sidekick.cli").send({ name = "claude", msg = "{selection} in {this}" })
+	require("sidekick.cli").send({ msg = "{selection} in {this}" })
 end, { desc = "Sidekick send selection" })
 
 vim.keymap.set("n", "<leader>cu", function()
-	require("sidekick.cli").send({ name = "claude", msg = "{this}" })
+	require("sidekick.cli").send({ msg = "{this}" })
 end, { desc = "Sidekick send file" })
 
 vim.keymap.set("n", "<leader>cp", function()
