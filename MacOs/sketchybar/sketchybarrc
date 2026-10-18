@@ -22,8 +22,11 @@ sketchybar --default "${default[@]}"
 # drill in on click. Needs Accessibility permission for sketchybar.
 
 sketchybar --add item menu left \
-           --set menu icon= icon.font="Hack Nerd Font:Bold:20.0" icon.color=$PURPLE \
+           --set menu icon.drawing=off \
                  label.drawing=off \
+                 background.image="$PLUGIN_DIR/sketchymenu/menu_icon.png" \
+                 background.image.scale=0.5 \
+                 background.drawing=on \
                  popup.height=30 \
                  popup.background.color=$BAR_COLOR \
                  popup.background.border_color=$COMMENT \
