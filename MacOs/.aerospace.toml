@@ -79,7 +79,8 @@ gaps.inner.horizontal = 0
 gaps.inner.vertical =   0
 gaps.outer.left =       0
 gaps.outer.bottom =     0
-gaps.outer.top =        0
+# NOTE: 40 = sketchybar height; the built-in display already reserves the notch strip.
+gaps.outer.top =        [{ monitor."built-in" = 0 }, 40]
 gaps.outer.right =      0
 
 # 'main' binding mode declaration
@@ -158,7 +159,7 @@ gaps.outer.right =      0
     # ctrl-alt-f = 'workspace F'
     # ctrl-alt-g = 'workspace G'
     # ctrl-alt-i = 'workspace I'
-    # ctrl-alt-m = 'workspace M'
+    ctrl-alt-m = 'workspace M'
     # ctrl-alt-n = 'workspace N'
     # ctrl-alt-o = 'workspace O'
     # ctrl-alt-p = 'workspace P'
@@ -191,7 +192,7 @@ gaps.outer.right =      0
     # ctrl-alt-shift-f = 'move-node-to-workspace F'
     # ctrl-alt-shift-g = 'move-node-to-workspace G'
     # ctrl-alt-shift-i = 'move-node-to-workspace I'
-    # ctrl-alt-shift-m = 'move-node-to-workspace M'
+    ctrl-alt-shift-m = 'move-node-to-workspace M'
     # ctrl-alt-shift-n = 'move-node-to-workspace N'
     # ctrl-alt-shift-o = 'move-node-to-workspace O'
     # ctrl-alt-shift-p = 'move-node-to-workspace P'

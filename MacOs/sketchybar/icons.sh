@@ -47,6 +47,7 @@ ICON_CALENDAR=󰃭 # calendar
 
 ICON_WIFI=󰖩
 ICON_WIFI_OFF=󰖪
+ICONS_WIFI_SIGNAL=(󰤯 󰤟 󰤢 󰤨) # outline, bottom, bottom+middle, full
 ICON_VPN=󰦝 # vpn, nordvpn
 
 ICONS_VOLUME=(󰸈 󰕿 󰖀 󰕾)
