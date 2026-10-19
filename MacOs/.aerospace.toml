@@ -54,7 +54,7 @@ automatically-unhide-macos-hidden-apps = true
 # even when they are invisible.
 # This config option is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+persistent-workspaces = ["1", "2", "3", "4", "5", "9", "M"]
 
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -80,7 +80,7 @@ gaps.inner.vertical =   0
 gaps.outer.left =       0
 gaps.outer.bottom =     0
 # NOTE: 40 = sketchybar height; the built-in display already reserves the notch strip.
-gaps.outer.top =        [{ monitor."built-in" = 0 }, 40]
+gaps.outer.top =        [{ monitor."built-in" = 5 }, 40]
 gaps.outer.right =      0
 
 # 'main' binding mode declaration
