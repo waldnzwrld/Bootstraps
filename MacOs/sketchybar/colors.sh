@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Tokyo Night
+export BLACK=0xff000000
 export BG=0xff1a1b26
 export BAR_COLOR=0xe61a1b26
 export BG_HIGHLIGHT=0xff292e42
