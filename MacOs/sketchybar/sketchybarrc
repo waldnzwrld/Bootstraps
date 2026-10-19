@@ -86,7 +86,7 @@ sketchybar --add item clock right \
                  icon.highlight=on icon.highlight_color=$BG icon.padding_left=8 \
                  label.highlight=on label.highlight_color=$BG label.padding_right=8 \
                  click_script="open 'x-apple.systempreferences:com.apple.Network-Settings.extension'" \
-           --subscribe wifi wifi_change system_woke \
+           --subscribe wifi wifi_change system_woke mouse.entered mouse.exited \
            --add item caffeinate right \
            --set caffeinate label.drawing=off update_freq=60 script="$PLUGIN_DIR/caffeinate.sh" \
            --subscribe caffeinate system_woke mouse.clicked

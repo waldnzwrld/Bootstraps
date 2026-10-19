@@ -23,7 +23,7 @@ if [ "$SENDER" = "mouse.clicked" ]; then
 fi
 
 if is_running; then
-  sketchybar --set "$NAME" icon=󰒳 icon.color="$ORANGE"
+  sketchybar --set "$NAME" icon=󰅶 icon.color="$ORANGE"
 else
-  sketchybar --set "$NAME" icon=󰒲 icon.color="$COMMENT"
+  sketchybar --set "$NAME" icon=󰅶 icon.color="$BLACK"
 fi
