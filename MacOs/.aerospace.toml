@@ -85,7 +85,7 @@ gaps.inner.vertical =   0
 gaps.outer.left =       0
 gaps.outer.bottom =     0
 # NOTE: 40 = sketchybar height; the built-in display already reserves the notch strip.
-gaps.outer.top =        [{ monitor."built-in" = 0 }, 40]
+gaps.outer.top =        [{ monitor."built-in" = 5 }, 40]
 gaps.outer.right =      0
 
 # 'main' binding mode declaration
