@@ -26474,6 +26474,46 @@
                 "to": [
                   {
                     "set_variable": {
+                      "name": "hrm_a",
+                      "value": 3
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "hrm_last",
+                      "expression": "system.now.milliseconds"
+                    }
+                  },
+                  {
+                    "key_code": "a"
+                  },
+                  {
+                    "key_code": "spacebar"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "expression_if",
+                    "expression": "hrm_a == 1 and hrm_chord_L == 0 and system.now.milliseconds - hrm_a_down < 280"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ],
+                    "mandatory": [
+                      "left_control"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
                       "name": "hrm_last",
                       "expression": "system.now.milliseconds"
                     }
@@ -26486,6 +26526,46 @@
                   {
                     "type": "expression_if",
                     "expression": "hrm_a == 3"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ],
+                    "mandatory": [
+                      "left_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "hrm_s",
+                      "value": 3
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "hrm_last",
+                      "expression": "system.now.milliseconds"
+                    }
+                  },
+                  {
+                    "key_code": "s"
+                  },
+                  {
+                    "key_code": "spacebar"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "expression_if",
+                    "expression": "hrm_s == 1 and hrm_chord_L == 0 and system.now.milliseconds - hrm_s_down < 280"
                   }
                 ]
               },
@@ -26536,6 +26616,46 @@
                 "to": [
                   {
                     "set_variable": {
+                      "name": "hrm_d",
+                      "value": 3
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "hrm_last",
+                      "expression": "system.now.milliseconds"
+                    }
+                  },
+                  {
+                    "key_code": "d"
+                  },
+                  {
+                    "key_code": "spacebar"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "expression_if",
+                    "expression": "hrm_d == 1 and hrm_chord_L == 0 and system.now.milliseconds - hrm_d_down < 280"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ],
+                    "mandatory": [
+                      "left_command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
                       "name": "hrm_last",
                       "expression": "system.now.milliseconds"
                     }
@@ -26548,6 +26668,46 @@
                   {
                     "type": "expression_if",
                     "expression": "hrm_d == 3"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ],
+                    "mandatory": [
+                      "left_shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "hrm_f",
+                      "value": 3
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "hrm_last",
+                      "expression": "system.now.milliseconds"
+                    }
+                  },
+                  {
+                    "key_code": "f"
+                  },
+                  {
+                    "key_code": "spacebar"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "expression_if",
+                    "expression": "hrm_f == 1 and hrm_chord_L == 0 and system.now.milliseconds - hrm_f_down < 280"
                   }
                 ]
               },
@@ -26598,6 +26758,46 @@
                 "to": [
                   {
                     "set_variable": {
+                      "name": "hrm_j",
+                      "value": 3
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "hrm_last",
+                      "expression": "system.now.milliseconds"
+                    }
+                  },
+                  {
+                    "key_code": "j"
+                  },
+                  {
+                    "key_code": "spacebar"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "expression_if",
+                    "expression": "hrm_j == 1 and hrm_chord_R == 0 and system.now.milliseconds - hrm_j_down < 280"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ],
+                    "mandatory": [
+                      "right_shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
                       "name": "hrm_last",
                       "expression": "system.now.milliseconds"
                     }
@@ -26610,6 +26810,46 @@
                   {
                     "type": "expression_if",
                     "expression": "hrm_j == 3"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ],
+                    "mandatory": [
+                      "right_command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "hrm_k",
+                      "value": 3
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "hrm_last",
+                      "expression": "system.now.milliseconds"
+                    }
+                  },
+                  {
+                    "key_code": "k"
+                  },
+                  {
+                    "key_code": "spacebar"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "expression_if",
+                    "expression": "hrm_k == 1 and hrm_chord_R == 0 and system.now.milliseconds - hrm_k_down < 280"
                   }
                 ]
               },
@@ -26660,6 +26900,46 @@
                 "to": [
                   {
                     "set_variable": {
+                      "name": "hrm_l",
+                      "value": 3
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "hrm_last",
+                      "expression": "system.now.milliseconds"
+                    }
+                  },
+                  {
+                    "key_code": "l"
+                  },
+                  {
+                    "key_code": "spacebar"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "expression_if",
+                    "expression": "hrm_l == 1 and hrm_chord_R == 0 and system.now.milliseconds - hrm_l_down < 280"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ],
+                    "mandatory": [
+                      "right_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
                       "name": "hrm_last",
                       "expression": "system.now.milliseconds"
                     }
@@ -26672,6 +26952,46 @@
                   {
                     "type": "expression_if",
                     "expression": "hrm_l == 3"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ],
+                    "mandatory": [
+                      "right_control"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "hrm_semicolon",
+                      "value": 3
+                    }
+                  },
+                  {
+                    "set_variable": {
+                      "name": "hrm_last",
+                      "expression": "system.now.milliseconds"
+                    }
+                  },
+                  {
+                    "key_code": "semicolon"
+                  },
+                  {
+                    "key_code": "spacebar"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "expression_if",
+                    "expression": "hrm_semicolon == 1 and hrm_chord_R == 0 and system.now.milliseconds - hrm_semicolon_down < 280"
                   }
                 ]
               },
