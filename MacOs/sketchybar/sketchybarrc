@@ -131,8 +131,11 @@ sketchybar --add item spaces left \
            --set spaces drawing=off updates=on script="$PLUGIN_DIR/aerospace.sh" \
            --subscribe spaces aerospace_workspace_change space_windows_change front_app_switched
 
-sketchybar --add item front_app left \
-           --set front_app icon= icon.color=$PURPLE label.color=$CYAN script="$PLUGIN_DIR/front_app.sh" \
-           --subscribe front_app front_app_switched
+# Polls because window titles (e.g. a terminal's cwd) change without a focus event.
+sketchybar --add event aerospace_focus_change \
+           --add item front_app left \
+           --set front_app icon= icon.color=$PURPLE label.color=$CYAN label.max_chars=15 scroll_texts=on \
+                 update_freq=2 script="$PLUGIN_DIR/front_app.sh" \
+           --subscribe front_app front_app_switched aerospace_focus_change aerospace_workspace_change
 
 sketchybar --update
