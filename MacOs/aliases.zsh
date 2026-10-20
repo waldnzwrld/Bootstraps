@@ -12,6 +12,7 @@ alias gal="gcloud auth login"
 alias crd="carto_remote_dev"
 alias updates="brew update && brew upgrade && brew cleanup && ya pkg upgrade && nvim --headless '+lua vim.pack.update(nil, { force = true })' +qa && nvim --headless -c 'luafile ~/.config/nvim/scripts/mason-update.lua' && mas upgrade"
 alias claude="caveman claude"
+alias sketchybarreload="brew services restart felixkratz/formulae/sketchybar"
 
 remove_quarantine() {
   if [[ $# -eq 0 ]]; then
