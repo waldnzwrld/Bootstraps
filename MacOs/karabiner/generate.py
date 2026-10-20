@@ -20,7 +20,8 @@ Ported:
                    pending one stacks modifiers and marks the hand as chorded;
                    any key then resolves every pending HRM as hold at once
                    (CHORD..ARM ms apart = roll, letters in order)
-      unknown hand keys outside both hands (space, ret, digits...) = hold
+      space        counts as same hand for both hands (tap until HOLD_TIMEOUT)
+      unknown hand other keys outside both hands (ret, digits...) = hold
   - kanata's Cmd->Ctrl GUI layer is not ported: macOS is the behavior it emulates.
 
 Mechanism: an idle HRM press holds its modifier lazily (sent only together with
@@ -159,12 +160,13 @@ def resolve_and_lift(key):
     for y, mod in HRM.items():
         if y == key:
             continue
-        if kh is not None:
+        if kh is not None or key == "spacebar":
             elapsed = f"{NOW} - {v(y)}_down"
-            if key in HRM and hand(y) == kh:
+            same = key == "spacebar" or hand(y) == kh
+            if key in HRM and same:
                 window = f"{elapsed} >= {CHORD} and {elapsed} < {ARM}"
             else:
-                window = f"{elapsed} < {HOLD_TIMEOUT if hand(y) == kh else ARM}"
+                window = f"{elapsed} < {HOLD_TIMEOUT if same else ARM}"
             ms.append(manip(
                 key,
                 [var(v(y), 3), TOUCH, {"key_code": y}, out(key)],
