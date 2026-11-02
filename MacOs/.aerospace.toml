@@ -114,15 +114,27 @@ gaps.outer.right =      0
     # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
     # You can uncomment the following lines to open up terminal with alt + enter shortcut
     # (like in i3)
-    cmd-enter = '''exec-and-forget osascript \
-      -e 'if application "Ghostty" is running then' \
-      -e 'tell application "Ghostty"' \
-      -e 'new window' \
-      -e 'activate' \
-      -e 'end tell' \
-      -e 'else' \
-      -e 'tell application "Ghostty" to activate' \
-      -e 'end if' '''
+    # Ghostty's own activation leaves the new window non-key; AeroSpace focuses it once it appears.
+    cmd-enter = '''exec-and-forget
+      before=$(aerospace list-windows --monitor all --app-bundle-id com.mitchellh.ghostty --format "%{window-id}")
+      osascript \
+        -e 'if application "Ghostty" is running then' \
+        -e 'tell application "Ghostty"' \
+        -e 'new window' \
+        -e 'activate' \
+        -e 'end tell' \
+        -e 'else' \
+        -e 'tell application "Ghostty" to activate' \
+        -e 'end if'
+      for _ in {1..40}; do
+        for id in $(aerospace list-windows --monitor all --app-bundle-id com.mitchellh.ghostty --format "%{window-id}"); do
+          if ! grep -qxF "$id" <<< "$before"; then
+            aerospace focus --window-id "$id"
+            exit 0
+          fi
+        done
+        sleep 0.05
+      done'''
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
     ctrl-alt-t = 'layout tiles horizontal vertical'
