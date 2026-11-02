@@ -11,6 +11,15 @@ require("sidekick").setup({
 		files = { "<c-f>", "files", mode = "nt", desc = "open file picker" },
 	},
 	cli = {
+		tools = {
+			omp = {
+				cmd = { "omp" },
+				is_proc = "\\<omp\\>",
+				resume = { "--resume" },
+				continue = { "--continue" },
+				native_scroll = false,
+			},
+		},
 		prompts = {
 			haunt_all = function()
 				return haunt_sk.get_locations()
@@ -45,11 +54,11 @@ vim.keymap.set({ "n", "i" }, "<Tab>", function()
 end, { desc = "jump or apply nes" })
 
 vim.keymap.set("n", "<leader>cc", function()
-	require("sidekick.cli").toggle({ name = "claude", focus = true })
+	require("sidekick.cli").toggle({ name = "omp", focus = true })
 end, { desc = "Sidekick toggle" })
 
-vim.keymap.set("n", "<leader>cq", function()
-	require("sidekick.cli").toggle({ name = "pi", focus = true })
+vim.keymap.set("n", "<leader>ch", function()
+	require("sidekick.cli").toggle()
 end, { desc = "Sidekick toggle" })
 
 vim.keymap.set("n", "<leader>cn", function()
