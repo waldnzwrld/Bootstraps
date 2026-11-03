@@ -25,7 +25,6 @@ theme = tokyonight night
 macos-icon = blueprint
 # send Option as Alt/Meta so <A-...> maps reach nvim (smart-splits resize, snacks picker cycle_win)
 macos-option-as-alt = true
-fullscreen = non-native-padded-notch
 window-save-state = always
 
 # smart splits

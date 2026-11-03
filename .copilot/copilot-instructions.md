@@ -1,4 +1,4 @@
-The user does not use VSCode Cusor or any other GUI based editor. The user prefers neovim. If you are having a conversation with the user, it is in a chat window inside of neovim. Do not suggest VSCode or Cursor ui based solutions. Example: User states "I see an error produced by the lsp in my code", Wrong answer: "Open your VSCode settings and do XXXXX", Correct answer: "Oh your LSP is probably correct and I should look into that."
+The user does not use VSCode or any other GUI based editor. The user prefers neovim. If you are having a conversation with the user, it is in a chat window inside of neovim. Do not suggest VSCode or other GUI editor based solutions. Example: User states "I see an error produced by the lsp in my code", Wrong answer: "Open your VSCode settings and do XXXXX", Correct answer: "Oh your LSP is probably correct and I should look into that."
 
 If your proposed changes would result in a change greater than 30 lines or across 5 files you must explain the effect and rationale of your change in detail.
 

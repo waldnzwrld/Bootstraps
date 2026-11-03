@@ -10,11 +10,11 @@ export PATH=$GOBIN:$NVM_DIR:$PATH
 
  #Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
+export RACK_DIR="$HOME/Code/Rack-SDK"
+ #Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="muse"
+ZSH_THEME="muse"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -44,6 +44,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(brew colored-man-pages gh git golang jsontools)
+export EDITOR="nvim"
 
 source $ZSH/oh-my-zsh.sh
 source "/opt/homebrew/opt/spaceship/spaceship.zsh"
@@ -62,7 +63,6 @@ source $ZSH_CUSTOM/aliases.zsh
 # else
 #   export EDITOR='nvim'
 # fi
-export EDITOR="nvim"
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
