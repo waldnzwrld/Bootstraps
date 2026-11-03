@@ -7,6 +7,9 @@ require("atlas").setup({
 		},
 	},
 	pulls = {
+		diff = {
+			compact = false,
+		},
 		---@type AtlasGitHubPullsConfig
 		github = {
 			---@type AtlasGitHubViewConfig[]

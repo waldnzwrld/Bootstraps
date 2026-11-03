@@ -1,7 +1,12 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.local/shims:/usr/local/bin:$PATH
 export GOPATH=$HOME/.go
-export PATH=$GOPATH:$PATH
+export GOBIN=$GOPATH/bin
+export NVM_DIR="$HOME/.nvm"
+export PATH=$GOBIN:$NVM_DIR:$PATH
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
  #Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -65,5 +70,5 @@ export EDITOR="nvim"
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
 # For a full list of active aliases, run `alias`.
 #
-alias vstDebug="'/Applications/REAPER.app/Contents/MacOS/REAPER'"
 eval "$(zoxide init zsh)"
+export CARTO_VM_DEVCONTAINERS=true
