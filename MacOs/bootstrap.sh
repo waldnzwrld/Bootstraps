@@ -12,7 +12,7 @@ if [ ! -d ~/.oh-my-zsh ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
-mkdir ~/.go
+mkdir -p ~/.go
 export GOPATH=~/.go
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -34,15 +34,20 @@ link "$SCRIPT_DIR/aliases.zsh" ~/.oh-my-zsh/custom/aliases.zsh
 link "$SCRIPT_DIR/.zshrc" ~/.zshrc
 
 link "$REPO_ROOT/yazi" ~/.config/yazi
-ya pkg install
-ya pkg upgrade
 
 link "$REPO_ROOT/nvim" ~/.config/nvim
 link "$REPO_ROOT/ghostty" ~/.config/ghostty
 link "$REPO_ROOT/lazygit" ~/.config/lazygit
+link "$REPO_ROOT/.vimrc" ~/.vimrc
+link "$SCRIPT_DIR/.aerospace.toml" ~/.aerospace.toml
+link "$SCRIPT_DIR/sketchybar" ~/.config/sketchybar
+link "$SCRIPT_DIR/karabiner" ~/.config/karabiner
 
 # if this fails keep going
-brew bundle --file=Brewfile.common || true
+brew bundle --file="$SCRIPT_DIR/Brewfile.common" || true
+
+ya pkg install
+ya pkg upgrade
 
 mas signin --dialog waldnzwrld@gmail.com
 
@@ -50,10 +55,10 @@ mas signin --dialog waldnzwrld@gmail.com
 read -p "Is this a personal or business build? (p/b) " build_type
 
 if [ "$build_type" == "p" ]; then
-    brew bundle --file=Brewfile.personal || true
+    brew bundle --file="$SCRIPT_DIR/Brewfile.personal" || true
     mas lucky DaVinci\ Resolve
 else
-    brew bundle --file=Brewfile.professional || true
+    brew bundle --file="$SCRIPT_DIR/Brewfile.professional" || true
 fi
 
 cargo install stylua

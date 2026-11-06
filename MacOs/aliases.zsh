@@ -26,5 +26,5 @@ remove_quarantine() {
     echo "Usage: remove_quarantine <file1> [file2 ...]"
     return 1
   fi
-  xattr -c "$1"
+  xattr -c "$@"
 }
