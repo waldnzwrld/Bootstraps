@@ -22,9 +22,10 @@ require("toggleterm").setup({
 })
 
 -- map leader st to TermSelect
-vim.keymap.set("n", "<leader>st", ":TermSelect<CR>", { desc = "Terminal select" })
+vim.keymap.set("n", "<leader>tp", ":TermSelect<CR>", { desc = "Terminal select" })
 -- set terminal names
-vim.keymap.set("n", "<leader>rt", ":ToggleTermSetName<CR>", { desc = "Terminal rename" })
+vim.keymap.set("n", "<leader>tr", ":ToggleTermSetName<CR>", { desc = "Terminal rename" })
 -- map leader tt to Toggleterm
 vim.keymap.set("n", "<leader>tt", ":ToggleTerm<CR>", { desc = "Terminal toggle" })
-vim.keymap.set("n", "<leader>nt", ":TermNew<CR>", { desc = "Terminal new" })
+vim.keymap.set("n", "<leader>tn", ":TermNew<CR>", { desc = "Terminal new" })
+vim.keymap.set("n", "<leader>ta", ":ToggleTermAll<CR>", { desc = "Toggle all terminals" })

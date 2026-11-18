@@ -68,7 +68,6 @@ vim.pack.add({
 	{ src = "https://github.com/folke/sidekick.nvim" }, -- sidekick ai integration
 	{ src = "https://github.com/folke/snacks.nvim" }, -- multiplug for nvim
 	{ src = "https://github.com/folke/todo-comments.nvim" }, -- todo comments
-	{ src = "https://github.com/fredrikaverpil/neotest-golang" }, -- Go framework
 	{ src = "https://github.com/giuxtaposition/blink-cmp-copilot" }, -- blink copilot source
 	{ src = "https://github.com/HiPhish/rainbow-delimiters.nvim" }, -- rainbow delimiters
 	{ src = "https://github.com/igorlfs/nvim-dap-view" }, -- dap views
@@ -84,17 +83,19 @@ vim.pack.add({
 	{ src = "https://github.com/marilari88/neotest-vitest" }, -- Vitest framework
 	{ src = "https://github.com/mason-org/mason.nvim" }, -- LSP/DAP/Linter/Formatter installer
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" }, -- LSP installer
-	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" }, -- markdown renderer
+	{ src = "https://github.com/meanderingprogrammer/render-markdown.nvim" }, -- the best
 	{ src = "https://github.com/mfussenegger/nvim-dap" }, -- Debug Adapter Protocol
 	{ src = "https://github.com/mfussenegger/nvim-lint" }, -- Linting framework
 	{ src = "https://github.com/mikavilpas/yazi.nvim" }, -- yazi tree for nvim
 	{ src = "https://github.com/mrjones2014/smart-splits.nvim" }, -- split navigation
 	{ src = "https://github.com/neovim/nvim-lspconfig" }, -- LSP configuration
 	{ src = "https://github.com/nemanjamalesija/smart-paste.nvim" }, -- smart paste
+	{ src = "https://github.com/nemanjamalesija/ts-expand-hover.nvim" }, -- Advanced typescript type navigation
 	{ src = "https://github.com/nvim-lua/plenary.nvim" }, -- dep for yazi.nvim
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" }, -- statusline
 	{ src = "https://github.com/nvim-mini/mini.nvim" }, -- Mini: minimal Lua modules
 	{ src = "https://github.com/nvim-neotest/neotest" }, -- Testing framework
+	{ src = "https://github.com/nvim-neotest/neotest-jest" }, -- Jest framework
 	{ src = "https://github.com/nvim-neotest/nvim-nio" }, -- async io (neotest/dap)
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" }, -- context for treesitter
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" }, -- textobjects for treesitter
@@ -106,7 +107,7 @@ vim.pack.add({
 	{ src = "https://github.com/rmagatti/auto-session" }, -- session management
 	{ src = "https://github.com/Saghen/blink.cmp" }, -- blink completion
 	{ src = "https://github.com/Saghen/blink.lib" }, -- blink cmp dependency
-	{ src = "https://github.com/sammaji/markdown-preview.nvim" }, -- markdown-preview
+	-- { src = "https://github.com/Saghen/blink.pairs" }, -- rainbow-delimiters
 	{ src = "https://github.com/spacedentist/resolve.nvim" }, -- conflict resolver
 	{ src = "https://github.com/stevearc/aerial.nvim" }, -- code outline / symbol tree
 	{ src = "https://github.com/stevearc/conform.nvim" }, -- conform formatter

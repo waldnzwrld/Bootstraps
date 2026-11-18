@@ -1,17 +1,43 @@
 local neotest = require("neotest")
 
-local go = require("neotest-golang")({
-	go_test_args = { "-v", "-race", "-count=1", "-tags=integration" },
-	go_list_args = { "-tags=integration" },
-	dap_go_opts = {
-		delve = {
-			build_flags = { "-tags=integration" },
-		},
-	},
-})
+local function read_pkg_json(root, rel_path)
+	local pkg = root .. "/" .. rel_path .. "/package.json"
+	local f = io.open(pkg, "r")
+	if not f then
+		return nil
+	end
+	local contents = f:read("*a")
+	f:close()
+	return contents
+end
 
+local function has_jest_config(root, rel_path)
+	for _, ext in ipairs({ "js", "ts", "cjs", "mjs", "json" }) do
+		local p = root .. "/" .. rel_path .. "/jest.config." .. ext
+		local f = io.open(p, "r")
+		if f then
+			f:close()
+			return true
+		end
+	end
+	local contents = read_pkg_json(root, rel_path)
+	return contents ~= nil and contents:find('"jest"%s*:') ~= nil
+end
+
+local jest = require("neotest-jest")({
+	-- only descend into packages with a jest config (jest.config.* or "jest" key in package.json)
+	filter_dir = function(name, rel_path, root)
+		if name == "node_modules" then
+			return false
+		end
+		if not read_pkg_json(root, rel_path) then
+			return true
+		end
+		return has_jest_config(root, rel_path)
+	end,
+})
 local vitest = require("neotest-vitest")({
-	-- filter directories so that only dirs with a package.json containing "vitest" are selected
+	-- filter directories and only return dirs where the root dir package.json has the text "vitest"
 	filter_dir = function(name, rel_path, root)
 		if name == "node_modules" then
 			return false
@@ -28,63 +54,60 @@ local vitest = require("neotest-vitest")({
 })
 
 neotest.setup({
-	summary = {
-		open = "botright vsplit | vertical resize 80",
-	},
 	adapters = {
-		go,
+		jest,
 		vitest,
 	},
 })
 
 vim.keymap.set("n", "<leader>nr", function()
 	neotest.run.run()
-end, { desc = "Neotest: run nearest" })
+end, { desc = "Run nearest test" })
 
 vim.keymap.set("n", "<leader>nf", function()
 	neotest.run.run(vim.fn.expand("%"))
-end, { desc = "Neotest: run file" })
+end, { desc = "Run all tests in current file" })
 
 vim.keymap.set("n", "<leader>na", function()
-	neotest.run.run(vim.fn.getcwd())
-end, { desc = "Neotest: run all (cwd)" })
+	neotest.run.run({ suite = true })
+end, { desc = "Run all tests" })
 
 vim.keymap.set("n", "<leader>nl", function()
 	neotest.run.run_last()
-end, { desc = "Neotest: run last" })
+end, { desc = "Run last test" })
 
 vim.keymap.set("n", "<leader>nd", function()
 	neotest.run.run({ strategy = "dap" })
-end, { desc = "Neotest: debug nearest (DAP)" })
+end, { desc = "Debug nearest test" })
 
 vim.keymap.set("n", "<leader>nx", function()
 	neotest.run.stop()
-end, { desc = "Neotest: stop" })
+end, { desc = "Stop running tests" })
 
 vim.keymap.set("n", "<leader>nn", function()
 	neotest.run.attach()
-end, { desc = "Neotest: attach to running test" })
+end, { desc = "Attach to nearest test" })
 
 vim.keymap.set("n", "<leader>ns", function()
 	neotest.summary.toggle()
-end, { desc = "Neotest: toggle summary" })
+end, { desc = "Toggle summary" })
 
 vim.keymap.set("n", "<leader>no", function()
-	neotest.output.open({ enter = true, auto_close = true })
-end, { desc = "Neotest: show output (float)" })
+	neotest.output.open()
+end, { desc = "Show test output" })
 
 vim.keymap.set("n", "<leader>np", function()
 	neotest.output_panel.toggle()
-end, { desc = "Neotest: toggle output panel" })
+end, { desc = "Toggle output panel" })
 
 vim.keymap.set("n", "<leader>nw", function()
 	neotest.watch.toggle(vim.fn.expand("%"))
-end, { desc = "Neotest: toggle watch (file)" })
+end, { desc = "Toggle watch file" })
+
+vim.keymap.set("n", "<leader>nc", function()
+	neotest.run.run({ suite = true, env = { CI = true } })
+end, { desc = "Run all tests with CI " })
 
 vim.keymap.set("n", "<leader>nj", function()
 	neotest.jump.next({ status = "failed" })
-end, { desc = "Neotest: jump to next failed" })
-
-vim.keymap.set("n", "<leader>nk", function()
-	neotest.jump.prev({ status = "failed" })
-end, { desc = "Neotest: jump to prev failed" })
+end, { desc = "Jump to next failed" })

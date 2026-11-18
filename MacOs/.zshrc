@@ -1,13 +1,12 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-export XDG_CONFIG_HOME=$HOME/.config
-export RBENV=$HOME/.rbenv/shims
-export GOPATH=`go env GOPATH`
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.local/shims:/usr/local/bin:$PATH
+export GOPATH=$HOME/.go
 export GOBIN=$GOPATH/bin
-export CARGO=$HOME/.cargo/bin
-# Python should reference the executable installed by homebrew, which is used by pyenv to manage Python versions. This ensures that when you switch Python versions with pyenv, the correct Python executable is used.
-export PYTHON=$(brew --prefix)/opt/python/bin
-export PATH=$RBENV:$GOBIN:$CARGO:$PYTHON:$PATH
+export NVM_DIR="$HOME/.nvm"
+export PATH=$GOBIN:$NVM_DIR:$PATH
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
  #Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -72,3 +71,4 @@ source $ZSH_CUSTOM/aliases.zsh
 # For a full list of active aliases, run `alias`.
 #
 eval "$(zoxide init zsh)"
+export CARTO_VM_DEVCONTAINERS=true

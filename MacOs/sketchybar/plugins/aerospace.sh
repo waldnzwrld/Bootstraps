@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# Updates every space.<sid> item. A workspace is shown if it has windows or is
+# Owns every space.<sid> and space_gap.<monitor>.<1|2> item: creates items for
+# new workspaces/monitors, removes items for workspaces AeroSpace no longer
+# lists, and reassigns display= and order each run so moved workspaces follow
+# their monitor. A workspace is shown if it has windows or is
 # focused; each monitor's shown list is then windowed to MAX_SHOWN slots:
 #   focused <= 4:        1 2 3 4 … n-1 n
 #   5 <= focused <= n-3: 1 2 3 … f … n
@@ -29,14 +32,46 @@ in_window() {
   fi
 }
 
+has_item() { [[ $BAR_ITEMS == *"\"$1\""* ]]; }
+
+space_style=(
+  icon.color=$FG
+  icon.highlight_color=$BLUE
+  icon.padding_left=10
+  label.color=$COMMENT
+  label.highlight_color=$FG
+  label.padding_right=12
+  background.color=$BG_INACTIVE
+  background.border_color=$COMMENT
+  background.border_width=1
+  background.corner_radius=6
+  background.height=26
+)
+
+create=()
 args=()
+live=" "
 
 for monitor in $(aerospace list-monitors --format '%{monitor-id}'); do
   shown=()
   focused_pos=0
 
+  for gap in 1 2; do
+    has_item "space_gap.$monitor.$gap" || create+=(
+      --add item "space_gap.$monitor.$gap" left
+      --set "space_gap.$monitor.$gap" display="$monitor" drawing=off
+            icon=… icon.color=$COMMENT label.drawing=off
+    )
+  done
+
   for sid in $(aerospace list-workspaces --monitor "$monitor"); do
-    [[ $BAR_ITEMS == *"\"space.$sid\""* ]] || continue
+    live+="space.$sid "
+    has_item "space.$sid" || create+=(
+      --add item "space.$sid" left
+      --set "space.$sid" "${space_style[@]}" icon="$sid"
+            click_script="aerospace workspace $sid"
+    )
+    args+=(--move "space.$sid" before spaces --set "space.$sid" display="$monitor")
 
     icons=""
     while read -r app; do
@@ -100,4 +135,9 @@ for monitor in $(aerospace list-monitors --format '%{monitor-id}'); do
   done
 done
 
+for item in $(grep -o '"space\.[^"]*"' <<< "$BAR_ITEMS" | tr -d '"'); do
+  [[ $live == *" $item "* ]] || create+=(--remove "$item")
+done
+
+(( ${#create[@]} )) && sketchybar "${create[@]}"
 sketchybar --animate tanh 10 "${args[@]}"

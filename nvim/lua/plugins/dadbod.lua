@@ -1,9 +1,22 @@
 vim.g.db_ui_use_nerd_fonts = 1
 
--- Reachable only via: kubectl port-forward -n second-line-staging \
---   svc/second-line-postgres 5433:5432
 vim.g.dbs = {
-	{ name = "staging-postgres", url = "postgres://postgres:postgres@localhost:5433/secondline" },
+	{
+		name = "claudio-flaky-tests",
+		url = "bigquery:carto-monitoring-gcp:flaky_tests",
+	},
+	{
+		name = "claudio-environment-deltas",
+		url = "bigquery:carto-monitoring-gcp:environment_deltas",
+	},
+	{
+		name = "claudio-ci-observability",
+		url = "bigquery:carto-monitoring-gcp:ci_observability",
+	},
+	{
+		name = "claudio-monitoring",
+		url = "bigquery:carto-monitoring-gcp",
+	},
 }
 
-vim.keymap.set("n", "<leader>db", "<cmd>DBUIToggle<cr>", { desc = "Dadbod database ui" })
+vim.keymap.set("n", "<leader>db", "<cmd>DBUIToggle<CR>", { desc = "DadBod Database manager" })

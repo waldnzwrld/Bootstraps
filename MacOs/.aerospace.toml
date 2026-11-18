@@ -59,7 +59,7 @@ automatically-unhide-macos-hidden-apps = true
 # even when they are invisible.
 # This config option is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+persistent-workspaces = ["1", "2", "3", "4", "5", "9", "M"]
 
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -114,9 +114,11 @@ gaps.outer.right =      0
     # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
     # You can uncomment the following lines to open up terminal with alt + enter shortcut
     # (like in i3)
-    # Ghostty's own activation leaves the new window non-key; AeroSpace focuses it once it appears.
+    # NOTE: macOS refuses focus requests from background osascript, so aerospace focuses the new window by highest id.
     cmd-enter = '''exec-and-forget
-      before=$(aerospace list-windows --monitor all --app-bundle-id com.mitchellh.ghostty --format "%{window-id}")
+      as=/opt/homebrew/bin/aerospace
+      newest() { $as list-windows --monitor all --app-bundle-id com.mitchellh.ghostty --format "%{window-id}" | sort -n | tail -1; }
+      before=$(newest)
       osascript \
         -e 'if application "Ghostty" is running then' \
         -e 'tell application "Ghostty"' \
@@ -126,15 +128,11 @@ gaps.outer.right =      0
         -e 'else' \
         -e 'tell application "Ghostty" to activate' \
         -e 'end if'
-      for _ in {1..40}; do
-        for id in $(aerospace list-windows --monitor all --app-bundle-id com.mitchellh.ghostty --format "%{window-id}"); do
-          if ! grep -qxF "$id" <<< "$before"; then
-            aerospace focus --window-id "$id"
-            exit 0
-          fi
-        done
+      for _ in $(seq 1 40); do
+        id=$(newest)
+        if [ -n "$id" ] && [ "$id" != "$before" ]; then $as focus --window-id "$id"; exit 0; fi
         sleep 0.05
-      done'''
+      done '''
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
     ctrl-alt-t = 'layout tiles horizontal vertical'
@@ -185,7 +183,7 @@ gaps.outer.right =      0
     # ctrl-alt-s = 'workspace S'
     # ctrl-alt-t = 'workspace T'
     # ctrl-alt-u = 'workspace U'
-    # ctrl-alt-v = 'workspace V'
+    ctrl-alt-v = 'workspace V'
     # ctrl-alt-w = 'workspace W'
     # ctrl-alt-x = 'workspace X'
     # ctrl-alt-y = 'workspace Y'
@@ -218,7 +216,7 @@ gaps.outer.right =      0
     # ctrl-alt-shift-s = 'move-node-to-workspace S'
     # ctrl-alt-shift-t = 'move-node-to-workspace T'
     # ctrl-alt-shift-u = 'move-node-to-workspace U'
-    # ctrl-alt-shift-v = 'move-node-to-workspace V'
+    ctrl-alt-shift-v = 'move-node-to-workspace V'
     # ctrl-alt-shift-w = 'move-node-to-workspace W'
     # ctrl-alt-shift-x = 'move-node-to-workspace X'
     # ctrl-alt-shift-y = 'move-node-to-workspace Y'
@@ -227,7 +225,8 @@ gaps.outer.right =      0
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     ctrl-alt-tab = 'workspace-back-and-forth'
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-    ctrl-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+    ctrl-alt-shift-tab = ['move-workspace-to-monitor --wrap-around next',
+                          'exec-and-forget sketchybar --trigger aerospace_workspace_change']
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     ctrl-alt-semicolon = 'mode service'

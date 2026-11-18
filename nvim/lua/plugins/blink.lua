@@ -1,4 +1,5 @@
 require("blink.lib")
+-- require("blink-emoji")
 require("blink.cmp").setup({
 	fuzzy = {
 		implementation = "lua", -- Use Lua implementation instead of Rust
@@ -100,23 +101,35 @@ require("blink.cmp").setup({
 	},
 	sources = {
 		default = { "lsp", "path", "snippets", "buffer" },
-		-- providers = {
-		-- 	copilot = {
-		-- 		name = "copilot",
-		-- 		module = "blink-cmp-copilot",
-		-- 		score_offset = 100,
-		-- 		async = true,
-		-- 		transform_items = function(_, items)
-		-- 			local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
-		-- 			local kind_idx = #CompletionItemKind + 1
-		-- 			CompletionItemKind[kind_idx] = "Copilot"
-		-- 			for _, item in ipairs(items) do
-		-- 				item.kind = kind_idx
-		-- 			end
-		-- 			return items
-		-- 		end,
-		-- 	},
-		-- },
+		providers = {
+			-- emoji = {
+			-- 	name = "emoji",
+			-- 	module = "blink-emoji",
+			-- 	score_offset = 15, -- Tune by preference
+			-- 	opts = {
+			-- 		insert = true, -- Insert emoji (default) or complete its name
+			-- 		---@type string|table|fun():table
+			-- 		trigger = function()
+			-- 			return { ":" }
+			-- 		end,
+			-- 	},
+			-- },
+			-- 	copilot = {
+			-- 		name = "copilot",
+			-- 		module = "blink-cmp-copilot",
+			-- 		score_offset = 100,
+			-- 		async = true,
+			-- 		transform_items = function(_, items)
+			-- 			local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+			-- 			local kind_idx = #CompletionItemKind + 1
+			-- 			CompletionItemKind[kind_idx] = "Copilot"
+			-- 			for _, item in ipairs(items) do
+			-- 				item.kind = kind_idx
+			-- 			end
+			-- 			return items
+			-- 		end,
+			-- 	},
+		},
 	},
 	signature = {
 		enabled = true,

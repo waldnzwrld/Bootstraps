@@ -7,7 +7,9 @@ vim.keymap.set("n", "G", "Gzz", { desc = "Go to end of file and center" })
 vim.keymap.set("n", "gg", "ggzz", { desc = "Go to top of file and center" })
 vim.keymap.set("n", "j", "jzz", { desc = "Move down and center" })
 vim.keymap.set("n", "k", "kzz", { desc = "Move up and center" })
-vim.keymap.set("n", "l", "lzz", { desc = "Move right and center" })
+
+vim.keymap.set("n", "{", "{zz", { desc = "Paragraph up and center" })
+vim.keymap.set("n", "}", "}zz", { desc = "Paragraph down and center" })
 vim.keymap.set("n", "$", "$zz", { desc = "Move to end of line and center" })
 vim.keymap.set("n", "_", "_zz", { desc = "Move to beginning of line and center" })
 
