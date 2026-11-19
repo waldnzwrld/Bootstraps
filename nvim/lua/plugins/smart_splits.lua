@@ -6,7 +6,14 @@ require("smart-splits").setup({
 		ignored_events = { "BufEnter", "WinEnter" },
 	},
 	move = {
-		at_edge = "wrap",
+		-- inside Rex, hand edge moves to Rex (its ctrl+hjkl binds pass keys back when nvim is focused)
+		at_edge = function(ctx)
+			if vim.env.REX_BLOCK then
+				vim.system({ "rex", "focus", ctx.direction })
+			else
+				ctx.wrap()
+			end
+		end,
 		same_row = false,
 		float = "previous",
 	},

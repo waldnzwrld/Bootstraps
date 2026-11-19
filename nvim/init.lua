@@ -58,7 +58,6 @@ vim.pack.add({
 	-- { src = "https://github.com/rebelot/kanagawa.nvim" },
 	-- { src = "https://github.com/vague2k/vague.nvim" },
 
-	{ src = "https://github.com/akinsho/toggleterm.nvim" }, -- terminal integration
 	{ src = "https://github.com/Allaman/tf.nvim" }, -- terraform integration
 	{ src = "https://github.com/arborist-ts/arborist.nvim" }, -- Treesitter lang installer
 	{ src = "https://github.com/atiladefreitas/bloocky" }, -- Calendar integration
