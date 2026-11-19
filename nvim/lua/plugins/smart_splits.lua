@@ -44,9 +44,28 @@ vim.keymap.set("n", "<leader><leader>j", require("smart-splits").swap_buf_down)
 vim.keymap.set("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
 vim.keymap.set("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
 
--- bottom terminal toggle
-local term_win
+-- bottom terminal toggle: a Rex block inside Rex, else an nvim terminal split
+local term_win, term_block
 vim.keymap.set("n", "<leader>tt", function()
+	if vim.env.REX_BLOCK then
+		if term_block then
+			local closed = vim.system({ "rex", "block", "close", term_block }):wait().code == 0
+			term_block = nil
+			if closed then
+				return
+			end -- block was already closed by hand, so open a new one
+		end
+		local res = vim.system(
+			{ "rex", "split", "-b", vim.env.REX_BLOCK, "--split", "below", "--ratio", "25", "-c", vim.fn.getcwd(), "--json" },
+			{ text = true }
+		):wait()
+		if res.code ~= 0 then
+			vim.notify(res.stderr, vim.log.levels.ERROR)
+			return
+		end
+		term_block = vim.json.decode(res.stdout).block_ids[1]
+		return
+	end
 	if term_win and vim.api.nvim_win_is_valid(term_win) then
 		local buf = vim.api.nvim_win_get_buf(term_win)
 		pcall(vim.api.nvim_win_close, term_win, true) -- E444 if it is the last window
@@ -56,6 +75,6 @@ vim.keymap.set("n", "<leader>tt", function()
 		term_win = nil
 		return
 	end
-	vim.cmd("botright " .. math.max(1, math.floor(vim.o.lines * 0.1)) .. "split | terminal")
+	vim.cmd("botright " .. math.max(1, math.floor(vim.o.lines * 0.25)) .. "split | terminal")
 	term_win = vim.api.nvim_get_current_win()
 end)
