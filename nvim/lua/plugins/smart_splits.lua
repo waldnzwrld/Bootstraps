@@ -43,3 +43,19 @@ vim.keymap.set("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
 vim.keymap.set("n", "<leader><leader>j", require("smart-splits").swap_buf_down)
 vim.keymap.set("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
 vim.keymap.set("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
+
+-- bottom terminal toggle
+local term_win
+vim.keymap.set("n", "<leader>tt", function()
+	if term_win and vim.api.nvim_win_is_valid(term_win) then
+		local buf = vim.api.nvim_win_get_buf(term_win)
+		pcall(vim.api.nvim_win_close, term_win, true) -- E444 if it is the last window
+		if vim.bo[buf].buftype == "terminal" then
+			vim.api.nvim_buf_delete(buf, { force = true })
+		end
+		term_win = nil
+		return
+	end
+	vim.cmd("botright " .. math.max(1, math.floor(vim.o.lines * 0.1)) .. "split | terminal")
+	term_win = vim.api.nvim_get_current_win()
+end)

@@ -64,8 +64,10 @@ function Rex:is_running()
 	return self.rex_pid ~= nil and vim.api.nvim_get_proc(self.rex_pid) ~= nil
 end
 
+-- sidekick only focuses its own terminal after a send, so focus the block here (cli.send/prompt: <leader>cu, <leader>cp)
 function Rex:send(text)
 	rex({ "send", "-b", self.rex_block }, { stdin = text })
+	self:attach()
 end
 
 function Rex:submit()
