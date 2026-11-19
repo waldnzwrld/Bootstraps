@@ -114,25 +114,6 @@ gaps.outer.right =      0
     # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
     # You can uncomment the following lines to open up terminal with alt + enter shortcut
     # (like in i3)
-    # NOTE: macOS refuses focus requests from background osascript, so aerospace focuses the new window by highest id.
-    cmd-enter = '''exec-and-forget
-      as=/opt/homebrew/bin/aerospace
-      newest() { $as list-windows --monitor all --app-bundle-id com.mitchellh.ghostty --format "%{window-id}" | sort -n | tail -1; }
-      before=$(newest)
-      osascript \
-        -e 'if application "Ghostty" is running then' \
-        -e 'tell application "Ghostty"' \
-        -e 'new window' \
-        -e 'activate' \
-        -e 'end tell' \
-        -e 'else' \
-        -e 'tell application "Ghostty" to activate' \
-        -e 'end if'
-      for _ in $(seq 1 40); do
-        id=$(newest)
-        if [ -n "$id" ] && [ "$id" != "$before" ]; then $as focus --window-id "$id"; exit 0; fi
-        sleep 0.05
-      done '''
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
     ctrl-alt-t = 'layout tiles horizontal vertical'

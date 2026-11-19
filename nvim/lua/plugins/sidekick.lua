@@ -212,4 +212,4 @@ vim.keymap.set("n", "<leader>cd", function()
 	require("sidekick.cli").close()
 end, { silent = true, desc = "Sidekick close" })
 
-vim.keymap.set("t", "<C-s>", "<Nop>", { desc = "disable stash in claude" })
+-- vim.keymap.set("t", "<C-s>", "<Nop>", { desc = "disable stash in claude" })
